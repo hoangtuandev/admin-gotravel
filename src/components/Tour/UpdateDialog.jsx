@@ -23,6 +23,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import DatePicker from 'react-datepicker';
 import { MdOutlineClose } from 'react-icons/md';
@@ -53,6 +54,7 @@ function UpdateDialog(props) {
     const imageRef = useRef(null);
     const { setTourList } = props;
 
+    const [isLoading, setIsLoading] = useState(false);
     const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [typeTourismList, setTypeTourismList] = useState([]);
     const [vehicleList, setVehicleList] = useState([]);
@@ -159,6 +161,7 @@ function UpdateDialog(props) {
     };
 
     const handleAddDeparture = () => {
+        setIsLoading(true);
         let start = new Date(startDate.getTime());
         let finish = new Date(finishDate.getTime());
 
@@ -186,6 +189,7 @@ function UpdateDialog(props) {
 
                     api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
                         setDepartureList(res.data.t_lichkhoihanh);
+                        setIsLoading(false);
                     });
                 });
             });
@@ -219,6 +223,10 @@ function UpdateDialog(props) {
         //     vehiclesDeparture,
         //     addressDeparture
         // );
+    };
+
+    const handleDeleteDeparture = (departure) => {
+        console.log(departure);
     };
 
     const handleCloseDialog = () => {
@@ -587,14 +595,33 @@ function UpdateDialog(props) {
                                 </div>
 
                                 <div className={cx('button-groups')}>
-                                    <Button
-                                        className={cx('button-save')}
-                                        variant="contained"
-                                        size="large"
-                                        onClick={() => handleAddDeparture()}
-                                    >
-                                        THÊM VÀO LỊCH KHỞI HÀNH
-                                    </Button>
+                                    {isLoading && (
+                                        <Button
+                                            className={cx('button-save')}
+                                            disabled
+                                            variant="contained"
+                                            size="large"
+                                            onClick={() => handleAddDeparture()}
+                                        >
+                                            <CircularProgress
+                                                size={24}
+                                                className={cx(
+                                                    'circularProgress'
+                                                )}
+                                            />
+                                            &nbsp;&nbsp; ĐANG XỬ LÝ ...
+                                        </Button>
+                                    )}
+                                    {!isLoading && (
+                                        <Button
+                                            className={cx('button-save')}
+                                            variant="contained"
+                                            size="large"
+                                            onClick={() => handleAddDeparture()}
+                                        >
+                                            THÊM VÀO LỊCH KHỞI HÀNH
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                             <div className={cx('list-schedule')}>
@@ -686,6 +713,11 @@ function UpdateDialog(props) {
                                                         'delete-departure'
                                                     )}
                                                     aria-label="delete"
+                                                    onClick={() =>
+                                                        handleDeleteDeparture(
+                                                            item
+                                                        )
+                                                    }
                                                 >
                                                     <DeleteIcon
                                                         className={cx('icon')}
