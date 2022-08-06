@@ -1,0 +1,150 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.type-tourism {
+    display: flex;
+    justify-content: center;
+    margin-left: 200px;
+    margin-top: 100px;
+
+    .button-add {
+        right: 0px;
+        padding: 7px 14px 7px 10px;
+        color: white;
+        background-color: $mainColor;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: $mainFamily;
+        margin-bottom: 20px;
+        border-radius: 50px;
+
+        .icon {
+            font-size: 22px;
+            margin-right: 5px;
+        }
+    }
+
+    .typeTourism_table {
+        border: 1px solid $mainColor;
+        border-collapse: collapse;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 1px 1px 15px #dcdcdc;
+
+        .id-type {
+            text-align: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        .name-type {
+            text-align: left;
+            padding-left: 60px;
+            padding-right: 30px;
+        }
+
+        thead {
+            tr {
+                th {
+                    background-color: #0b9de0;
+                    color: #fff;
+                    font-weight: 800;
+                    font-size: 17px;
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    font-weight: 600;
+                }
+                .button-group {
+                    padding-right: 20px;
+                    padding-left: 100px;
+
+                    .icon {
+                        font-size: 19px;
+                        padding: 5px 10px;
+                    }
+                }
+
+                &:hover {
+                    background-color: #f6f6f6;
+                }
+            }
+        }
+    }
+}
+
+.dialog {
+    font-size: 16px;
+
+    .dialog-title {
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: $mainFamily;
+        background-color: #0b9de0;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .dialog-content {
+        table {
+            padding-top: 15px;
+            padding-bottom: 10px;
+            tbody {
+                tr {
+                    td {
+                        padding: 10px 40px 10px 0px;
+
+                        input {
+                            width: 250px;
+                            outline: none;
+                            padding: 7px 10px;
+                            font-family: $mainFamily;
+                            font-size: 16px;
+                            font-weight: 600;
+                            border-radius: 5px;
+                            border: 1px solid #aaaaaa;
+                        }
+                    }
+
+                    .title {
+                        color: #6b6b6b;
+                        font-weight: 600;
+                    }
+
+                    .content {
+                        font-weight: 600;
+                        font-size: 17px;
+                    }
+                }
+
+                .id-item {
+                    color: red;
+                }
+            }
+        }
+    }
+
+    .button-groups {
+        font-family: $mainFamily;
+        font-size: 13px;
+        font-weight: 700;
+        width: 65px;
+    }
+
+    .button-close {
+        color: #ef0404;
+    }
+
+    .button-submit {
+        color: #fff;
+    }
+}

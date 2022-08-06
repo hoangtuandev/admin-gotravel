@@ -1,0 +1,81 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.vehicle {
+    display: flex;
+    justify-content: center;
+    margin-left: 200px;
+    margin-top: 100px;
+
+    .button-add {
+        right: 0px;
+        padding: 7px 14px 7px 10px;
+        color: white;
+        background-color: $mainColor;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: $mainFamily;
+        margin-bottom: 20px;
+        border-radius: 50px;
+
+        .icon {
+            font-size: 22px;
+            margin-right: 5px;
+        }
+    }
+
+    .vehicle_table {
+        border: 1px solid $mainColor;
+        border-collapse: collapse;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 1px 1px 15px #dcdcdc;
+
+        .id-vehicle {
+            text-align: center;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        .name-vehicle {
+            text-align: left;
+            padding-left: 60px;
+            padding-right: 30px;
+        }
+
+        thead {
+            tr {
+                th {
+                    background-color: #0b9de0;
+                    color: #fff;
+                    font-weight: 800;
+                    font-size: 17px;
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    font-weight: 600;
+                }
+                .button-group {
+                    padding-right: 20px;
+                    padding-left: 100px;
+
+                    .icon {
+                        font-size: 19px;
+                        padding: 5px 10px;
+                    }
+                }
+
+                &:hover {
+                    background-color: #f6f6f6;
+                }
+            }
+        }
+    }
+}

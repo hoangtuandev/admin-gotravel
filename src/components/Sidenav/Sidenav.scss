@@ -1,0 +1,65 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0px;
+    box-shadow: 1px 1px 7px #c0c0c0;
+    background-color: rgba(255, 255, 255, 0.4);
+    z-index: 2;
+
+    .logo {
+        text-align: center;
+
+        img {
+            width: 75%;
+            padding: 10px 0;
+        }
+    }
+
+    .menu {
+        ul {
+            margin: 20px 0 0 0;
+            li {
+                list-style-type: none;
+                display: flex;
+                align-items: center;
+                font-weight: 700;
+
+                margin: 15px 0px;
+                padding: 7px 0 4px 3px;
+                transition: ease-in-out 0.2s;
+                width: 212px;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                    transition: ease-in-out 0.2s;
+                    background-color: white;
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    border-left: 13px solid #0b9de0;
+                    box-shadow: 1px 1px 7px #a8a8a8;
+                    color: #005cbefe;
+                    font-weight: 700;
+                }
+
+                span {
+                    font-family: $mainFamily;
+                    margin: 0 8px;
+                }
+
+                .label {
+                    font-size: 15px;
+                    padding-bottom: 2px;
+                }
+                .icon {
+                    padding-top: 2px;
+                    font-size: 22px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,264 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.user-form {
+    // background-image: url("https://res.cloudinary.com/phtuandev/image/upload/v1657607532/GoTravel/background_hahalolo_euqfgv.svg");
+    // background-size: cover;
+
+    .user-form_content {
+        display: grid;
+        grid-template-columns: 30% 40% 30%;
+
+        .content-left {
+            // margin: 20px 0 0 -130px;
+            .content-left_logo {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+
+                img {
+                    width: 35%;
+                }
+            }
+
+            .content-left_slogan {
+                font-family: monospace;
+                font-weight: bold;
+                font-size: 2.7rem;
+                margin: 1rem 0 0 1rem;
+                color: #333;
+            }
+        }
+
+        .content-right {
+            // background-color: blanchedalmond;
+            position: relative;
+
+            .form-background {
+                position: absolute;
+            }
+
+            .form-control {
+                position: absolute;
+                border-radius: 10px;
+                box-shadow: 1px 1px 15px #3333;
+                padding: 15px 30px;
+
+                p {
+                    padding: 0 0;
+                    margin: 10px 0 0 0;
+                    font-size: 3rem;
+                    font-family: "Mulish", sans-serif;
+                    font-weight: 800;
+                    color: #f70707;
+                    text-align: center;
+                }
+
+                .form-groups {
+                    font-family: monospace;
+                    color: #4a4a4a;
+
+                    .error-field {
+                        position: absolute;
+                        bottom: -22px;
+                        left: 5px;
+                        font-size: 12.5px;
+                        color: #f70707;
+                    }
+
+                    .fields-item {
+                        position: relative;
+                        margin: 27px 0;
+
+                        .icon-field {
+                            position: absolute;
+                            color: white;
+                            font-size: 22px;
+                            margin: 11px 9px 5px 9px;
+                            padding-right: 7px;
+                            color: #0b9de0;
+
+                            height: 24px;
+                            border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                            border-right: 1px solid #8cc1da;
+                        }
+
+                        .toggle-eye {
+                            position: absolute;
+                            right: 0;
+                            color: white;
+                            font-size: 22px;
+                            margin: 11px 9px 5px 9px;
+                            padding-right: 7px;
+                            color: #0b9de0;
+                            height: 24px;
+                            cursor: pointer;
+
+                            .eye-icon {
+                                visibility: hidden;
+                            }
+
+                            &:hover {
+                                .eye-icon {
+                                    visibility: visible;
+                                }
+                            }
+                        }
+
+                        .label-field {
+                            font-weight: 500;
+                            font-size: 16px;
+                            position: absolute;
+                            left: 45px;
+                            top: 10px;
+
+                            user-select: none;
+                            pointer-events: none;
+                            transition: ease-in-out 0.15s;
+                            padding: 1px 5px;
+                            border-radius: 10px;
+                        }
+
+                        .text-field {
+                            outline: none;
+                            width: 440px;
+                            height: 45px;
+                            border-radius: 5px;
+                            border: 1px solid $mainColor;
+
+                            font-family: monospace;
+                            color: #4a4a4a;
+                            padding: 10px 10px 10px 50px;
+                            font-size: 17.5px;
+                            font-weight: 500;
+                        }
+
+                        .text-field:not(:placeholder-shown) + .label-field,
+                        .text-field:focus + .label-field {
+                            top: -12px;
+                            left: 47px;
+                            font-size: 13px;
+                            color: #0b9de0;
+                            background-color: #fff;
+                            border-top: 1px solid #0b9de0;
+                            transition: ease-in-out 0.15s;
+                        }
+
+                        .text-field:focus {
+                            box-shadow: 1px 1px 5px #9ac0e7;
+                        }
+                    }
+
+                    .eror-password {
+                        margin: -20px 0 20px 5px;
+                        color: #f70707;
+                        font-size: 13.5px;
+                        font-weight: bold;
+                    }
+                }
+
+                .btns-form {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    margin: 0 5px;
+
+                    .button-form {
+                        margin-top: 10px;
+                        font-weight: 700;
+                        font-family: "Mulish", sans-serif;
+                        width: 435px;
+                        padding: 6px 0;
+                        font-size: 16px;
+                        border-radius: 50px;
+                    }
+                }
+
+                .signin-link {
+                    text-align: center;
+                    font-size: 15px;
+                    margin: 20px 0 0 0;
+
+                    .router-link {
+                        margin-left: 5px;
+                        text-decoration: none;
+                        color: #0b9de0;
+                        font-weight: bold;
+                        font-family: $mainFamily;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sign-in {
+    .content-right {
+        .form-background {
+            img {
+                width: 50rem;
+                height: 56rem;
+                margin: 9rem 0 0 0;
+                border-radius: 10px;
+                box-shadow: 2px 2px 8px #a0a0a0;
+            }
+        }
+        .form-control {
+            right: 1rem;
+            top: 19rem;
+            width: 50rem;
+            height: 37.5rem;
+            background-color: rgba(250, 250, 250, 0);
+
+            .forgot-password {
+                color: #0b9de0;
+                font-size: 16px;
+                font-family: Cambria;
+                text-align: center;
+                font-weight: bold;
+                transition: ease-in-out 0.1s;
+                margin-top: 35px;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                }
+            }
+
+            .error-signin {
+                position: absolute;
+                top: 210px;
+                left: 35px;
+                color: #e00b0b;
+                font-family: $mainFamily;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .signin-link {
+                text-align: center;
+                font-size: 15px;
+                margin: 20px 0 0 0;
+
+                .router-link {
+                    margin-left: 5px;
+                    text-decoration: none;
+                    color: #0b9de0;
+                    font-weight: bold;
+                    font-family: $mainFamily;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .comfirm-box {
+            right: 1rem;
+            top: 19rem;
+            width: 50rem;
+            height: 37.5rem;
+            background-color: rgba(250, 250, 250, 0.95);
+        }
+    }
+}

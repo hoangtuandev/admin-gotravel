@@ -1,0 +1,1027 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.tour {
+  display: flex;
+  justify-content: center;
+  margin-left: 200px;
+  margin-top: 100px;
+
+  .button-add {
+    right: 0px;
+    padding: 7px 14px 7px 10px;
+    color: white;
+    background-color: $mainColor;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: $mainFamily;
+    margin-bottom: 20px;
+    border-radius: 50px;
+
+    .icon {
+      font-size: 22px;
+      margin-right: 5px;
+    }
+  }
+
+  .tour_table {
+    border: 1px solid $mainColor;
+    border-collapse: collapse;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 15px #dcdcdc;
+
+    .center-col {
+      text-align: center;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .left-col {
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .name-tour-col {
+      color: #0070a4;
+      font-weight: 700;
+    }
+
+    .img-tour {
+      img {
+        width: 170px;
+        height: 110px;
+        border-radius: 3px;
+        box-shadow: 1px 1px 10px #a3a3a3;
+      }
+    }
+
+    thead {
+      tr {
+        th {
+          background-color: #0b9de0;
+          color: #fff;
+          font-weight: 800;
+          font-size: 17px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          font-weight: 600;
+        }
+
+        .button-group {
+          padding-right: 20px;
+          padding-left: 100px;
+
+          .icon {
+            font-size: 19px;
+            padding: 5px 10px;
+          }
+        }
+
+        &:hover {
+          background-color: #f6f6f6;
+        }
+      }
+    }
+  }
+}
+
+.dialog {
+  font-size: 16px;
+
+  .dialog-title {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: $mainFamily;
+    background-color: #0b9de0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .dialog-content {
+    table {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      tbody {
+        tr {
+          td {
+            padding: 10px 40px 10px 0px;
+
+            input {
+              width: 250px;
+              outline: none;
+              padding: 7px 10px;
+              font-family: $mainFamily;
+              font-size: 16px;
+              font-weight: 600;
+              border-radius: 5px;
+              border: 1px solid #aaaaaa;
+            }
+          }
+
+          .title {
+            color: #6b6b6b;
+            font-weight: 600;
+          }
+
+          .content {
+            font-weight: 600;
+            font-size: 17px;
+          }
+
+          .id-feild {
+            color: red;
+          }
+        }
+
+        .id-item {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .button-groups {
+    font-family: $mainFamily;
+    font-size: 13px;
+    font-weight: 700;
+    width: 65px;
+  }
+
+  .button-close {
+    color: #ef0404;
+  }
+
+  .button-submit {
+    color: #fff;
+  }
+}
+
+.stack-mui {
+  position: fixed;
+  display: inline-block;
+  width: 450px;
+  z-index: 3;
+  top: 60px;
+  right: 0px;
+
+  .alert-popup {
+    background-color: #34cb73;
+    font-family: $mainFamily;
+    font-size: 18px;
+    font-weight: 600;
+
+    .alert-title {
+      font-family: $mainFamily;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .icon-close {
+      position: absolute;
+      font-size: 25px;
+      right: 10px;
+      top: 25px;
+
+      &:hover {
+        cursor: pointer;
+        transition: ease-in-out 0.2s;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.add-dialog {
+  ul {
+    padding: 0 0;
+    li {
+      list-style-type: none;
+    }
+  }
+
+  .add-dialog-toolbar {
+    position: fixed;
+    width: 100%;
+    background-color: $mainColor;
+    font-family: $mainFamily;
+
+    .add-dialog-iconButton {
+      .add-dialog-icon {
+        font-size: 25px;
+        font-weight: 800;
+      }
+    }
+
+    .add-dialog-typography {
+      font-family: $mainFamily;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .add-dialog-btn-save {
+      font-family: $mainFamily;
+      font-size: 15px;
+      font-weight: 800;
+      width: 100px;
+      border: 0px solid #fff;
+      background-color: #fff;
+      color: $mainColor;
+    }
+  }
+
+  .add-form {
+    background-image: url("https://res.cloudinary.com/phtuandev/image/upload/v1657607532/GoTravel/background_hahalolo_euqfgv.svg");
+    background-size: cover;
+    color: #0b9de0;
+    padding-top: 90px;
+    padding-bottom: 50px;
+    padding-left: 13%;
+    padding-right: 13%;
+
+    .add-form-main {
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 2px 2px 12px #a3a3a3;
+      border-radius: 10px;
+      padding: 0px 30px 30px 30px;
+
+      .title-panel {
+        text-align: center;
+        color: #fff;
+        font-family: $mainFamily;
+        font-weight: 800;
+        font-size: 15px;
+
+        margin-bottom: 20px;
+
+        span {
+          display: inline-block;
+          width: 280px;
+          background-color: $mainColor;
+          padding: 10px 0px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+
+        .fields-item {
+          position: relative;
+          margin: 35px 0;
+
+          .icon-field {
+            position: absolute;
+            top: 4px;
+            color: white;
+            font-size: 18px;
+            margin: 11px 9px 5px 9px;
+            padding-right: 7px;
+            color: #5d5d5d;
+
+            // height: 20px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+
+          .label-field {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0);
+            font-weight: 700;
+            font-size: 16px;
+            font-family: $mainFamily;
+
+            left: 0px;
+            top: 10px;
+
+            color: #4a4a4a;
+            user-select: none;
+            pointer-events: none;
+            transition: ease-in-out 0.15s;
+            padding: 2px 2px;
+            border-radius: 10px;
+          }
+
+          .text-field {
+            outline: none;
+            width: 500px;
+            height: 40px;
+            // border-radius: 5px;
+            border: 0px solid #0b9de0;
+            border-bottom: 2px solid #bababa;
+            background-color: rgba(255, 255, 255, 0);
+            font-family: $mainFamily;
+            color: #5d5d5d;
+            padding: 10px 10px 0px 4px;
+            font-size: 17px;
+            font-weight: 600;
+          }
+
+          .text-field:not(:placeholder-shown) + .label-field,
+          .text-field:focus + .label-field {
+            top: -16px;
+            left: 0px;
+            font-size: 17px;
+            font-weight: 600;
+            color: #0070a4;
+            background-color: rgba(255, 255, 255, 0);
+            border-top: 0px solid #0b9de0;
+            transition: ease-in-out 0.15s;
+          }
+
+          .text-field:focus {
+            border: 0px solid #0b9de0;
+            border-bottom: 2px solid #b6b6b6;
+          }
+
+          .select-field {
+            outline: none;
+            width: 510px;
+            height: 40px;
+            color: #5d5d5d;
+            padding: 10px 0 0 0;
+
+            padding-left: 2px;
+            padding-right: 15px;
+            font-size: 16px;
+            font-family: $mainFamily;
+            font-size: 17px;
+            font-weight: 600;
+
+            border: 0px solid #0070a4;
+            border-bottom: 2px solid #b1b1b1;
+
+            option {
+              font-family: $mainFamily;
+              font-size: 16px;
+              font-weight: 600;
+            }
+          }
+
+          .field-price {
+            width: 510px;
+            padding-bottom: 0px;
+            padding-left: 35px;
+            font-weight: 800;
+          }
+        }
+
+        .field-id {
+          .text-field {
+            width: 320px;
+            font-weight: 700;
+            color: #ef0404;
+          }
+        }
+
+        .field-name {
+          .text-field {
+            width: 680px;
+          }
+        }
+      }
+
+      .images-upload {
+        // background-color: #ebebeb;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        justify-content: left;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        p {
+          color: #0070a4;
+          font-weight: 600;
+          font-size: 17px;
+          margin: 0px 0 20px 0;
+        }
+
+        .images-control {
+          .url-link {
+            input {
+              width: 500px;
+              height: 40px;
+              outline: none;
+              padding: 0px 15px 0px 55px;
+              font-family: $mainFamily;
+              font-weight: 600;
+              font-size: 16px;
+              color: #4a4a4a;
+              border-radius: 4px;
+              border: 2px solid #0b9de0;
+            }
+
+            label {
+              display: flex;
+              align-items: center;
+              position: absolute;
+              background-color: #0b9de0;
+              color: #fff;
+              font-weight: 700;
+              height: 40px;
+              padding-left: 7px;
+              padding-right: 7px;
+              border-top-left-radius: 4px;
+              border-bottom-left-radius: 4px;
+            }
+          }
+
+          .preview-iamge {
+            text-align: center;
+            margin: 30px 0 10px 0;
+
+            img {
+              width: 495px;
+              height: 300px;
+              border-radius: 3px;
+              box-shadow: 1px 1px 10px #bebebe;
+            }
+          }
+
+          .button-group {
+            text-align: right;
+
+            .error-save-img {
+              font-size: 14px;
+              font-weight: 700;
+              color: #ef0404;
+            }
+
+            .button-save {
+              // background-color: #2ab25e;
+              font-size: 13px;
+              font-family: $mainFamily;
+              font-weight: 800;
+            }
+          }
+        }
+
+        .images-list {
+          max-width: 500px;
+          max-height: 455px;
+          text-align: left;
+          // background-color: #dcdcdc;
+          margin-top: 0px;
+          display: block;
+          margin-left: 60px;
+          overflow: auto;
+          // box-shadow: 1px 1px 10px #aaaaaa;
+
+          ul {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            li {
+              position: relative;
+              margin-bottom: 5px;
+
+              img {
+                padding: 0 0;
+                margin: 2px 2px;
+                width: 231px;
+                height: 140px;
+                border-radius: 4px;
+                box-shadow: 1px 1px 5px #e3e3e3;
+              }
+
+              .delete-departure {
+                background-color: #fff;
+                padding: 6px 6px;
+                position: absolute;
+
+                visibility: hidden;
+                bottom: 10px;
+                right: 6px;
+
+                .icon {
+                  color: #ef0404;
+                  font-size: 19px;
+                }
+              }
+
+              &:hover {
+                cursor: pointer;
+                img {
+                  box-shadow: 1px 1px 10px #c2c2c2;
+                }
+
+                .delete-departure {
+                  visibility: visible;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .save-tour {
+        text-align: right;
+        margin: 70px 5px 0 0;
+
+        button {
+          width: 200px;
+          margin-left: 20px;
+        }
+
+        .button-close {
+          padding-left: 50px;
+          padding-right: 50px;
+          background-color: #e20401fb;
+          font-size: 15px;
+          font-weight: 800;
+          font-family: $mainFamily;
+        }
+
+        .button-save {
+          padding-left: 50px;
+          padding-right: 50px;
+          background-color: #00904dfb;
+          font-size: 15px;
+          font-weight: 800;
+          font-family: $mainFamily;
+        }
+      }
+    }
+
+    .departure {
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 2px 2px 12px #a3a3a3;
+      border-radius: 10px;
+      padding: 0px 30px 30px 30px;
+      margin-top: 40px;
+
+      .title-panel {
+        text-align: center;
+        color: #fff;
+        font-family: $mainFamily;
+        font-weight: 800;
+        font-size: 15px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+
+        span {
+          display: inline-block;
+          width: 280px;
+          background-color: $mainColor;
+          padding: 10px 0px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+
+      .departure-schedule {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0px;
+        padding-left: 0px;
+        padding-right: 5px;
+
+        .calendar-control {
+          .calender-field {
+            font-family: $mainFamily;
+            margin: 10px 0;
+
+            .label {
+              display: inline-block;
+              font-weight: 700;
+              color: #0070a4;
+              width: 100px;
+              margin: 0px 0 10px 0;
+            }
+
+            .id-departure {
+              color: #ef0404;
+              font-weight: 700;
+
+              input {
+                font-weight: 600;
+                font-size: 15px;
+                font-family: $mainFamily;
+                width: 500px;
+                border-radius: 5px;
+                border: 1px solid #6b6b6b;
+                outline: none;
+                padding: 10px 15px;
+              }
+            }
+          }
+          .calendar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+            margin-bottom: 25px;
+
+            .schedule-calendar {
+              p {
+                font-size: 16px;
+                font-weight: 700;
+                margin: 10px 0px;
+                color: #0070a4;
+              }
+
+              .react-datepicker-wrapper {
+                .react-datepicker__input-container {
+                  input {
+                    outline: none;
+                    width: 221px;
+                    font-family: $mainFamily;
+                    font-size: 16px;
+                    font-weight: 600;
+                    padding: 7px 10px;
+                    border-radius: 5px;
+                    border: 1px solid #a3a3a3;
+                  }
+                }
+              }
+
+              .react-datepicker-popper {
+                padding-bottom: 15px;
+
+                .react-datepicker {
+                  font-size: 16px;
+                  border: 0px solid #b1b1b1;
+
+                  button {
+                    margin-top: 4px;
+                  }
+
+                  .react-datepicker__month-container {
+                    width: 350px;
+                    height: 325px;
+                    padding: 0px 5px;
+                    box-shadow: 1px 1px 10px #bbbbbb;
+                    border-radius: 5px;
+                    border: 0px solid #0b9de0;
+
+                    .react-datepicker__header {
+                      font-family: $mainFamily;
+                      background-color: #fff;
+                      padding-top: 10px;
+
+                      .react-datepicker__current-month {
+                        font-size: 17px;
+                        color: #0b9de0;
+                        font-weight: 800;
+                      }
+
+                      .react-datepicker__day-names {
+                        .react-datepicker__day-name {
+                          margin: 15px 12px 10px 12px;
+                          color: #4a4a4a;
+                          font-weight: 700;
+                        }
+                      }
+                    }
+
+                    .react-datepicker__month {
+                      .react-datepicker__week {
+                        .react-datepicker__day {
+                          margin: 5px 5px;
+                          padding-top: 7px;
+                          padding-right: 1px;
+                          width: 31px;
+                          height: 31px;
+
+                          font-family: $mainFamily;
+                          border-radius: 50px;
+                          font-size: 15px;
+                        }
+
+                        .react-datepicker__day--selected {
+                          background-color: #0b9de0;
+                          color: #fff;
+                          font-weight: 600;
+                          transition: ease-in-out 0.1s;
+                        }
+
+                        .react-datepicker__day:hover {
+                          background-color: #0b9de0;
+                          color: #fff;
+                          font-weight: 600;
+                          transition: ease-in-out 0.1s;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .icon-next {
+              margin: 40px 20px 0 20px;
+            }
+          }
+
+          .button-groups {
+            text-align: right;
+            margin-top: 30px;
+
+            .button-save {
+              font-size: 13px;
+              font-family: $mainFamily;
+              font-weight: 800;
+            }
+          }
+        }
+
+        .list-schedule {
+          margin: 5px 0 0 0;
+          width: 500px;
+          max-width: 500px;
+
+          .label-list {
+            margin: 0px 90px 10px 90px;
+            text-align: center;
+            font-weight: 800;
+            font-family: $mainFamily;
+            padding: 10px 0px;
+            border-radius: 50px;
+            // border: 1px solid #0070a4;
+            color: #0070a4;
+            font-size: 15px;
+          }
+
+          .accordion {
+            border: 1px solid #e3e3e3;
+
+            .typography {
+              font-size: 16px;
+              font-family: $mainFamily;
+              font-weight: 600;
+            }
+            .accordion-summary {
+              .typography-summary {
+                display: flex;
+                align-items: center;
+
+                span {
+                  font-weight: 700;
+                  padding: 0 15px 0 15px;
+                  color: #ef0404;
+                }
+              }
+            }
+
+            .accordion-details {
+              padding-top: 0;
+              padding-bottom: 0;
+
+              .typography-details {
+                .details-item {
+                  display: inline-flex;
+                  flex-direction: row;
+                  font-size: 14px;
+                  margin: 0 0 10px 0;
+
+                  .label {
+                    width: 120px;
+                    color: #0070a4;
+                    font-weight: 700;
+                  }
+                  .content {
+                    width: 320px;
+                  }
+                }
+
+                .delete-departure {
+                  position: absolute;
+                  bottom: 0;
+                  right: 0px;
+
+                  .icon {
+                    color: #ef0404;
+                    font-size: 22px;
+                  }
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .schedule-tour {
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 2px 2px 12px #a3a3a3;
+      border-radius: 10px;
+      padding: 0px 30px 30px 30px;
+      margin-top: 40px;
+
+      .title-panel {
+        text-align: center;
+        color: #fff;
+        font-family: $mainFamily;
+        font-weight: 800;
+        font-size: 15px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+
+        span {
+          display: inline-block;
+          width: 280px;
+          background-color: $mainColor;
+          padding: 10px 0px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+
+      .schedule-main {
+        width: 100%;
+        display: flex;
+
+        .schedule-control {
+          // background-color: #f1f1f1;
+          width: 500px;
+          max-width: 500px;
+
+          .control-item {
+            margin: 10px 0 20px 0;
+
+            input {
+              font-weight: 600;
+              font-size: 15px;
+              font-family: $mainFamily;
+              width: 100%;
+
+              border-radius: 5px;
+              border: 1px solid #a2a2a2;
+              outline: none;
+              padding: 10px 15px;
+            }
+
+            textarea {
+              font-family: $mainFamily;
+              font-size: 15px;
+              font-weight: 600;
+              outline: none;
+              width: 500px;
+              height: 150px;
+              padding: 10px 10px;
+              border-radius: 5px;
+              border: 1px solid #a2a2a2;
+            }
+
+            .label {
+              margin: 10px 0;
+              font-size: 16px;
+              color: #0070a4;
+              font-weight: 700;
+
+              input {
+                font-size: 17px;
+                font-weight: 800;
+                text-align: center;
+                margin-left: 20px;
+                width: 50px;
+                padding: 5px 10px;
+              }
+            }
+          }
+
+          .button-groups {
+            text-align: right;
+
+            .button-save {
+              // background-color: #2ab25e;
+              font-size: 13px;
+              font-family: $mainFamily;
+              font-weight: 800;
+            }
+          }
+
+          .field-checkbox {
+            span {
+              margin-top: 0px;
+            }
+          }
+        }
+
+        .schedule-list {
+          width: 500px;
+          max-width: 500px;
+          margin-left: 60px;
+          margin-top: 10px;
+
+          .accordion {
+            border: 1px solid #e3e3e3;
+
+            .typography {
+              font-size: 16px;
+              font-family: $mainFamily;
+              font-weight: 600;
+            }
+            .accordion-summary {
+              .typography-summary {
+                font-family: $mainFamily;
+                font-weight: 800;
+                color: #ef0404;
+              }
+            }
+
+            .accordion-details {
+              padding-top: 0;
+              padding-bottom: 0;
+
+              .typography-details {
+                .details-item {
+                  display: inline-flex;
+                  flex-direction: row;
+                  font-size: 14px;
+                  margin: 0 0 10px 0;
+
+                  .label {
+                    width: 120px;
+                    color: #0070a4;
+                    font-weight: 700;
+                  }
+                  .content {
+                    width: 320px;
+                  }
+                }
+
+                .delete-departure {
+                  position: absolute;
+                  bottom: 0;
+                  right: 0px;
+
+                  .icon {
+                    color: #ef0404;
+                    font-size: 22px;
+                  }
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.field-checkbox {
+  max-width: 505px;
+  margin: 0px 0 0 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  span {
+    color: #0070a4;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 15px 0 10px 4px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: row;
+
+    li {
+      margin-right: 25px;
+      list-style-type: none;
+
+      .form-control {
+        margin: -10px 0 0 -7px;
+      }
+
+      label {
+        color: #5d5d5d;
+        font-weight: 600;
+        padding-bottom: -10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        span {
+          margin: 0 0;
+        }
+      }
+    }
+  }
+}

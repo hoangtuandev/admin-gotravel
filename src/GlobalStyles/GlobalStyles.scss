@@ -1,0 +1,26 @@
+@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+   --primary: #333;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+html {
+   font-size: 62.5%;
+}
+
+body {
+   font-family: "Mulish", sans-serif;
+   font-size: 1.6rem;
+   background-image: url("https://res.cloudinary.com/phtuandev/image/upload/v1657607532/GoTravel/background_hahalolo_euqfgv.svg");
+   background-size: cover;
+}
+
+.link-router {
+   text-decoration: none;
+   color: black;
+}
