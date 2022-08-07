@@ -55,6 +55,8 @@ function UpdateDialog(props) {
     const { setTourList } = props;
 
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingDeparture, setIsLoadingDeparture] = useState(false);
+    const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
     const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [typeTourismList, setTypeTourismList] = useState([]);
     const [vehicleList, setVehicleList] = useState([]);
@@ -78,9 +80,13 @@ function UpdateDialog(props) {
         tourSelected.t_lichkhoihanh
     );
 
-    // console.log(onErrorImg);
-
-    // console.log(moment(startDate).format('DD/MM/YYYY'));
+    const [daySchedule, setDaySchedule] = useState('');
+    const [nameSchedule, setNameSchedule] = useState('');
+    const [vehiclesSchedule, setVehicleSchedule] = useState([]);
+    const [detailsSchedule, setDetailsSchedule] = useState('');
+    const [scheduleList, setScheduleList] = useState(
+        tourSelected.t_lichtrinhtour
+    );
 
     useEffect(() => {
         api.getAllTypeTourism().then((res) => {
@@ -124,6 +130,7 @@ function UpdateDialog(props) {
     };
 
     const handleSubmitUpdateTour = () => {
+        setIsLoading(true);
         api.getTypeTourismById({ lht_ma: typeTourism }).then((res) => {
             api.updateTour({
                 _id: tourSelected._id,
@@ -139,6 +146,7 @@ function UpdateDialog(props) {
                     setTourList(res.data);
                     setTimeout(() => setOpenAlertSuccess(false), 3000);
                     clearTimeout(alert);
+                    setIsLoading(false);
                 });
             });
         });
@@ -160,8 +168,24 @@ function UpdateDialog(props) {
         }
     };
 
+    const handleChangeVehicleSchedule = (vehicle) => {
+        if (vehicle.status) {
+            const listTemp = [...vehiclesSchedule];
+            listTemp.push(vehicle.vehicleObj);
+            setVehicleSchedule(listTemp);
+        } else {
+            const listTemp = [...vehiclesSchedule];
+            for (let i = 0; i < listTemp.length; i++) {
+                if (listTemp[i].pt_ma === vehicle.vehicleObj.pt_ma) {
+                    listTemp.splice(i, 1);
+                }
+            }
+            setVehicleSchedule(listTemp);
+        }
+    };
+
     const handleAddDeparture = () => {
-        setIsLoading(true);
+        setIsLoadingDeparture(true);
         let start = new Date(startDate.getTime());
         let finish = new Date(finishDate.getTime());
 
@@ -183,54 +207,79 @@ function UpdateDialog(props) {
                     setFinishDate(new Date());
                     setAddressDeparture('');
 
-                    // api.getAllVehicle().then((res) => {
-                    //     res.data.map((data, index) => setVehicleList(res.data));
-                    // });
-
                     api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
                         setDepartureList(res.data.t_lichkhoihanh);
-                        setIsLoading(false);
+                        setIsLoadingDeparture(false);
                     });
                 });
             });
-
-            // const departure = [...tourSelected.t_lichkhoihanh, res.data];
-            // console.log('Selected: ', tourSelected.t_lichkhoihanh);
-            // console.log('res: ', res.data);
-            // console.log('Departure: ', departure);
-            // api.updateTourWithDeparture({
-            //     _id: tourSelected._id,
-            //     t_lichkhoihanh: departure,
-            // }).then((res) => {
-            //     api.getAllTour().then((res) => {
-            //         setTourList(res.data);
-            //         setAddressDeparture('');
-            //         setVehicleDeparture([]);
-            //         setStartDate(new Date());
-            //         setFinishDate(new Date());
-
-            //         api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
-            //             console.log(res.data);
-            //         });
-            //     });
-            // });
-            // console.log(departure);
         });
-
-        // console.log(
-        //     moment(startDate).format('DD/MM/YYYY'),
-        //     finish.toISOString(),
-        //     vehiclesDeparture,
-        //     addressDeparture
-        // );
     };
 
     const handleDeleteDeparture = (departure) => {
-        console.log(departure);
+        api.deleteDeparture({
+            _id: departure._id,
+            idTour: tourSelected._id,
+        }).then((res) => {
+            api.deleteDepartureFromTour({
+                _id: departure._id,
+                idTour: tourSelected._id,
+            }).then((res) => {
+                api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
+                    setDepartureList(res.data.t_lichkhoihanh);
+                });
+            });
+        });
+    };
+
+    const handleAddSchedule = () => {
+        setIsLoadingSchedule(true);
+        api.createScheduleTour({
+            ltt_ten: nameSchedule,
+            ltt_ngay: daySchedule,
+            ltt_noidung: detailsSchedule,
+            ltt_phuongtien: vehiclesSchedule,
+        }).then((res) => {
+            const schedule = res.data;
+            api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
+                const newSchedule = [...res.data.t_lichtrinhtour, schedule];
+                api.updateTourWithScheduleTour({
+                    _id: tourSelected._id,
+                    t_lichtrinhtour: newSchedule,
+                }).then((res) => {
+                    api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
+                        setScheduleList(res.data.t_lichtrinhtour);
+                        setIsLoadingSchedule(false);
+                    });
+                });
+            });
+        });
     };
 
     const handleCloseDialog = () => {
+        api.getAllTour().then((res) => {
+            setTourList(res.data);
+        });
         dispatch(handleCloseUpdateDialog());
+    };
+
+    const handleDeleteSchedule = (schedule) => {
+        api.deleteScheduleTour({
+            _id: schedule._id,
+            idTour: tourSelected._id,
+        }).then((res) => {
+            api.deleteScheduleFromTour({
+                _id: schedule._id,
+                idTour: tourSelected._id,
+            }).then((res) => {
+                setDaySchedule('');
+                setNameSchedule('');
+                setDetailsSchedule('');
+                api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
+                    setScheduleList(res.data.t_lichtrinhtour);
+                });
+            });
+        });
     };
 
     return (
@@ -383,45 +432,7 @@ function UpdateDialog(props) {
                                     Giá tour
                                 </label>
                             </li>
-                            <li className={cx('fields-item')}>
-                                {/* <ul className={cx('field-checkbox')}>
-                                    <span>Phương tiện</span>
-                                    <FormGroup className={cx('form-group')}>
-                                        {vehicleList.map((data, index) => (
-                                            <li key={index}>
-                                                <FormControlLabel
-                                                    className={cx(
-                                                        'form-control'
-                                                    )}
-                                                    control={
-                                                        <Checkbox
-                                                            color="success"
-                                                            id={data.pt_ma}
-                                                            sx={{
-                                                                '& .MuiSvgIcon-root':
-                                                                    {
-                                                                        fontSize: 26,
-                                                                    },
-                                                            }}
-                                                            onChange={(e) =>
-                                                                console.log(
-                                                                    data.pt_ma,
-                                                                    e.target
-                                                                        .checked
-                                                                )
-                                                            }
-                                                        />
-                                                    }
-                                                />
-
-                                                <label htmlFor={data.pt_ma}>
-                                                    {data.pt_ten}
-                                                </label>
-                                            </li>
-                                        ))}
-                                    </FormGroup>
-                                </ul> */}
-                            </li>
+                            <li className={cx('fields-item')}></li>
                         </ul>
                         <div className={cx('images-upload')}>
                             <div className={cx('images-control')}>
@@ -493,14 +504,30 @@ function UpdateDialog(props) {
                             </div>
                         </div>
                         <div className={cx('save-tour')}>
-                            <Button
-                                className={cx('button-save')}
-                                variant="contained"
-                                size="large"
-                                onClick={() => handleSubmitUpdateTour()}
-                            >
-                                CẬP NHẬT
-                            </Button>
+                            {isLoading && (
+                                <Button
+                                    disabled
+                                    variant="contained"
+                                    size="large"
+                                    onClick={() => handleSubmitUpdateTour()}
+                                >
+                                    <CircularProgress
+                                        size={24}
+                                        className={cx('circularProgress')}
+                                    />
+                                    &nbsp;&nbsp; CẬP NHẬT...
+                                </Button>
+                            )}
+                            {!isLoading && (
+                                <Button
+                                    className={cx('button-save')}
+                                    variant="contained"
+                                    size="large"
+                                    onClick={() => handleSubmitUpdateTour()}
+                                >
+                                    CẬP NHẬT
+                                </Button>
+                            )}
                         </div>
                     </div>
 
@@ -595,7 +622,7 @@ function UpdateDialog(props) {
                                 </div>
 
                                 <div className={cx('button-groups')}>
-                                    {isLoading && (
+                                    {isLoadingDeparture && (
                                         <Button
                                             className={cx('button-save')}
                                             disabled
@@ -612,7 +639,7 @@ function UpdateDialog(props) {
                                             &nbsp;&nbsp; ĐANG XỬ LÝ ...
                                         </Button>
                                     )}
-                                    {!isLoading && (
+                                    {!isLoadingDeparture && (
                                         <Button
                                             className={cx('button-save')}
                                             variant="contained"
@@ -739,7 +766,14 @@ function UpdateDialog(props) {
                             <div className={cx('schedule-control')}>
                                 <div className={cx('control-item ')}>
                                     <span className={cx('label')}>
-                                        Ngày <input type="text" />
+                                        Ngày{' '}
+                                        <input
+                                            type="text"
+                                            value={daySchedule}
+                                            onChange={(e) =>
+                                                setDaySchedule(e.target.value)
+                                            }
+                                        />
                                     </span>
                                 </div>
                                 <div className={cx('control-item')}>
@@ -749,6 +783,10 @@ function UpdateDialog(props) {
                                     <input
                                         type="text"
                                         placeholder="Nhập tên lịch trình..."
+                                        value={nameSchedule}
+                                        onChange={(e) =>
+                                            setNameSchedule(e.target.value)
+                                        }
                                     />
                                 </div>
 
@@ -768,7 +806,7 @@ function UpdateDialog(props) {
                                                     control={
                                                         <Checkbox
                                                             color="success"
-                                                            id={data.pt_ma}
+                                                            id={`${data.pt_ma}Schedule`}
                                                             sx={{
                                                                 '& .MuiSvgIcon-root':
                                                                     {
@@ -776,17 +814,23 @@ function UpdateDialog(props) {
                                                                     },
                                                             }}
                                                             onChange={(e) =>
-                                                                console.log(
-                                                                    data.pt_ma,
-                                                                    e.target
-                                                                        .checked
+                                                                handleChangeVehicleSchedule(
+                                                                    {
+                                                                        vehicleObj:
+                                                                            data,
+                                                                        status: e
+                                                                            .target
+                                                                            .checked,
+                                                                    }
                                                                 )
                                                             }
                                                         />
                                                     }
                                                 />
 
-                                                <label htmlFor={data.pt_ma}>
+                                                <label
+                                                    htmlFor={`${data.pt_ma}Schedule`}
+                                                >
                                                     {data.pt_ten}
                                                 </label>
                                             </li>
@@ -796,86 +840,134 @@ function UpdateDialog(props) {
 
                                 <div className={cx('control-item')}>
                                     <p className={cx('label')}>Nội dung</p>
-                                    <textarea placeholder="Nội dung lịch trình..."></textarea>
+                                    <textarea
+                                        placeholder="Nội dung lịch trình..."
+                                        value={detailsSchedule}
+                                        onChange={(e) =>
+                                            setDetailsSchedule(e.target.value)
+                                        }
+                                    ></textarea>
                                 </div>
                                 <div
                                     className={cx('control-item button-groups')}
                                 >
-                                    <Button
-                                        className={cx('button-save')}
-                                        variant="contained"
-                                        size="large"
-                                        onClick={() => handleClickSaveImage()}
-                                    >
-                                        THÊM VÀO LỊCH TRÌNH TOUR
-                                    </Button>
+                                    {isLoadingSchedule && (
+                                        <Button
+                                            className={cx('button-save')}
+                                            disabled
+                                            variant="contained"
+                                            size="large"
+                                        >
+                                            <CircularProgress
+                                                size={24}
+                                                className={cx(
+                                                    'circularProgress'
+                                                )}
+                                            />
+                                            &nbsp;&nbsp; ĐANG XỬ LÝ ...
+                                        </Button>
+                                    )}
+                                    {!isLoadingSchedule && (
+                                        <Button
+                                            className={cx('button-save')}
+                                            variant="contained"
+                                            size="large"
+                                            onClick={() => handleAddSchedule()}
+                                        >
+                                            THÊM VÀO LỊCH TRÌNH TOUR
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                             <div className={cx('schedule-list')}>
-                                <Accordion className={cx('accordion')}>
-                                    <AccordionSummary
-                                        className={cx('accordion-summary')}
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
+                                {scheduleList.map((item, index) => (
+                                    <Accordion
+                                        className={cx('accordion')}
+                                        key={index}
                                     >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-summary'
-                                            )}
+                                        <AccordionSummary
+                                            className={cx('accordion-summary')}
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1a-content"
                                         >
-                                            Ngày 1: Tham quan Cầu Rồng Đà Nẵng
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordion-details')}
-                                    >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-details'
-                                            )}
-                                        >
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Phương tiện
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Ô tô, máy bay
-                                                </span>
-                                            </span>
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Nội dung
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Lorem ipsum dolor sit amet
-                                                    consectetur adipisicing
-                                                    elit. Obcaecati placeat
-                                                    assumenda, libero eaque unde
-                                                    rerum at. Nihil earum
-                                                    deleniti corporis cupiditate
-                                                    ratione! Doloremque
-                                                    aspernatur architecto quae
-                                                    beatae! Et, quidem quisquam?
-                                                </span>
-                                            </span>
-
-                                            <IconButton
+                                            <Typography
                                                 className={cx(
-                                                    'delete-departure'
+                                                    'typography typography-summary'
                                                 )}
-                                                aria-label="delete"
                                             >
-                                                <DeleteIcon
-                                                    className={cx('icon')}
-                                                />
-                                            </IconButton>
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
+                                                Ngày {item.ltt_ngay}:{' '}
+                                                {item.ltt_ten}
+                                            </Typography>
+                                        </AccordionSummary>
+                                        <AccordionDetails
+                                            className={cx('accordion-details')}
+                                        >
+                                            <Typography
+                                                className={cx(
+                                                    'typography typography-details'
+                                                )}
+                                            >
+                                                <span
+                                                    className={cx(
+                                                        'details-item'
+                                                    )}
+                                                >
+                                                    <span
+                                                        className={cx('label')}
+                                                    >
+                                                        Phương tiện
+                                                    </span>
+                                                    <span
+                                                        className={cx(
+                                                            'content'
+                                                        )}
+                                                    >
+                                                        {item.ltt_phuongtien
+                                                            .map(
+                                                                (item, index) =>
+                                                                    item.pt_ten
+                                                            )
+                                                            .join(', ')}
+                                                    </span>
+                                                </span>
+                                                <span
+                                                    className={cx(
+                                                        'details-item'
+                                                    )}
+                                                >
+                                                    <span
+                                                        className={cx('label')}
+                                                    >
+                                                        Nội dung
+                                                    </span>
+                                                    <span
+                                                        className={cx(
+                                                            'content'
+                                                        )}
+                                                    >
+                                                        {item.ltt_noidung}
+                                                    </span>
+                                                </span>
+
+                                                <IconButton
+                                                    className={cx(
+                                                        'delete-departure'
+                                                    )}
+                                                    aria-label="delete"
+                                                    onClick={() =>
+                                                        handleDeleteSchedule(
+                                                            item
+                                                        )
+                                                    }
+                                                >
+                                                    <DeleteIcon
+                                                        className={cx('icon')}
+                                                    />
+                                                </IconButton>
+                                            </Typography>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                ))}
                             </div>
                         </div>
                     </div>

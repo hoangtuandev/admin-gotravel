@@ -43,13 +43,24 @@ export const updateTour = (data) => axios.post(`${URL}/Tour/update`, data);
 export const updateTourWithDeparture = (data) =>
     axios.post(`${URL}/Tour/updateWithDeparture`, data);
 
+export const deleteDepartureFromTour = (data) =>
+    axios.post(`${URL}/Tour/deleteDepartureFromTour`, data);
+
+export const updateTourWithScheduleTour = (data) =>
+    axios.post(`${URL}/Tour/updateTourWithScheduleTour`, data);
+
+export const deleteScheduleFromTour = (data) =>
+    axios.post(`${URL}/Tour/deleteScheduleFromTour`, data);
+
 // DEPARTURE
 export const createDeparture = (data) => axios.post(`${URL}/Departure`, data);
 
-// export const createTourist = (data) => axios.post(`${URL}/Tourist`, data);
+export const deleteDeparture = (data) =>
+    axios.post(`${URL}/Departure/deleteDeparture`, data);
 
-// export const createAccountTourist = (data) =>
-//     axios.post(`${URL}/TouristAccount`, data);
+// SCHEDULE TOUR
+export const createScheduleTour = (data) =>
+    axios.post(`${URL}/ScheduleTour`, data);
 
-// export const getTouristAccountByUsername = (data) =>
-//     axios.post(`${URL}/TouristAccount/TouristAccountByUserName`, data);
+export const deleteScheduleTour = (data) =>
+    axios.post(`${URL}/ScheduleTour/deleteScheduleTour`, data);

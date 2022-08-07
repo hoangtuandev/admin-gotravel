@@ -327,7 +327,7 @@ $mainFamily: "Mulish", sans-serif;
             color: #5d5d5d;
             padding: 10px 10px 0px 4px;
             font-size: 17px;
-            font-weight: 600;
+            font-weight: 700;
           }
 
           .text-field:not(:placeholder-shown) + .label-field,
@@ -359,7 +359,7 @@ $mainFamily: "Mulish", sans-serif;
             font-size: 16px;
             font-family: $mainFamily;
             font-size: 17px;
-            font-weight: 600;
+            font-weight: 700;
 
             border: 0px solid #0070a4;
             border-bottom: 2px solid #b1b1b1;
@@ -536,6 +536,9 @@ $mainFamily: "Mulish", sans-serif;
         button {
           width: 200px;
           margin-left: 20px;
+          font-size: 15px;
+          font-weight: 800;
+          font-family: $mainFamily;
         }
 
         .button-close {
@@ -548,12 +551,7 @@ $mainFamily: "Mulish", sans-serif;
         }
 
         .button-save {
-          padding-left: 50px;
-          padding-right: 50px;
           background-color: #00904dfb;
-          font-size: 15px;
-          font-weight: 800;
-          font-family: $mainFamily;
         }
       }
     }
@@ -904,6 +902,7 @@ $mainFamily: "Mulish", sans-serif;
             text-align: right;
 
             .button-save {
+              width: 250px;
               // background-color: #2ab25e;
               font-size: 13px;
               font-family: $mainFamily;

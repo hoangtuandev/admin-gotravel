@@ -11,13 +11,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-
-import { MdOutlineClose } from 'react-icons/md';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -52,7 +47,6 @@ function AddDialog(props) {
     const imageRef = useRef(null);
     const { setTourList } = props;
 
-    const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [typeTourismList, setTypeTourismList] = useState([]);
     const [errorImg, setErrorImg] = useState('');
     const [imagePreview, setImagePreview] = useState(' ');
@@ -111,11 +105,12 @@ function AddDialog(props) {
                 t_hinhanh: imageList,
                 t_lichkhoihanh: [],
                 t_lichtrinhtour: [],
+                t_trangthai: 1,
             }).then((res) => {
                 api.getAllTour().then((res) => {
                     setTourList(res.data);
                     api.getTourById({ t_ma: idTour }).then((res) => {
-                        setOpenAlertSuccess(true);
+                        // setOpenAlertSuccess(true);
                         dispatch(handleSetItemSelected(res.data));
                         handleCloseBackdrop();
                         dispatch(handleCloseAddDialog());
@@ -125,14 +120,6 @@ function AddDialog(props) {
             });
         });
     };
-
-    // const [openBackdrop, setOpenBackdrop] = useState(false);
-    // const handleCloseBackdrop = () => {
-    //     setOpenBackdrop(false);
-    // };
-    // const handleToggleBackdrop = () => {
-    //     setOpenBackdrop(!openBackdrop);
-    // };
 
     return (
         <div>
@@ -153,30 +140,7 @@ function AddDialog(props) {
                 >
                     <CircularProgress color="inherit" />
                 </Backdrop>
-                {/* {openAlertSuccess && (
-                    <Stack
-                        sx={{ width: '400px' }}
-                        spacing={2}
-                        className={cx('stack-mui')}
-                    >
-                        <Alert
-                            variant="filled"
-                            severity="success"
-                            className={cx('alert-popup')}
-                        >
-                            <AlertTitle className={cx('alert-title')}>
-                                Thành công
-                            </AlertTitle>
-                            Thêm tour thành công !
-                            <span
-                                className={cx('icon-close')}
-                                onClick={() => setOpenAlertSuccess(false)}
-                            >
-                                <MdOutlineClose />
-                            </span>
-                        </Alert>
-                    </Stack>
-                )} */}
+
                 <AppBar
                     sx={{ position: 'relative' }}
                     className={cx('add-dialog-appbar')}
@@ -290,45 +254,7 @@ function AddDialog(props) {
                                     Giá tour
                                 </label>
                             </li>
-                            <li className={cx('fields-item')}>
-                                {/* <ul className={cx('field-checkbox')}>
-                                    <span>Phương tiện</span>
-                                    <FormGroup className={cx('form-group')}>
-                                        {vehicleList.map((data, index) => (
-                                            <li key={index}>
-                                                <FormControlLabel
-                                                    className={cx(
-                                                        'form-control'
-                                                    )}
-                                                    control={
-                                                        <Checkbox
-                                                            color="success"
-                                                            id={data.pt_ma}
-                                                            sx={{
-                                                                '& .MuiSvgIcon-root':
-                                                                    {
-                                                                        fontSize: 26,
-                                                                    },
-                                                            }}
-                                                            onChange={(e) =>
-                                                                console.log(
-                                                                    data.pt_ma,
-                                                                    e.target
-                                                                        .checked
-                                                                )
-                                                            }
-                                                        />
-                                                    }
-                                                />
-
-                                                <label htmlFor={data.pt_ma}>
-                                                    {data.pt_ten}
-                                                </label>
-                                            </li>
-                                        ))}
-                                    </FormGroup>
-                                </ul> */}
-                            </li>
+                            <li className={cx('fields-item')}></li>
                         </ul>
                         <div className={cx('images-upload')}>
                             <div className={cx('images-control')}>
@@ -405,315 +331,6 @@ function AddDialog(props) {
                             </Button>
                         </div>
                     </div>
-
-                    {/* <div className={cx('departure')}>
-                        <div className={cx('title-panel')}>
-                            <span>LỊCH KHỞI HÀNH TOUR</span>
-                        </div>
-                        <div className={cx('departure-schedule')}>
-                            <div className={cx('calendar-control')}>
-                                <div className={cx('calender-field')}>
-                                    <div className={cx('label')}>Địa điểm</div>
-                                    <div className={cx('id-departure')}>
-                                        <input
-                                            type="text"
-                                            placeholder="Nhập dịa điểm khởi hành..."
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className={cx('field-checkbox')}>
-                                    <span>Phương tiện</span>
-                                    <FormGroup className={cx('form-group')}>
-                                        {vehicleList.map((data, index) => (
-                                            <li key={index}>
-                                                <FormControlLabel
-                                                    className={cx(
-                                                        'form-control'
-                                                    )}
-                                                    control={
-                                                        <Checkbox
-                                                            color="success"
-                                                            id={data.pt_ma}
-                                                            sx={{
-                                                                '& .MuiSvgIcon-root':
-                                                                    {
-                                                                        fontSize: 26,
-                                                                    },
-                                                            }}
-                                                            onChange={(e) =>
-                                                                console.log(
-                                                                    data.pt_ma,
-                                                                    e.target
-                                                                        .checked
-                                                                )
-                                                            }
-                                                        />
-                                                    }
-                                                />
-
-                                                <label htmlFor={data.pt_ma}>
-                                                    {data.pt_ten}
-                                                </label>
-                                            </li>
-                                        ))}
-                                    </FormGroup>
-                                </div>
-
-                                <div className={cx('calendar')}>
-                                    <div className={cx('schedule-calendar')}>
-                                        <p>Ngày khởi hành</p>
-                                        <DatePicker
-                                            dateFormat="dd / MM / yyyy"
-                                            selected={startDate}
-                                            onChange={(date) => {
-                                                return setStartDate(date);
-                                            }}
-                                        />
-                                    </div>
-                                    <div className={cx('icon-next')}>
-                                        <TbPlayerTrackNext />
-                                    </div>
-                                    <div className={cx('schedule-calendar')}>
-                                        <p>Ngày kết thúc</p>
-                                        <DatePicker
-                                            dateFormat="dd / MM / yyyy"
-                                            selected={startDate}
-                                            onChange={(date) => {
-                                                return setStartDate(date);
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className={cx('button-groups')}>
-                                    <Button
-                                        className={cx('button-save')}
-                                        variant="contained"
-                                        size="large"
-                                    >
-                                        THÊM VÀO LỊCH KHỞI HÀNH
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className={cx('list-schedule')}>
-                                <p className={cx('label-list')}>
-                                    LỊCH KHỞI HÀNH SẮP TỚI
-                                </p>
-
-                                <Accordion className={cx('accordion')}>
-                                    <AccordionSummary
-                                        className={cx('accordion-summary')}
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                    >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-summary'
-                                            )}
-                                        >
-                                            Từ
-                                            <span>03/05/2022</span>
-                                            đến
-                                            <span>03/05/2022</span>
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordion-details')}
-                                    >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-details'
-                                            )}
-                                        >
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Địa điểm
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Cảng HKQT Tân Sơn Nhất - Tan
-                                                    Son Nhat International
-                                                    Airport
-                                                </span>
-                                            </span>
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Phương tiện
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Ô tô, máy bay
-                                                </span>
-                                            </span>
-
-                                            <IconButton
-                                                className={cx(
-                                                    'delete-departure'
-                                                )}
-                                                aria-label="delete"
-                                            >
-                                                <DeleteIcon
-                                                    className={cx('icon')}
-                                                />
-                                            </IconButton>
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={cx('schedule-tour')}>
-                        <div className={cx('title-panel')}>
-                            <span>LỊCH TRÌNH TOUR</span>
-                        </div>
-                        <div className={cx('schedule-main')}>
-                            <div className={cx('schedule-control')}>
-                                <div className={cx('control-item ')}>
-                                    <span className={cx('label')}>
-                                        Ngày <input type="text" />
-                                    </span>
-                                </div>
-                                <div className={cx('control-item')}>
-                                    <p className={cx('label')}>
-                                        Tên lịch trình
-                                    </p>
-                                    <input
-                                        type="text"
-                                        placeholder="Nhập tên lịch trình..."
-                                    />
-                                </div>
-
-                                <div
-                                    className={cx(
-                                        ' control-item field-checkbox'
-                                    )}
-                                >
-                                    <span>Phương tiện</span>
-                                    <FormGroup className={cx('form-group')}>
-                                        {vehicleList.map((data, index) => (
-                                            <li key={index}>
-                                                <FormControlLabel
-                                                    className={cx(
-                                                        'form-control'
-                                                    )}
-                                                    control={
-                                                        <Checkbox
-                                                            color="success"
-                                                            id={data.pt_ma}
-                                                            sx={{
-                                                                '& .MuiSvgIcon-root':
-                                                                    {
-                                                                        fontSize: 26,
-                                                                    },
-                                                            }}
-                                                            onChange={(e) =>
-                                                                console.log(
-                                                                    data.pt_ma,
-                                                                    e.target
-                                                                        .checked
-                                                                )
-                                                            }
-                                                        />
-                                                    }
-                                                />
-
-                                                <label htmlFor={data.pt_ma}>
-                                                    {data.pt_ten}
-                                                </label>
-                                            </li>
-                                        ))}
-                                    </FormGroup>
-                                </div>
-
-                                <div className={cx('control-item')}>
-                                    <p className={cx('label')}>Nội dung</p>
-                                    <textarea placeholder="Nội dung lịch trình..."></textarea>
-                                </div>
-                                <div
-                                    className={cx('control-item button-groups')}
-                                >
-                                    <Button
-                                        className={cx('button-save')}
-                                        variant="contained"
-                                        size="large"
-                                        onClick={() => handleClickSaveImage()}
-                                    >
-                                        THÊM VÀO LỊCH TRÌNH TOUR
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className={cx('schedule-list')}>
-                                <Accordion className={cx('accordion')}>
-                                    <AccordionSummary
-                                        className={cx('accordion-summary')}
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                    >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-summary'
-                                            )}
-                                        >
-                                            Ngày 1: Tham quan Cầu Rồng Đà Nẵng
-                                        </Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordion-details')}
-                                    >
-                                        <Typography
-                                            className={cx(
-                                                'typography typography-details'
-                                            )}
-                                        >
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Phương tiện
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Ô tô, máy bay
-                                                </span>
-                                            </span>
-                                            <span
-                                                className={cx('details-item')}
-                                            >
-                                                <span className={cx('label')}>
-                                                    Nội dung
-                                                </span>
-                                                <span className={cx('content')}>
-                                                    Lorem ipsum dolor sit amet
-                                                    consectetur adipisicing
-                                                    elit. Obcaecati placeat
-                                                    assumenda, libero eaque unde
-                                                    rerum at. Nihil earum
-                                                    deleniti corporis cupiditate
-                                                    ratione! Doloremque
-                                                    aspernatur architecto quae
-                                                    beatae! Et, quidem quisquam?
-                                                </span>
-                                            </span>
-
-                                            <IconButton
-                                                className={cx(
-                                                    'delete-departure'
-                                                )}
-                                                aria-label="delete"
-                                            >
-                                                <DeleteIcon
-                                                    className={cx('icon')}
-                                                />
-                                            </IconButton>
-                                        </Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
             </Dialog>
         </div>
