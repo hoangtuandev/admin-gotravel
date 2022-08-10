@@ -3,12 +3,18 @@ import Home from '../pages/Home/Home';
 import TypeTourismPage from '../pages/TypeTourismPage/TypeTourismPage';
 import TourPage from '../pages/TourPage/TourPage';
 import VehiclePage from '../pages/VehiclePage/VehiclePage';
+import BookingTourPage from '../pages/BookingTour/BookingTour';
+import VoucherPage from '../pages/VoucherPage/VoucherPage';
+import CalendarGuidePage from '../pages/CalendarGuidePage/CalendarGuidePage';
 
 export const privateRoutes = [
     { path: '/', component: Home },
     { path: '/loai-hinh-tour', component: TypeTourismPage },
     { path: '/tour', component: TourPage },
     { path: '/phuong-tien', component: VehiclePage },
+    { path: '/booking-tour', component: BookingTourPage },
+    { path: '/phieu-giam-gia', component: VoucherPage },
+    { path: '/lich-dan-tour', component: CalendarGuidePage },
     { path: '/:somestring', component: Home },
 ];
 

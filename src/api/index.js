@@ -34,6 +34,10 @@ export const updateVehicle = (data) =>
 // TOUR
 export const getAllTour = () => axios.get(`${URL}/Tour`);
 
+export const getAllActiveTour = () => axios.get(`${URL}/Tour/actived`);
+
+export const getAllStopedTour = () => axios.get(`${URL}/Tour/stoped`);
+
 export const createTour = (data) => axios.post(`${URL}/Tour`, data);
 
 export const getTourById = (data) => axios.post(`${URL}/Tour/getById`, data);
@@ -52,7 +56,15 @@ export const updateTourWithScheduleTour = (data) =>
 export const deleteScheduleFromTour = (data) =>
     axios.post(`${URL}/Tour/deleteScheduleFromTour`, data);
 
+export const updateStopTour = (data) =>
+    axios.post(`${URL}/Tour/updateStopTour`, data);
+
+export const updateActiveTour = (data) =>
+    axios.post(`${URL}/Tour/updateActiveTour`, data);
+
 // DEPARTURE
+export const getAllDeparture = () => axios.get(`${URL}/Departure`);
+
 export const createDeparture = (data) => axios.post(`${URL}/Departure`, data);
 
 export const deleteDeparture = (data) =>
@@ -64,3 +76,10 @@ export const createScheduleTour = (data) =>
 
 export const deleteScheduleTour = (data) =>
     axios.post(`${URL}/ScheduleTour/deleteScheduleTour`, data);
+
+// CALENDAR GUIDE
+
+export const getCalendarGuide = () => axios.get(`${URL}/CalendarGuide`);
+
+export const addCalendarGuide = (data) =>
+    axios.post(`${URL}/CalendarGuide`, data);

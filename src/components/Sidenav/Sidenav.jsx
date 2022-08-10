@@ -13,7 +13,7 @@ import {
     FcAssistant,
     FcPortraitMode,
     FcAdvertising,
-    FcGlobe,
+    FcMoneyTransfer,
 } from 'react-icons/fc';
 
 import styles from './Sidenav.scss';
@@ -92,6 +92,27 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
+                    {/* <Link to="/phieu-giam-gia" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Phiếu giảm giá"
+                            style={
+                                labelOption === 'Phiếu giảm giá'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Phiếu giảm giá">
+                                <FcMoneyTransfer />
+                            </span>
+                            <span
+                                className={cx('label')}
+                                title="Phiếu giảm giá"
+                            >
+                                Phiếu giảm giá
+                            </span>
+                        </li>
+                    </Link> */}
                     <Link to="/tour" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -106,49 +127,42 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
+                    <Link to="/booking-tour" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Booking"
+                            style={
+                                labelOption === 'Booking' ? selectedStyle : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Tour đặt">
+                                <FcTodoList />
+                            </span>
+                            <span className={cx('label')} title="Tour đặt">
+                                Booking
+                            </span>
+                        </li>
+                    </Link>
 
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Lịch khởi hành"
-                        style={
-                            labelOption === 'Lịch khởi hành'
-                                ? selectedStyle
-                                : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Lịch khởi hành">
-                            <FcCalendar />
-                        </span>
-                        <span className={cx('label')} title="Lịch khởi hành">
-                            Lịch khởi hành
-                        </span>
-                    </li>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Lịch dẫn Tour"
-                        style={
-                            labelOption === 'Lịch dẫn Tour' ? selectedStyle : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Lịch dẫn Tour">
-                            <FcGlobe />
-                        </span>
-                        <span className={cx('label')} title="Lịch dẫn Tour">
-                            Lịch dẫn Tour
-                        </span>
-                    </li>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Tour đặt"
-                        style={labelOption === 'Tour đặt' ? selectedStyle : {}}
-                    >
-                        <span className={cx('icon')} title="Tour đặt">
-                            <FcTodoList />
-                        </span>
-                        <span className={cx('label')} title="Tour đặt">
-                            Tour đặt
-                        </span>
-                    </li>
+                    <Link to="/lich-dan-tour" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Lịch dẫn Tour"
+                            style={
+                                labelOption === 'Lịch dẫn Tour'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Lịch dẫn Tour">
+                                <FcCalendar />
+                            </span>
+                            <span className={cx('label')} title="Lịch dẫn Tour">
+                                Lịch dẫn Tour
+                            </span>
+                        </li>
+                    </Link>
+
                     <li
                         onClick={(e) => handleSelectOption(e)}
                         title="Bài chia sẻ"

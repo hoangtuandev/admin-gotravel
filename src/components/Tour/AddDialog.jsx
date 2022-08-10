@@ -15,22 +15,18 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import 'react-datepicker/dist/react-datepicker.css';
-
 import styles from './Tour.scss';
-
 import * as api from '../../api';
 import {
     handleCloseAddDialog,
     handleOpenUpdateDialog,
     handleSetItemSelected,
     isOpenAddDialog,
+    handleCloseBackdrop,
+    handleOpenBackdrop,
+    isOpenBackdrop,
 } from './TourSlice';
 import { useRef } from 'react';
-import {
-    handleCloseBackdrop,
-    handleToggleBackdrop,
-    isOpenBackdrop,
-} from '../GlobalSlice';
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +56,7 @@ function AddDialog(props) {
 
     useEffect(() => {
         setIdTour(setRandomID());
+        handleCloseBackdrop();
     }, []);
 
     useEffect(() => {
@@ -94,7 +91,7 @@ function AddDialog(props) {
     };
 
     const handleSubmitSaveTour = () => {
-        dispatch(handleToggleBackdrop());
+        dispatch(handleOpenBackdrop());
         api.getTypeTourismById({ lht_ma: typeTourism }).then((res) => {
             api.createTour({
                 t_ma: idTour,
@@ -112,9 +109,9 @@ function AddDialog(props) {
                     api.getTourById({ t_ma: idTour }).then((res) => {
                         // setOpenAlertSuccess(true);
                         dispatch(handleSetItemSelected(res.data));
-                        handleCloseBackdrop();
                         dispatch(handleCloseAddDialog());
                         dispatch(handleOpenUpdateDialog());
+                        dispatch(handleCloseBackdrop());
                     });
                 });
             });

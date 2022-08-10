@@ -4,6 +4,7 @@ import GlobalReducer from '../components/GlobalSlice';
 import TypeTourismReducer from '../components/TypeTourism/TypeTourismSlice';
 import VehicleReducer from '../components/Vehicle/VehicleSlice';
 import TourReducer from '../components/Tour/TourSlice';
+import VoucherReducer from '../components/Voucher/VoucherSlice';
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         typeTourism: TypeTourismReducer,
         vehicle: VehicleReducer,
         tour: TourReducer,
+        voucher: VoucherReducer,
     },
 });

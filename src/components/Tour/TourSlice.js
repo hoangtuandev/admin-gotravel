@@ -2,9 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isOpenViewDialog: false,
-    isOpenDeleteDialog: false,
+    isOpenStopDialog: false,
     isOpenUpdateDialog: false,
     isOpenAddDialog: false,
+    isShowStopedTour: false,
+    isOpenBackdrop: false,
     itemSelected: {},
 };
 
@@ -22,11 +24,11 @@ export const TourSlice = createSlice({
             state.itemSelected = action.payload;
         },
 
-        handleOpenDeleteDialog: (state) => {
-            state.isOpenDeleteDialog = true;
+        handleOpenStopDialog: (state) => {
+            state.isOpenStopDialog = true;
         },
-        handleCloseDeleteDialog: (state) => {
-            state.isOpenDeleteDialog = false;
+        handleCloseStopDialog: (state) => {
+            state.isOpenStopDialog = false;
         },
         handleOpenUpdateDialog: (state) => {
             state.isOpenUpdateDialog = true;
@@ -40,6 +42,19 @@ export const TourSlice = createSlice({
         handleCloseAddDialog: (state) => {
             state.isOpenAddDialog = false;
         },
+
+        handleOpenStopedTour: (state) => {
+            state.isShowStopedTour = true;
+        },
+        handleCloseStopedTour: (state) => {
+            state.isShowStopedTour = false;
+        },
+        handleCloseBackdrop: (state) => {
+            state.isOpenBackdrop = false;
+        },
+        handleOpenBackdrop: (state) => {
+            state.isOpenBackdrop = true;
+        },
     },
 });
 
@@ -47,21 +62,29 @@ export const {
     handleOpenViewDialog,
     handleCloseViewDialog,
     handleSetItemSelected,
-    handleOpenDeleteDialog,
-    handleCloseDeleteDialog,
+    handleOpenStopDialog,
+    handleCloseStopDialog,
     handleOpenUpdateDialog,
     handleCloseUpdateDialog,
     handleOpenAddDialog,
     handleCloseAddDialog,
+    handleOpenStopedTour,
+    handleCloseStopedTour,
+    handleCloseBackdrop,
+    handleOpenBackdrop,
 } = TourSlice.actions;
 
 export const isOpenViewDialog = (state) => state.tour.isOpenViewDialog;
 
-export const isOpenDeleteDialog = (state) => state.tour.isOpenDeleteDialog;
+export const isOpenStopDialog = (state) => state.tour.isOpenStopDialog;
 
 export const isOpenUpdateDialog = (state) => state.tour.isOpenUpdateDialog;
 
 export const isOpenAddDialog = (state) => state.tour.isOpenAddDialog;
+
+export const isOpenBackdrop = (state) => state.tour.isOpenBackdrop;
+
+export const isShowStopedTour = (state) => state.tour.isShowStopedTour;
 
 export const itemSelected = (state) => state.tour.itemSelected;
 

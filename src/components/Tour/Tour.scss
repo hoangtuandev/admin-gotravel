@@ -24,6 +24,23 @@ $mainFamily: "Mulish", sans-serif;
     }
   }
 
+  .button-stopedTour {
+    right: 0px;
+    padding: 7px 15px 7px 15px;
+    color: white;
+    background-color: #c7c7c7;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: $mainFamily;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    margin-left: 20px;
+
+    &:hover {
+      background-color: #797979;
+    }
+  }
+
   .tour_table {
     border: 1px solid $mainColor;
     border-collapse: collapse;
@@ -47,9 +64,14 @@ $mainFamily: "Mulish", sans-serif;
       font-weight: 700;
     }
 
+    .price-tour-col {
+      color: #ef0404;
+      font-weight: 700;
+    }
+
     .img-tour {
       img {
-        width: 170px;
+        width: 180px;
         height: 110px;
         border-radius: 3px;
         box-shadow: 1px 1px 10px #a3a3a3;
@@ -93,6 +115,17 @@ $mainFamily: "Mulish", sans-serif;
       }
     }
   }
+
+  .stoped-tours {
+    border: 1px solid #aeaeae;
+    thead {
+      tr {
+        th {
+          background-color: #c7c7c7;
+        }
+      }
+    }
+  }
 }
 
 .dialog {
@@ -111,12 +144,20 @@ $mainFamily: "Mulish", sans-serif;
 
   .dialog-content {
     table {
-      padding-top: 15px;
-      padding-bottom: 10px;
+      padding-top: 30px;
+      padding-bottom: 0px;
+
       tbody {
         tr {
           td {
-            padding: 10px 40px 10px 0px;
+            padding: 0px 0px 0px 10px;
+
+            img {
+              width: 200px;
+              height: 120px;
+              border-radius: 3px;
+              box-shadow: 2px 2px 5px #d6d6d6;
+            }
 
             input {
               width: 250px;
@@ -156,7 +197,7 @@ $mainFamily: "Mulish", sans-serif;
     font-family: $mainFamily;
     font-size: 13px;
     font-weight: 700;
-    width: 65px;
+    width: 105px;
   }
 
   .button-close {
@@ -232,9 +273,9 @@ $mainFamily: "Mulish", sans-serif;
 
     .add-dialog-btn-save {
       font-family: $mainFamily;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 800;
-      width: 100px;
+      width: 90px;
       border: 0px solid #fff;
       background-color: #fff;
       color: $mainColor;
@@ -552,6 +593,197 @@ $mainFamily: "Mulish", sans-serif;
 
         .button-save {
           background-color: #00904dfb;
+        }
+      }
+    }
+
+    .view-details {
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 2px 2px 12px #a3a3a3;
+      border-radius: 10px;
+      padding: 0px 30px 30px 30px;
+
+      display: flex;
+      flex-direction: column;
+
+      .details-component {
+        font-family: $mainFamily;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        .infor-tour {
+          width: 510px;
+          max-height: 250px;
+          max-width: 510px;
+
+          tbody {
+            tr {
+              td {
+                padding: 13px 0;
+                font-size: 17px;
+              }
+
+              .label {
+                color: #0070a4;
+                font-weight: 700;
+              }
+
+              .content {
+                color: #585858;
+                padding-left: 0px;
+                font-weight: 700;
+              }
+
+              .id-tour {
+                color: #ef0404;
+              }
+            }
+          }
+        }
+
+        .images-tour {
+          text-align: left;
+          margin-top: 17px;
+          display: block;
+          margin-left: 60px;
+
+          p {
+            color: #0070a4;
+            font-weight: 700;
+            font-size: 17px;
+          }
+
+          ul {
+            max-width: 500px;
+            max-height: 305px;
+            overflow: auto;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            li {
+              position: relative;
+              margin-bottom: 5px;
+
+              img {
+                padding: 0 0;
+                margin: 2px 2px;
+                width: 231px;
+                height: 140px;
+                border-radius: 4px;
+                box-shadow: 1px 1px 5px #e3e3e3;
+              }
+
+              .delete-departure {
+                background-color: #fff;
+                padding: 6px 6px;
+                position: absolute;
+
+                visibility: hidden;
+                bottom: 10px;
+                right: 6px;
+
+                .icon {
+                  color: #ef0404;
+                  font-size: 19px;
+                }
+              }
+
+              &:hover {
+                cursor: pointer;
+                img {
+                  box-shadow: 1px 1px 10px #c2c2c2;
+                }
+
+                .delete-departure {
+                  visibility: visible;
+                }
+              }
+            }
+          }
+        }
+
+        .title-infor {
+          font-size: 17px;
+          color: #0070a4;
+          font-weight: 700;
+          margin: 30px 0 20px 0;
+        }
+
+        .accordion {
+          width: 500px;
+          max-width: 500px;
+          border: 1px solid #e3e3e3;
+
+          .typography {
+            font-size: 17px;
+            font-family: $mainFamily;
+            font-weight: 600;
+          }
+          .accordion-summary {
+            .typography-summary {
+              display: flex;
+              align-items: center;
+
+              span {
+                font-weight: 700;
+                padding: 0 15px 0 15px;
+                color: #ef0404;
+              }
+            }
+          }
+
+          .accordion-details {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            .typography-details {
+              .details-item {
+                display: inline-flex;
+                flex-direction: row;
+                font-size: 15px;
+                margin: 0 0 10px 0;
+
+                .label {
+                  width: 120px;
+                  color: #0070a4;
+                  font-weight: 700;
+                }
+                .content {
+                  width: 320px;
+                }
+              }
+
+              .delete-departure {
+                position: absolute;
+                bottom: 0;
+                right: 0px;
+
+                .icon {
+                  color: #ef0404;
+                  font-size: 22px;
+                }
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+
+        .schedules-tour {
+          .accordion {
+            .accordion-summary {
+              .typography-summary {
+                font-weight: 700;
+                color: #ef0404;
+              }
+            }
+          }
         }
       }
     }

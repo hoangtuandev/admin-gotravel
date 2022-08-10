@@ -196,6 +196,13 @@ function UpdateDialog(props) {
             lkh_phuongtien: vehiclesDeparture,
         }).then((res) => {
             const departure = res.data;
+
+            api.addCalendarGuide({
+                ldt_tour: tourSelected,
+                ldt_lichkhoihanh: res.data,
+                ldt_huongdanvien: [],
+            });
+
             api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
                 const newDepartures = [...res.data.t_lichkhoihanh, departure];
                 api.updateTourWithDeparture({
@@ -249,6 +256,9 @@ function UpdateDialog(props) {
                 }).then((res) => {
                     api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
                         setScheduleList(res.data.t_lichtrinhtour);
+                        setNameSchedule('');
+                        setDaySchedule('');
+                        setDetailsSchedule('');
                         setIsLoadingSchedule(false);
                     });
                 });
@@ -257,7 +267,7 @@ function UpdateDialog(props) {
     };
 
     const handleCloseDialog = () => {
-        api.getAllTour().then((res) => {
+        api.getAllActiveTour().then((res) => {
             setTourList(res.data);
         });
         dispatch(handleCloseUpdateDialog());

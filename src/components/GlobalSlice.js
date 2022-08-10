@@ -15,13 +15,16 @@ export const GlobalSlice = createSlice({
         handleCloseBackdrop: (state) => {
             state.isOpenBackdrop = false;
         },
-        handleToggleBackdrop: (state) => {
-            state.isOpenBackdrop = !state.isOpenBackdrop;
+        handleOpenBackdrop: (state) => {
+            state.isOpenBackdrop = true;
         },
+        // handleToggleBackdrop: (state) => {
+        //     state.isOpenBackdrop = !state.isOpenBackdrop;
+        // },
     },
 });
 
-export const { setLabelOption, handleCloseBackdrop, handleToggleBackdrop } =
+export const { setLabelOption, handleCloseBackdrop, handleOpenBackdrop } =
     GlobalSlice.actions;
 
 export const selectLabelOption = (state) => state.global.labelOption;
