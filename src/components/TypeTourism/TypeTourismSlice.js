@@ -5,6 +5,7 @@ const initialState = {
     isOpenDeleteDialog: false,
     isOpenUpdateDialog: false,
     isOpenAddDialog: false,
+    isOpenBackdrop: false,
     itemSelected: {},
 };
 
@@ -41,6 +42,12 @@ export const TypeTourismSlice = createSlice({
         handleCloseAddDialog: (state) => {
             state.isOpenAddDialog = false;
         },
+        handleOpenBackdrop: (state) => {
+            state.isOpenBackdrop = true;
+        },
+        handleCloseBackdrop: (state) => {
+            state.isOpenBackdrop = false;
+        },
     },
 });
 
@@ -54,6 +61,8 @@ export const {
     handleCloseUpdateDialog,
     handleOpenAddDialog,
     handleCloseAddDialog,
+    handleOpenBackdrop,
+    handleCloseBackdrop,
 } = TypeTourismSlice.actions;
 
 export const isOpenViewDialog = (state) => state.typeTourism.isOpenViewDialog;
@@ -65,6 +74,8 @@ export const isOpenUpdateDialog = (state) =>
     state.typeTourism.isOpenUpdateDialog;
 
 export const isOpenAddDialog = (state) => state.typeTourism.isOpenAddDialog;
+
+export const isOpenBackdrop = (state) => state.typeTourism.isOpenBackdrop;
 
 export const itemSelected = (state) => state.typeTourism.itemSelected;
 

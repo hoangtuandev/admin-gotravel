@@ -7,11 +7,17 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import styles from './TypeTourism.scss';
-import { isOpenAddDialog, handleCloseAddDialog } from './TypeTourismSlice';
+import {
+    isOpenAddDialog,
+    handleCloseAddDialog,
+    isOpenBackdrop,
+} from './TypeTourismSlice';
 
 import * as api from '../../api';
+import { handleCloseBackdrop, handleOpenBackdrop } from '../Tour/TourSlice';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +25,7 @@ function AddDialog(props) {
     const { settypeTourismList } = props;
     const dispatch = useDispatch();
     const openDialog = useSelector(isOpenAddDialog);
+    const openBackdrop = useSelector(isOpenBackdrop);
 
     const [randomID, setRandomID] = useState();
     const [nameTypeTourism, setNameTypeTourism] = useState('');
@@ -34,6 +41,7 @@ function AddDialog(props) {
     };
 
     const handleSubmitAdd = () => {
+        dispatch(handleOpenBackdrop());
         api.createTypeTourism({
             lht_ma: randomID,
             lht_ten: nameTypeTourism,
@@ -41,6 +49,7 @@ function AddDialog(props) {
             api.getAllTypeTourism().then((res) => {
                 settypeTourismList(res.data);
                 dispatch(handleCloseAddDialog());
+                dispatch(handleCloseBackdrop());
             });
         });
     };
@@ -79,14 +88,31 @@ function AddDialog(props) {
                     </table>
                 </DialogContent>
                 <DialogActions>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={cx('button-groups button-submit')}
-                        onClick={() => handleSubmitAdd()}
-                    >
-                        LƯU
-                    </Button>
+                    {openBackdrop && (
+                        <Button
+                            disabled
+                            variant="contained"
+                            color="primary"
+                            className={cx('button-groups button-submit')}
+                            onClick={() => handleSubmitAdd()}
+                        >
+                            <CircularProgress
+                                size={18}
+                                className={cx('circularProgress')}
+                            />
+                            &nbsp;&nbsp; LƯU
+                        </Button>
+                    )}
+                    {!openBackdrop && (
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={cx('button-groups button-submit')}
+                            onClick={() => handleSubmitAdd()}
+                        >
+                            LƯU
+                        </Button>
+                    )}
                     <Button
                         variant="outlined"
                         color="error"

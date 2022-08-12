@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -13,6 +14,10 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 
 import styles from './CalendarGuide.scss';
 import * as api from '../../api';
+import {
+    handleOpenGuidesSubmit,
+    handleSelectCalendar,
+} from './CalendarGuideSlice';
 const cx = classNames.bind(styles);
 
 const Accordion = styled((props) => (
@@ -48,11 +53,17 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 function CalendarAccordion(props) {
+    const dispatch = useDispatch();
     const { calendar } = props;
     const [expanded, setExpanded] = useState('panel1');
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
+    };
+
+    const handleViewCalendarGuide = () => {
+        dispatch(handleOpenGuidesSubmit());
+        dispatch(handleSelectCalendar(calendar));
     };
 
     const dateStart = new Date(calendar.ldt_lichkhoihanh.lkh_ngaykhoihanh);
@@ -147,7 +158,11 @@ function CalendarAccordion(props) {
                                 {calendar.ldt_tour.t_ten}
                             </div>
 
-                            <AvatarGroup max={4} className={cx('list-guide')}>
+                            <AvatarGroup
+                                max={4}
+                                className={cx('list-guide')}
+                                onClick={() => handleViewCalendarGuide()}
+                            >
                                 <Avatar
                                     alt="Remy Sharp"
                                     src="https://res.cloudinary.com/phtuandev/image/upload/v1658649734/GoTravel/tran-thanh-1_tq38tx.png"

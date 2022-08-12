@@ -1,21 +1,25 @@
 import { React, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './CalendarGuide.scss';
 import * as api from '../../api';
 import CalendarAccordion from './CalendarAccordion';
+import { isOpenGuidesSubmit } from './CalendarGuideSlice';
+import GuidesSubmit from './GuidesSubmit';
 
 const cx = classNames.bind(styles);
 
 function CalendarGuide() {
+    const openGuidesSubmit = useSelector(isOpenGuidesSubmit);
     // const [currentDate, setCurrentDate] = useState(new Date().getTime());
     // const [tourList, setTourList] = useState([]);
     // const [departureList, setDepartureList] = useState([]);
     // const [calendarGuide, setCalendarGuide] = useState([]);
     const [calendarGuide, setCalendarGuide] = useState([]);
-    const [calendarGuideGoupBy, setCalendarGuideGoupBy] = useState([]);
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    // const [calendarGuideGoupBy, setCalendarGuideGoupBy] = useState([]);
+    // const [startDate, setStartDate] = useState(new Date());
+    // const [endDate, setEndDate] = useState(new Date());
 
     useEffect(() => {
         api.getCalendarGuide().then((res) => {
@@ -92,6 +96,8 @@ function CalendarGuide() {
 
     return (
         <div className={cx('calendar-guide')}>
+            {openGuidesSubmit && <GuidesSubmit></GuidesSubmit>}
+
             {calendarGuide.map((calendar, index) => (
                 <CalendarAccordion
                     key={index}
