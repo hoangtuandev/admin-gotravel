@@ -8,14 +8,14 @@ import GlobalStyles from './GlobalStyles';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-   <React.StrictMode>
-      <Provider store={store}>
-         <GlobalStyles>
-            <App />
-         </GlobalStyles>
-      </Provider>
-   </React.StrictMode>,
-   document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <GlobalStyles>
+                <App />
+            </GlobalStyles>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

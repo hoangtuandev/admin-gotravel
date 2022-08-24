@@ -12,17 +12,17 @@ import { FcNext } from 'react-icons/fc';
 import { MdOutlineLogout, MdInfoOutline } from 'react-icons/md';
 
 import styles from './Header.scss';
-import { clientURL } from '../../app/clientURL';
+// import { clientURL } from '../../app/clientURL';
 import { selectLabelOption } from '../GlobalSlice';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const labelOption = useSelector(selectLabelOption);
-    const handleLogout = async () => {
-        await localStorage.removeItem('username');
-        window.location.href = `${clientURL}`;
-    };
+    // const handleLogout = async () => {
+    //     await localStorage.removeItem('username');
+    //     window.location.href = `${clientURL}`;
+    // };
     return (
         <div className={cx('header')}>
             <div className={cx('header-label')}>
@@ -69,7 +69,7 @@ function Header() {
                                 Thông tin tài khoản
                             </span>
                         </li>
-                        <li onClick={() => handleLogout()}>
+                        <li>
                             <span className={cx('icon')}>
                                 <MdOutlineLogout />
                             </span>

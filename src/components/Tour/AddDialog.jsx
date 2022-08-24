@@ -103,11 +103,14 @@ function AddDialog(props) {
                 t_lichkhoihanh: [],
                 t_lichtrinhtour: [],
                 t_trangthai: 1,
+                t_danhgia: 0,
             }).then((res) => {
                 api.getAllTour().then((res) => {
                     setTourList(res.data);
+                    setImageList([]);
                     api.getTourById({ t_ma: idTour }).then((res) => {
                         // setOpenAlertSuccess(true);
+                        setImageList([]);
                         dispatch(handleSetItemSelected(res.data));
                         dispatch(handleCloseAddDialog());
                         dispatch(handleOpenUpdateDialog());

@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes, privateRoutes } from './routes';
+import { privateRoutes } from './routes';
 
 function App() {
     return (
         <Router>
             <div className="admin-app">
                 <Routes>
-                    {localStorage.getItem('username')
+                    {/* {localStorage.getItem('username')
                         ? privateRoutes.map((route, index) => {
                               const Page = route.component;
                               return (
@@ -27,8 +27,8 @@ function App() {
                                       element={<Page />}
                                   />
                               );
-                          })}
-                    {/* {publicRoutes.map((route, index) => {
+                          })} */}
+                    {privateRoutes.map((route, index) => {
                         const Page = route.component;
                         return (
                             <Route
@@ -37,7 +37,7 @@ function App() {
                                 element={<Page />}
                             />
                         );
-                    })} */}
+                    })}
                 </Routes>
             </div>
         </Router>
