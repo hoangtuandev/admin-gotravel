@@ -40,6 +40,7 @@ function TypeItem(props) {
         <tr>
             <td className={cx('id-type')}>{data.lht_ma}</td>
             <td className={cx('name-type')}>{data.lht_ten}</td>
+            {/* <td className={cx('name-type')}>{data.lht_mota}</td> */}
             <td className={cx('button-group')}>
                 <ButtonGroup
                     variant="contained"

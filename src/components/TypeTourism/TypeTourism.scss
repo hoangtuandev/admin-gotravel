@@ -83,6 +83,9 @@ $mainFamily: "Mulish", sans-serif;
 .dialog {
     font-size: 16px;
 
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        margin: 0 0;
+    }
     .dialog-title {
         text-align: center;
         color: #fff;
@@ -96,28 +99,37 @@ $mainFamily: "Mulish", sans-serif;
 
     .dialog-content {
         table {
-            padding-top: 15px;
+            // padding-top: 15px;
             padding-bottom: 10px;
             tbody {
                 tr {
                     td {
-                        padding: 10px 40px 10px 0px;
+                        // input {
+                        //     width: 400px;
+                        //     outline: none;
+                        //     padding: 7px 10px;
+                        //     font-family: $mainFamily;
+                        //     font-size: 16px;
+                        //     font-weight: 600;
+                        //     border-radius: 5px;
+                        //     border: 1px solid #aaaaaa;
+                        // }
 
-                        input {
-                            width: 250px;
+                        textarea {
+                            width: 400px;
                             outline: none;
                             padding: 7px 10px;
                             font-family: $mainFamily;
-                            font-size: 16px;
-                            font-weight: 600;
+                            font-size: 15px;
+                            font-weight: 500;
                             border-radius: 5px;
                             border: 1px solid #aaaaaa;
                         }
                     }
 
                     .title {
-                        padding-top: 10px;
-                        padding-bottom: 10px;
+                        padding-top: 20px;
+                        padding-bottom: 0px;
                         color: #6b6b6b;
                         font-weight: 600;
                         padding-right: 20px;
@@ -126,6 +138,16 @@ $mainFamily: "Mulish", sans-serif;
                     .content {
                         font-weight: 600;
                         font-size: 17px;
+                        padding-top: 20px;
+
+                        p {
+                            text-align: justify;
+                            width: 400px;
+                            max-width: 400px;
+                            margin: 0 0;
+                            font-size: 15px;
+                            font-weight: 500;
+                        }
                     }
                 }
 
@@ -148,6 +170,7 @@ $mainFamily: "Mulish", sans-serif;
     }
 
     .button-submit {
+        width: 250px;
         color: #fff;
     }
 }

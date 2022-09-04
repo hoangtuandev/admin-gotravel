@@ -54,10 +54,6 @@ function UpdateDialog(props) {
                         <thead></thead>
                         <tbody>
                             <tr className={cx('id-item')}>
-                                <td className={cx('title')}>ID</td>
-                                <td className={cx('content')}>{vehicle._id}</td>
-                            </tr>
-                            <tr>
                                 <td className={cx('title')}>Mã phương tiện</td>
                                 <td className={cx('content')}>
                                     {vehicle.pt_ma}

@@ -108,6 +108,22 @@ function ViewDialog(props) {
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td className={cx('label')}>
+                                            Số hành khách
+                                        </td>
+                                        <td className={cx('content')}>
+                                            {tourSelected.t_soluongkhach}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className={cx('label')}>
+                                            Số hướng dẫn viên
+                                        </td>
+                                        <td className={cx('content')}>
+                                            {tourSelected.t_soluonghuongdanvien}
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td className={cx('label')}>Giá</td>
                                         <td className={cx('content')}>
                                             {tourSelected.t_gia.toLocaleString(

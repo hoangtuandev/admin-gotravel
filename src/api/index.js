@@ -84,3 +84,12 @@ export const getCalendarGuide = () => axios.get(`${URL}/CalendarGuide`);
 
 export const addCalendarGuide = (data) =>
     axios.post(`${URL}/CalendarGuide`, data);
+
+// BOOKING TOUR
+export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);
+
+export const updateStatusBookingTour = (data) =>
+    axios.post(`${URL}/BookingTour/updateStatusBookingTour`, data);
+
+export const getBookingTourByStatus = (data) =>
+    axios.post(`${URL}/BookingTour/getBookingTourByStatus`, data);

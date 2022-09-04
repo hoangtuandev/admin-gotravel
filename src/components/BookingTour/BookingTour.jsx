@@ -1,21 +1,83 @@
 import { React, useEffect } from 'react';
 import classNames from 'classnames/bind';
-
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import IconButton from '@mui/material/IconButton';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-
+import { useSelector, useDispatch } from 'react-redux';
+import Box from '@mui/material/Box';
+import Tabs, { tabsClasses } from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import styles from './BookingTour.scss';
 import * as api from '../../api';
+import { useState } from 'react';
+import BookingTourItem from './BookingTourItem';
+import {
+    handleSetBookingTourList,
+    bookingTourList,
+    handleChangeCurrentTab,
+    currentTab,
+} from './BookingTourSlice';
 
 const cx = classNames.bind(styles);
 
 function BookingTour() {
-    useEffect(() => {}, []);
+    const dispatch = useDispatch();
+    const tabSelected = useSelector(currentTab);
+    const bookingList = useSelector(bookingTourList);
+
+    // const [tabSelected, setTabSelected] = useState(1);
+
+    const handleChangeTab = (event, newValue) => {
+        // setTabSelected(newValue);
+        dispatch(handleChangeCurrentTab(newValue));
+        console.log(newValue);
+    };
+    // const [bookingTourList, setBookingTourList] = useState([]);
+    useEffect(() => {
+        // const status =
+        //     tabSelected === 0
+        //         ? 0
+        //         : tabSelected === 1
+        //         ? 1
+        //         : tabSelected === 2
+        //         ? 2
+        //         : tabSelected === 3
+        //         ? 3
+        //         : 4;
+        api.getBookingTourByStatus({ bt_trangthai: tabSelected }).then(
+            (res) => {
+                dispatch(handleSetBookingTourList(res.data));
+            }
+        );
+    }, [tabSelected]);
 
     return (
         <div className={cx('bookingTour')}>
+            <Box
+                className={cx('menu-box')}
+                sx={{
+                    flexGrow: 1,
+                    maxWidth: { xs: 320, sm: 480 },
+                    bgcolor: 'background.paper',
+                }}
+            >
+                <Tabs
+                    value={tabSelected}
+                    onChange={handleChangeTab}
+                    // variant="scrollable"
+                    scrollButtons
+                    centered
+                    aria-label="visible arrows tabs example"
+                    sx={{
+                        [`& .${tabsClasses.scrollButtons}`]: {
+                            '&.Mui-disabled': { opacity: 0.3 },
+                        },
+                    }}
+                >
+                    <Tab className={cx('menu-tab')} label="Đã hủy" />
+                    <Tab className={cx('menu-tab')} label="Chờ xác nhận" />
+                    <Tab className={cx('menu-tab')} label="Đã xác nhận" />
+                    <Tab className={cx('menu-tab')} label="Đang diễn ra" />
+                    <Tab className={cx('menu-tab')} label="Đã kết thúc" />
+                </Tabs>
+            </Box>
             <table>
                 <thead>
                     <tr>
@@ -23,78 +85,18 @@ function BookingTour() {
                         <th className={cx('text-left')}>Tên tour</th>
                         <th className={cx('text-center')}>Khởi hành</th>
                         <th className={cx('text-center')}>Ngày book</th>
-                        <th className={cx('text-center')}>Tổng thanh toán</th>
+                        <th className={cx('text-center')}>Thanh toán</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className={cx('text-center')}>BOO1659403115010</td>
-                        <td className={cx('text-left name-tour')}>
-                            Nghỉ dưỡng Resort Victory Cần Thơ
-                        </td>
-                        <td className={cx('text-center departure-day')}>
-                            10/08/2022
-                        </td>
-                        <td className={cx('text-center')}>13:16 08/08/2022</td>
-                        <td className={cx('text-center')}>13.590.000 đ</td>
-                        <td className={cx('text-center')}>
-                            <IconButton
-                                aria-label="delete"
-                                className={cx('button-view')}
-                            >
-                                <VisibilityIcon className={cx('icon-view')} />
-                            </IconButton>
-                        </td>
-                        <td className={cx('text-center')}>
-                            <ButtonGroup
-                                variant="contained"
-                                aria-label="outlined error button group"
-                                className={cx('buttons-group')}
-                            >
-                                <Button className={cx('button-accept')}>
-                                    XÁC NHẬN
-                                </Button>
-                                <Button className={cx('button-decline')}>
-                                    TỪ CHỐI
-                                </Button>
-                            </ButtonGroup>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className={cx('text-center')}>BOO1659403115010</td>
-                        <td className={cx('text-left name-tour')}>
-                            Nghỉ dưỡng Resort Victory Cần Thơ
-                        </td>
-                        <td className={cx('text-center departure-day')}>
-                            10/08/2022
-                        </td>
-                        <td className={cx('text-center')}>13:16 08/08/2022</td>
-                        <td className={cx('text-center')}>13.590.000 đ</td>
-                        <td className={cx('text-center')}>
-                            <IconButton
-                                aria-label="delete"
-                                className={cx('button-view')}
-                            >
-                                <VisibilityIcon className={cx('icon-view')} />
-                            </IconButton>
-                        </td>
-                        <td className={cx('text-center')}>
-                            <ButtonGroup
-                                variant="contained"
-                                aria-label="outlined error button group"
-                                className={cx('buttons-group')}
-                            >
-                                <Button className={cx('button-accept')}>
-                                    XÁC NHẬN
-                                </Button>
-                                <Button className={cx('button-decline')}>
-                                    TỪ CHỐI
-                                </Button>
-                            </ButtonGroup>
-                        </td>
-                    </tr>
+                    {bookingList.map((item, index) => (
+                        <BookingTourItem
+                            key={index}
+                            item={item}
+                        ></BookingTourItem>
+                    ))}
                 </tbody>
             </table>
         </div>

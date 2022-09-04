@@ -74,6 +74,7 @@ function TypeTourism() {
                         <tr>
                             <th className={cx('id-type')}>Mã loại hình</th>
                             <th className={cx('name-type')}>Tên loại hình</th>
+                            {/* <th className={cx('name-type')}>Mô tả</th> */}
                             <th></th>
                         </tr>
                     </thead>

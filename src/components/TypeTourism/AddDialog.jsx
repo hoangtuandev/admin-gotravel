@@ -29,6 +29,7 @@ function AddDialog(props) {
 
     const [randomID, setRandomID] = useState();
     const [nameTypeTourism, setNameTypeTourism] = useState('');
+    const [describle, setDescrible] = useState('');
 
     useEffect(() => {
         setRandomID(setRandomIDTypeTourism());
@@ -45,6 +46,7 @@ function AddDialog(props) {
         api.createTypeTourism({
             lht_ma: randomID,
             lht_ten: nameTypeTourism,
+            lht_mota: describle,
         }).then((res) => {
             api.getAllTypeTourism().then((res) => {
                 settypeTourismList(res.data);
@@ -84,6 +86,19 @@ function AddDialog(props) {
                                     />
                                 </td>
                             </tr>
+                            <tr>
+                                <td className={cx('title')}>Mô tả</td>
+                                <td className={cx('content')}>
+                                    <textarea
+                                        cols="20"
+                                        rows="7"
+                                        value={describle}
+                                        onChange={(e) =>
+                                            setDescrible(e.target.value)
+                                        }
+                                    ></textarea>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </DialogContent>
@@ -92,7 +107,6 @@ function AddDialog(props) {
                         <Button
                             disabled
                             variant="contained"
-                            color="primary"
                             className={cx('button-groups button-submit')}
                             onClick={() => handleSubmitAdd()}
                         >
@@ -100,7 +114,7 @@ function AddDialog(props) {
                                 size={18}
                                 className={cx('circularProgress')}
                             />
-                            &nbsp;&nbsp; LƯU
+                            &nbsp;&nbsp; ĐANG XỬ LÝ
                         </Button>
                     )}
                     {!openBackdrop && (

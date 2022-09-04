@@ -52,6 +52,8 @@ function AddDialog(props) {
     const [typeTourism, setTypeTourism] = useState();
     const [timeTour, setTimeTour] = useState('');
     const [priceTour, setPriceTour] = useState(0);
+    const [limitPassenger, setLimitPassenger] = useState('');
+    const [limitGuide, setLimitGuide] = useState('');
     const [imageList, setImageList] = useState([]);
 
     useEffect(() => {
@@ -99,6 +101,8 @@ function AddDialog(props) {
                 t_loaihinh: res.data,
                 t_thoigian: timeTour,
                 t_gia: priceTour,
+                t_soluongkhach: limitPassenger,
+                t_soluonghuongdanvien: limitGuide,
                 t_hinhanh: imageList,
                 t_lichkhoihanh: [],
                 t_lichtrinhtour: [],
@@ -252,6 +256,36 @@ function AddDialog(props) {
                                 />
                                 <label className={cx('label-field')}>
                                     Giá tour
+                                </label>
+                            </li>
+                            <li className={cx('fields-item')}>
+                                <input
+                                    className={cx('text-field')}
+                                    type="text"
+                                    placeholder=""
+                                    value={limitPassenger}
+                                    onChange={(e) =>
+                                        setLimitPassenger(e.target.value)
+                                    }
+                                />
+                                <label className={cx('label-field')}>
+                                    Số lượng khách tối đa
+                                </label>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li className={cx('fields-item')}>
+                                <input
+                                    className={cx('text-field')}
+                                    type="text"
+                                    placeholder=""
+                                    value={limitGuide}
+                                    onChange={(e) =>
+                                        setLimitGuide(e.target.value)
+                                    }
+                                />
+                                <label className={cx('label-field')}>
+                                    Số lượng hướng dẫn viên
                                 </label>
                             </li>
                             <li className={cx('fields-item')}></li>

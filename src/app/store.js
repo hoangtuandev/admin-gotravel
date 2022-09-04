@@ -6,6 +6,7 @@ import VehicleReducer from '../components/Vehicle/VehicleSlice';
 import TourReducer from '../components/Tour/TourSlice';
 import VoucherReducer from '../components/Voucher/VoucherSlice';
 import CalendarGuideReducer from '../components/CalendarGuide/CalendarGuideSlice';
+import BookingTourReducer from '../components/BookingTour/BookingTourSlice';
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         tour: TourReducer,
         voucher: VoucherReducer,
         calendarGuide: CalendarGuideReducer,
+        bookingTour: BookingTourReducer,
     },
 });

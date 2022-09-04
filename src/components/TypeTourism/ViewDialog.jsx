@@ -46,6 +46,12 @@ function ViewDialog(props) {
                                     {item.lht_ten}
                                 </td>
                             </tr>
+                            <tr>
+                                <td className={cx('title')}>Mô tả</td>
+                                <td className={cx('content')}>
+                                    <p> {item.lht_mota}</p>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </DialogContent>

@@ -3,9 +3,79 @@ $mainFamily: "Mulish", sans-serif;
 
 .bookingTour {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-left: 200px;
+    margin-left: 230px;
+    margin-right: 30px;
     margin-top: 100px;
+
+    .menu-box {
+        border-radius: 50px;
+        margin: 0 0 20px 0;
+        box-sizing: border-box;
+        max-width: 1293px;
+        z-index: 11;
+        background-color: #0b9de0;
+
+        .menu-tab {
+            margin: 0 20px;
+        }
+    }
+
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+        font-family: $mainFamily;
+        font-size: 15.5px;
+        font-weight: 800;
+        color: #fff;
+    }
+
+    .css-1aquho2-MuiTabs-indicator {
+        height: 3px;
+        background-color: #fff;
+    }
+
+    .css-ptiqhd-MuiSvgIcon-root {
+        width: 25px;
+        height: 25px;
+        color: #fff;
+    }
+
+    .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+        font-family: $mainFamily;
+        font-weight: 700;
+        font-size: 13px;
+        color: #f6f6f6;
+    }
+    // .css-l31w18 {
+    //     position: fixed;
+    //     top: 75px;
+    //     border-radius: 5px;
+    //     background-color: #04a4ed;
+    //     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    // }
+    // .css-ptiqhd-MuiSvgIcon-root {
+    //     font-size: 25px;
+    //     color: #fff;
+    // }
+
+    // .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+    //     color: #f1f1f1;
+    //     font-size: 14px;
+    //     font-family: $mainFamily;
+    //     font-weight: 700;
+    // }
+
+    // .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    //     color: #fff;
+    //     font-size: 16px;
+    //     font-family: $mainFamily;
+    //     font-weight: 800;
+    // }
+
+    // .css-1aquho2-MuiTabs-indicator {
+    //     background-color: #fff;
+    //     height: 3px;
+    // }
 
     table {
         border: 1px solid $mainColor;
@@ -13,6 +83,7 @@ $mainFamily: "Mulish", sans-serif;
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 1px 1px 15px #dcdcdc;
+        padding: 0 0px;
 
         .text-center {
             text-align: center;
@@ -44,7 +115,8 @@ $mainFamily: "Mulish", sans-serif;
                 td {
                     font-family: $mainFamily;
                     font-weight: 600;
-                    padding: 18px 15px 18px 15px;
+                    font-size: 15px;
+                    padding: 18px 10px 18px 10px;
 
                     .button-view {
                         color: #0079b2;
@@ -59,11 +131,11 @@ $mainFamily: "Mulish", sans-serif;
                     .buttons-group {
                         border-radius: 10px;
                         button {
-                            padding: 5px 10px;
+                            padding: 5px 5px;
                             font-family: $mainFamily;
                             font-weight: 800;
-                            font-size: 12.5px;
-                            width: 110px;
+                            font-size: 11px;
+                            width: 80px;
                             border-radius: 10px;
                         }
                         .button-accept {
@@ -82,8 +154,14 @@ $mainFamily: "Mulish", sans-serif;
                 }
 
                 .name-tour {
+                    width: 350px;
+                    max-width: 350px;
                     color: #0079b2;
                     font-weight: 700;
+                }
+                .total-payment {
+                    font-weight: 700;
+                    color: #ef392f;
                 }
             }
         }
