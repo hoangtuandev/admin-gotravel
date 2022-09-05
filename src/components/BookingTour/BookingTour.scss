@@ -167,3 +167,132 @@ $mainFamily: "Mulish", sans-serif;
         }
     }
 }
+
+.dialog {
+    .appbar {
+        position: fixed;
+        background-color: $mainColor;
+        padding-left: 0px;
+
+        .toolbar {
+            .close-icon {
+                color: #fff;
+                font-size: 22px;
+            }
+            .typography {
+                font-size: 18px;
+                font-family: $mainFamily;
+                font-weight: 700;
+            }
+
+            .btn-accept {
+                width: 100px;
+                color: #32a948;
+                padding: 4px 10px;
+                font-size: 14px;
+                font-family: $mainFamily;
+                font-weight: 800;
+                background-color: #fff;
+            }
+            .btn-decline {
+                width: 100px;
+                color: #ef392f;
+                padding: 4px 10px;
+                font-size: 14px;
+                font-family: $mainFamily;
+                font-weight: 800;
+                background-color: #fff;
+            }
+        }
+    }
+
+    .detail-booking {
+        padding: 90px 70px 0 70px;
+
+        .infor-booking {
+            display: flex;
+            justify-content: space-between;
+
+            .infor-item {
+                display: flex;
+                align-items: center;
+                font-family: $mainFamily;
+                font-weight: 600;
+                font-size: 17px;
+
+                .label {
+                    margin-right: 10px;
+                    color: #0079b2;
+                    font-weight: 800;
+                }
+
+                .button-status {
+                    font-family: $mainFamily;
+                    font-weight: 800;
+                    background-color: #e7ffed;
+                    color: #32a948;
+                    padding: 5px 10px;
+                    border-radius: 50px;
+                    outline: none;
+                    border: 0px solid #0079b2;
+                }
+
+                .price {
+                    color: #ef392f;
+                    font-size: 18px;
+                    font-weight: 800;
+                }
+            }
+        }
+
+        .line {
+            margin-top: 30px;
+            border: 1px solid #e9e9e9;
+        }
+
+        .infor-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0px;
+            margin-bottom: 10px;
+
+            p {
+                color: #0079b2;
+                border-left: 4px solid #0079b2;
+                padding-left: 10px;
+                padding-top: 3px;
+                padding-bottom: 3px;
+                font-family: $mainFamily;
+                font-size: 19px;
+                font-weight: 700;
+                margin-top: 20px;
+            }
+            table {
+                margin-top: 5px;
+                tbody {
+                    tr {
+                        font-family: $mainFamily;
+                        font-size: 16px;
+                        font-weight: 600;
+
+                        td {
+                            padding: 10px 30px 5px 0px;
+                            max-width: 500px;
+                        }
+                    }
+                }
+            }
+
+            .detail-left {
+                .detail-tour {
+                }
+                .detail-departure {
+                }
+                .detail-passenger {
+                }
+            }
+            .detail-right {
+            }
+        }
+    }
+}

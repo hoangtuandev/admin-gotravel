@@ -8,24 +8,50 @@ import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import * as api from '../../api';
 import styles from './BookingTour.scss';
-import { handleSetBookingTourList } from './BookingTourSlice';
+import {
+    bookingSelected,
+    currentTab,
+    handleSelectBookingTour,
+    handleSetBookingTourList,
+    handleTooggleViewBookingTour,
+} from './BookingTourSlice';
 
 const cx = classNames.bind(styles);
 
 function BookingTourItem(props) {
     const { item } = props;
     const dispatch = useDispatch();
+    const tabSelected = useSelector(currentTab);
+    const bookingView = useSelector(bookingSelected);
 
-    const handleAcceptBookingTour = () => {
-        api.updateStatusBookingTour({ _id: item._id }).then((res) => {
-            api.getAllBookingTour().then((res) => {
-                console.log(res.data);
-                dispatch(handleSetBookingTourList(res.data));
-            });
-        });
+    const handleViewBookingTour = () => {
+        dispatch(handleSelectBookingTour(item));
+        dispatch(handleTooggleViewBookingTour(true));
     };
 
-    const handleDeclineBookingTour = () => {};
+    const handleAcceptBookingTour = () => {
+        api.updateStatusBookingTour({ _id: item._id, bt_trangthai: 2 }).then(
+            (res) => {
+                api.getBookingTourByStatus({ bt_trangthai: tabSelected }).then(
+                    (res) => {
+                        dispatch(handleSetBookingTourList(res.data));
+                    }
+                );
+            }
+        );
+    };
+
+    const handleDeclineBookingTour = () => {
+        api.updateStatusBookingTour({ _id: item._id, bt_trangthai: 0 }).then(
+            (res) => {
+                api.getBookingTourByStatus({ bt_trangthai: tabSelected }).then(
+                    (res) => {
+                        dispatch(handleSetBookingTourList(res.data));
+                    }
+                );
+            }
+        );
+    };
     return (
         <tr>
             <td className={cx('text-center')}>{item.bt_ma}</td>
@@ -46,7 +72,11 @@ function BookingTourItem(props) {
                 })}
             </td>
             <td className={cx('text-center')}>
-                <IconButton aria-label="delete" className={cx('button-view')}>
+                <IconButton
+                    aria-label="delete"
+                    className={cx('button-view')}
+                    onClick={() => handleViewBookingTour()}
+                >
                     <VisibilityIcon className={cx('icon-view')} />
                 </IconButton>
             </td>

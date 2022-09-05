@@ -13,7 +13,9 @@ import {
     bookingTourList,
     handleChangeCurrentTab,
     currentTab,
+    viewBookingTour,
 } from './BookingTourSlice';
+import ViewBookingTour from './ViewBookingTour';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +23,7 @@ function BookingTour() {
     const dispatch = useDispatch();
     const tabSelected = useSelector(currentTab);
     const bookingList = useSelector(bookingTourList);
+    const viewBooking = useSelector(viewBookingTour);
 
     // const [tabSelected, setTabSelected] = useState(1);
 
@@ -99,6 +102,7 @@ function BookingTour() {
                     ))}
                 </tbody>
             </table>
+            {viewBooking && <ViewBookingTour></ViewBookingTour>}
         </div>
     );
 }
