@@ -15,7 +15,8 @@ $mainFamily: "Mulish", sans-serif;
         box-sizing: border-box;
         max-width: 1293px;
         z-index: 11;
-        background-color: #0b9de0;
+        background-color: #f6fcff;
+        box-shadow: rgba(102, 102, 102, 0.24) 0px 3px 8px;
 
         .menu-tab {
             margin: 0 20px;
@@ -26,25 +27,25 @@ $mainFamily: "Mulish", sans-serif;
         font-family: $mainFamily;
         font-size: 15.5px;
         font-weight: 800;
-        color: #fff;
+        color: #0079b2;
     }
 
     .css-1aquho2-MuiTabs-indicator {
         height: 3px;
-        background-color: #fff;
+        background-color: #0079b2;
     }
 
     .css-ptiqhd-MuiSvgIcon-root {
         width: 25px;
         height: 25px;
-        color: #fff;
+        color: #0079b2;
     }
 
     .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
         font-family: $mainFamily;
         font-weight: 700;
         font-size: 13px;
-        color: #f6f6f6;
+        color: #636363;
     }
     // .css-l31w18 {
     //     position: fixed;

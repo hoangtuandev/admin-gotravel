@@ -21,6 +21,7 @@ import {
     bookingSelected,
     currentTab,
     handleSelectBookingTour,
+    handleSetBookingTourList,
     handleTooggleViewBookingTour,
     viewBookingTour,
 } from './BookingTourSlice';
@@ -45,6 +46,32 @@ export default function ViewBookingTour() {
         api.getBookingTourByStatus({ bt_trangthai: tabCurrent }).then((res) => {
             dispatch(handleSelectBookingTour(res.data));
         });
+    };
+
+    const handleAcceptBookingTour = () => {
+        api.updateStatusBookingTour({ _id: booking._id, bt_trangthai: 2 }).then(
+            (res) => {
+                api.getBookingTourByStatus({ bt_trangthai: tabCurrent }).then(
+                    (res) => {
+                        dispatch(handleSetBookingTourList(res.data));
+                        dispatch(handleTooggleViewBookingTour(false));
+                    }
+                );
+            }
+        );
+    };
+
+    const handleDeclineBookingTour = () => {
+        api.updateStatusBookingTour({ _id: booking._id, bt_trangthai: 0 }).then(
+            (res) => {
+                api.getBookingTourByStatus({ bt_trangthai: tabCurrent }).then(
+                    (res) => {
+                        dispatch(handleSetBookingTourList(res.data));
+                        dispatch(handleTooggleViewBookingTour(false));
+                    }
+                );
+            }
+        );
     };
 
     return (
@@ -77,23 +104,37 @@ export default function ViewBookingTour() {
                         >
                             THÔNG TIN CHI TIẾT
                         </Typography>
-                        <Button
-                            autoFocus
-                            color="inherit"
-                            className={cx('btn-accept')}
-                            onClick={() => handleCloseViewBookingTour()}
-                        >
-                            XÁC NHẬN
-                        </Button>
-                        &nbsp; &nbsp; &nbsp;
-                        <Button
-                            autoFocus
-                            color="inherit"
-                            className={cx('btn-decline')}
-                            onClick={() => handleCloseViewBookingTour()}
-                        >
-                            TỪ CHỐI
-                        </Button>
+                        {tabCurrent === 1 && (
+                            <div>
+                                <Button
+                                    autoFocus
+                                    color="inherit"
+                                    className={cx('btn-accept')}
+                                    onClick={() => handleAcceptBookingTour()}
+                                >
+                                    XÁC NHẬN
+                                </Button>
+                                &nbsp; &nbsp; &nbsp;
+                                <Button
+                                    autoFocus
+                                    color="inherit"
+                                    className={cx('btn-decline')}
+                                    onClick={() => handleDeclineBookingTour()}
+                                >
+                                    TỪ CHỐI
+                                </Button>
+                            </div>
+                        )}
+                        {tabCurrent !== 1 && (
+                            <Button
+                                autoFocus
+                                color="inherit"
+                                className={cx('btn-decline')}
+                                onClick={() => handleCloseViewBookingTour()}
+                            >
+                                THOÁT
+                            </Button>
+                        )}
                     </Toolbar>
                 </AppBar>
 

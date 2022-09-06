@@ -32,18 +32,17 @@ function BookingTour() {
         dispatch(handleChangeCurrentTab(newValue));
         console.log(newValue);
     };
-    // const [bookingTourList, setBookingTourList] = useState([]);
+
     useEffect(() => {
-        // const status =
-        //     tabSelected === 0
-        //         ? 0
-        //         : tabSelected === 1
-        //         ? 1
-        //         : tabSelected === 2
-        //         ? 2
-        //         : tabSelected === 3
-        //         ? 3
-        //         : 4;
+        api.updateBookingTourWorking({ bt_trangthai: 3 }).then((res) => {
+            console.log(res.data);
+        });
+        api.updateBookingTourFinish({ bt_trangthai: 4 }).then((res) => {
+            console.log(res.data);
+        });
+    }, []);
+
+    useEffect(() => {
         api.getBookingTourByStatus({ bt_trangthai: tabSelected }).then(
             (res) => {
                 dispatch(handleSetBookingTourList(res.data));

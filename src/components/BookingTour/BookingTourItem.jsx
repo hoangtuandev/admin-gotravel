@@ -58,7 +58,7 @@ function BookingTourItem(props) {
             <td className={cx('text-left name-tour')}>{item.bt_tour.t_ten}</td>
             <td className={cx('text-center departure-day')}>
                 {moment(item.bt_lichkhoihanh.lkh_ngaykhoihanh).format(
-                    'HH:mm DD/MM/YYYY'
+                    'DD/MM/YYYY'
                 )}
             </td>
             <td className={cx('text-center')}>

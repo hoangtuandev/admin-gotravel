@@ -88,6 +88,12 @@ export const addCalendarGuide = (data) =>
 // BOOKING TOUR
 export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);
 
+export const updateBookingTourWorking = (data) =>
+    axios.post(`${URL}/BookingTour/updateBookingTourWorking`, data);
+
+export const updateBookingTourFinish = (data) =>
+    axios.post(`${URL}/BookingTour/updateBookingTourFinish`, data);
+
 export const updateStatusBookingTour = (data) =>
     axios.post(`${URL}/BookingTour/updateStatusBookingTour`, data);
 
