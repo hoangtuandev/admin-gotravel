@@ -53,6 +53,7 @@ function UpdateDialog(props) {
     const tourSelected = useSelector(itemSelected);
     const imageRef = useRef(null);
     const { setTourList } = props;
+    const currentDate = new Date();
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingDeparture, setIsLoadingDeparture] = useState(false);
@@ -82,9 +83,6 @@ function UpdateDialog(props) {
     const [finishDate, setFinishDate] = useState(new Date());
     const [addressDeparture, setAddressDeparture] = useState('');
     const [vehiclesDeparture, setVehicleDeparture] = useState([]);
-    const [departureList, setDepartureList] = useState(
-        tourSelected.t_lichkhoihanh
-    );
 
     const [daySchedule, setDaySchedule] = useState('');
     const [nameSchedule, setNameSchedule] = useState('');
@@ -103,6 +101,15 @@ function UpdateDialog(props) {
             res.data.map((data, index) => setVehicleList(res.data));
         });
     }, []);
+
+    const updateCurrentDepartures = (departure) => {
+        const start = new Date(departure.lkh_ngaykhoihanh);
+        return start > currentDate;
+    };
+
+    const [departureList, setDepartureList] = useState(
+        tourSelected.t_lichkhoihanh.filter(updateCurrentDepartures)
+    );
 
     const handleChangeURLImg = (e) => {
         setImagePreview(e.target.value);
@@ -149,12 +156,12 @@ function UpdateDialog(props) {
                 t_soluongkhach: limitPasenger,
                 t_soluonghuongdanvien: limitGuide,
             }).then((res) => {
-                setOpenAlertSuccess(true);
                 api.getAllTour().then((res) => {
                     setTourList(res.data);
-                    setTimeout(() => setOpenAlertSuccess(false), 3000);
                     clearTimeout(alert);
                     setIsLoading(false);
+                    setOpenAlertSuccess(true);
+                    setTimeout(() => setOpenAlertSuccess(false), 3000);
                 });
             });
         });
@@ -223,7 +230,11 @@ function UpdateDialog(props) {
                     setAddressDeparture('');
 
                     api.getTourById({ t_ma: tourSelected.t_ma }).then((res) => {
-                        setDepartureList(res.data.t_lichkhoihanh);
+                        setDepartureList(
+                            res.data.t_lichkhoihanh.filter(
+                                updateCurrentDepartures
+                            )
+                        );
                         setIsLoadingDeparture(false);
                     });
                 });

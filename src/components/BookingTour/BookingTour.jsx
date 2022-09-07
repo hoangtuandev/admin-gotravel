@@ -6,7 +6,6 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import styles from './BookingTour.scss';
 import * as api from '../../api';
-import { useState } from 'react';
 import BookingTourItem from './BookingTourItem';
 import {
     handleSetBookingTourList,
@@ -30,16 +29,11 @@ function BookingTour() {
     const handleChangeTab = (event, newValue) => {
         // setTabSelected(newValue);
         dispatch(handleChangeCurrentTab(newValue));
-        console.log(newValue);
     };
 
     useEffect(() => {
-        api.updateBookingTourWorking({ bt_trangthai: 3 }).then((res) => {
-            console.log(res.data);
-        });
-        api.updateBookingTourFinish({ bt_trangthai: 4 }).then((res) => {
-            console.log(res.data);
-        });
+        api.updateBookingTourWorking({ bt_trangthai: 3 }).then((res) => {});
+        api.updateBookingTourFinish({ bt_trangthai: 4 }).then((res) => {});
     }, []);
 
     useEffect(() => {
@@ -48,7 +42,8 @@ function BookingTour() {
                 dispatch(handleSetBookingTourList(res.data));
             }
         );
-    }, [tabSelected]);
+    }, [tabSelected, dispatch]);
+    console.log('dispatch');
 
     return (
         <div className={cx('bookingTour')}>

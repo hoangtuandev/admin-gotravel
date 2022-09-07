@@ -66,10 +66,11 @@ function TourItem(props) {
             <td className={cx('left-col name-tour-col')}>{data.t_ten}</td>
             <td className={cx('center-col')}>{data.t_thoigian} ngày</td>
             <td className={cx('center-col price-tour-col')}>
-                {data.t_gia.toLocaleString('vi', {
-                    style: 'currency',
-                    currency: 'VND',
-                })}
+                {data.gia > 0 &&
+                    data.t_gia.toLocaleString('vi', {
+                        style: 'currency',
+                        currency: 'VND',
+                    })}
             </td>
             <td className={cx('button-group')}>
                 {!showStopedTour && (
