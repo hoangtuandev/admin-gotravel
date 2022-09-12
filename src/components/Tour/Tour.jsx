@@ -43,16 +43,6 @@ function Tour() {
     const [sortValue, setSortValue] = useState(0);
     const [keySearching, setKeySearching] = useState('');
 
-    const handleChangeSortValue = (event, newAlignment) => {
-        setSortValue(newAlignment);
-
-        if (newAlignment === 1) {
-            tourList.sort((a, b) => parseFloat(a.t_gia) - parseFloat(b.t_gia));
-        } else if (newAlignment === -1) {
-            tourList.sort((a, b) => parseFloat(b.t_gia) - parseFloat(a.t_gia));
-        }
-    };
-
     useEffect(() => {
         api.getAllActiveTour().then((res) => {
             setTourList(res.data);
@@ -70,6 +60,16 @@ function Tour() {
         });
         setSortValue(0);
     }, [keySearching]);
+
+    const handleChangeSortValue = (event, newAlignment) => {
+        setSortValue(newAlignment);
+
+        if (newAlignment === 1) {
+            tourList.sort((a, b) => parseFloat(a.t_gia) - parseFloat(b.t_gia));
+        } else if (newAlignment === -1) {
+            tourList.sort((a, b) => parseFloat(b.t_gia) - parseFloat(a.t_gia));
+        }
+    };
 
     const handleGetAllActiveTour = () => {
         api.getAllActiveTour().then((res) => {
@@ -186,14 +186,25 @@ function Tour() {
                         </tbody>
                     </table>
                 )}
+                {showStopedTour && stopedTourList.length === 0 && (
+                    <div className={cx('empty-tourList')}>
+                        <p>Không tìm thấy kết quả phù hợp!</p>
+                        <img
+                            src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png   "
+                            alt=""
+                        />
+                    </div>
+                )}
 
-                {showStopedTour && (
+                {showStopedTour && stopedTourList.length !== 0 && (
                     <table className={cx('tour_table stoped-tours')}>
                         <thead>
                             <tr>
                                 <th className={cx('left-col')}></th>
-                                <th className={cx('center-col')}>Mã tour</th>
                                 <th className={cx('left-col')}>Tên tour</th>
+                                <th className={cx('center-col')}>
+                                    Loại hình tour
+                                </th>
                                 <th className={cx('center-col')}>Thời gian</th>
                                 <th className={cx('center-col')}>Giá</th>
                                 <th></th>

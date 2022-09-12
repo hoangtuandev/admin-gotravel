@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import DatePicker from 'react-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import { CgArrowLongRightC } from 'react-icons/cg';
 import { BsCalendar3 } from 'react-icons/bs';
@@ -38,11 +40,10 @@ function BookingTour() {
     const viewBooking = useSelector(viewBookingTour);
     const paramsFilter = useSelector(paramsBookingFilter);
 
-    // const [tabSelected, setTabSelected] = useState(1);
-    // const [listBooking, setListBooking] = useState(bookings);
-
+    // const [sortValue, setSortValue] = useState(0);
+    // const [allTour, setAllTour] = useState([]);
+    console.log('rerender');
     const handleChangeTab = (event, newValue) => {
-        // setTabSelected(newValue);
         dispatch(handleChangeCurrentTab(newValue));
     };
 
@@ -57,7 +58,24 @@ function BookingTour() {
                 dispatch(handleSetBookingTourList(res.data));
             }
         );
-    }, [tabSelected]);
+    }, [tabSelected, dispatch]);
+
+    // const handleChangeSortValue = (event, newAlignment) => {
+    //     setSortValue(newAlignment);
+    //     if (newAlignment === 1) {
+    //         bookings.sort(
+    //             (a, b) =>
+    //                 parseFloat(a.bt_tongthanhtoan) -
+    //                 parseFloat(b.bt_tongthanhtoan)
+    //         );
+    //     } else if (newAlignment === -1) {
+    //         bookings.sort(
+    //             (a, b) =>
+    //                 parseFloat(b.bt_tongthanhtoan) -
+    //                 parseFloat(a.bt_tongthanhtoan)
+    //         );
+    //     }
+    // };
 
     const handleChangePriceArange = (event, newValue) => {
         dispatch(
@@ -342,6 +360,29 @@ function BookingTour() {
                     />
                 </div>
             </div>
+            {/* <div className={cx('sort-tours')}>
+                <ToggleButtonGroup
+                    color="error"
+                    value={sortValue}
+                    exclusive
+                    // onChange={handleChangeSortValue}
+                    aria-label="Platform"
+                    className={cx('toggle-button-group')}
+                >
+                    <ToggleButton value={1}>
+                        {allTour.length > 0 &&
+                        allTour[0].bt_tongthanhtoan < allTour[1]
+                            ? 'Giá tour giảm dần'
+                            : 'Giá tour tăng dần'}
+                    </ToggleButton>
+                    <ToggleButton value={-1}>
+                        {allTour.length > 0 &&
+                        allTour[0].bt_tongthanhtoan < allTour[1]
+                            ? 'Giá tour tăng dần'
+                            : 'Giá tour giảm dần'}
+                    </ToggleButton>
+                </ToggleButtonGroup>
+            </div> */}
             {bookings.length === 0 && (
                 <div className={cx('empty-tourList')}>
                     <p>Không tìm thấy kết quả phù hợp!</p>

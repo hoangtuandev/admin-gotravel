@@ -91,27 +91,7 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-                    {/* <Link to="/phieu-giam-gia" className={cx('link-router')}>
-                        <li
-                            onClick={(e) => handleSelectOption(e)}
-                            title="Phiếu giảm giá"
-                            style={
-                                labelOption === 'Phiếu giảm giá'
-                                    ? selectedStyle
-                                    : {}
-                            }
-                        >
-                            <span className={cx('icon')} title="Phiếu giảm giá">
-                                <FcMoneyTransfer />
-                            </span>
-                            <span
-                                className={cx('label')}
-                                title="Phiếu giảm giá"
-                            >
-                                Phiếu giảm giá
-                            </span>
-                        </li>
-                    </Link> */}
+
                     <Link to="/tour" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -134,10 +114,10 @@ function Sidenav() {
                                 labelOption === 'Booking' ? selectedStyle : {}
                             }
                         >
-                            <span className={cx('icon')} title="Tour đặt">
+                            <span className={cx('icon')} title="Booking">
                                 <FcTodoList />
                             </span>
-                            <span className={cx('label')} title="Tour đặt">
+                            <span className={cx('label')} title="Booking">
                                 Booking
                             </span>
                         </li>
