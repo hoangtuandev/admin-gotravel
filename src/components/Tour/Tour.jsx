@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { MdAdd } from 'react-icons/md';
 import { TbArrowBackUp } from 'react-icons/tb';
+import { ImSearch } from 'react-icons/im';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
 
 import styles from './Tour.scss';
@@ -35,17 +38,38 @@ function Tour() {
     const showStopedTour = useSelector(isShowStopedTour);
     const openViewDialog = useSelector(isOpenViewDialog);
     const [tourList, setTourList] = useState([]);
+    const [allTour, setAllTour] = useState([]);
     const [stopedTourList, setStopedTourList] = useState([]);
+    const [sortValue, setSortValue] = useState(0);
+    const [keySearching, setKeySearching] = useState('');
+
+    const handleChangeSortValue = (event, newAlignment) => {
+        setSortValue(newAlignment);
+
+        if (newAlignment === 1) {
+            tourList.sort((a, b) => parseFloat(a.t_gia) - parseFloat(b.t_gia));
+        } else if (newAlignment === -1) {
+            tourList.sort((a, b) => parseFloat(b.t_gia) - parseFloat(a.t_gia));
+        }
+    };
 
     useEffect(() => {
         api.getAllActiveTour().then((res) => {
             setTourList(res.data);
+            setAllTour(res.data);
         });
 
         api.getAllStopedTour().then((res) => {
             setStopedTourList(res.data);
         });
     }, []);
+
+    useEffect(() => {
+        api.searchingTour({ keySearch: keySearching }).then((res) => {
+            setTourList(res.data);
+        });
+        setSortValue(0);
+    }, [keySearching]);
 
     const handleGetAllActiveTour = () => {
         api.getAllActiveTour().then((res) => {
@@ -92,12 +116,61 @@ function Tour() {
                 )}
 
                 {!showStopedTour && (
+                    <div className={cx('filter-tours')}>
+                        <div className={cx('searching-tour')}>
+                            <input
+                                value={keySearching}
+                                onChange={(e) =>
+                                    setKeySearching(e.target.value)
+                                }
+                                type="text"
+                                placeholder="Nhập tên tour..."
+                            />
+                            <ImSearch className={cx('icon-search')} />
+                        </div>
+                        <ToggleButtonGroup
+                            color="error"
+                            value={sortValue}
+                            exclusive
+                            onChange={handleChangeSortValue}
+                            aria-label="Platform"
+                            className={cx('toggle-button-group')}
+                        >
+                            <ToggleButton value={1}>
+                                {allTour.length > 0 &&
+                                allTour[0].t_gia < allTour[1]
+                                    ? 'Giá tour giảm dần'
+                                    : 'Giá tour tăng dần'}
+                            </ToggleButton>
+                            <ToggleButton value={-1}>
+                                {allTour.length > 0 &&
+                                allTour[0].t_gia < allTour[1]
+                                    ? 'Giá tour tăng dần'
+                                    : 'Giá tour giảm dần'}
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                    </div>
+                )}
+
+                {tourList.length === 0 && (
+                    <div className={cx('empty-tourList')}>
+                        <p>Không tìm thấy kết quả phù hợp!</p>
+                        <img
+                            src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png   "
+                            alt=""
+                        />
+                    </div>
+                )}
+
+                {!showStopedTour && tourList.length > 0 && (
                     <table className={cx('tour_table')}>
                         <thead>
                             <tr>
                                 <th className={cx('left-col')}></th>
-                                <th className={cx('center-col')}>Mã tour</th>
                                 <th className={cx('left-col')}>Tên tour</th>
+                                <th className={cx('left-col')}>
+                                    Loại hình tour
+                                </th>
                                 <th className={cx('center-col')}>Thời gian</th>
                                 <th className={cx('center-col')}>Giá</th>
                                 <th></th>

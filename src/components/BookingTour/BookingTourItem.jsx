@@ -6,10 +6,10 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { GiTwoCoins } from 'react-icons/gi';
 import * as api from '../../api';
 import styles from './BookingTour.scss';
 import {
-    bookingSelected,
     currentTab,
     handleSelectBookingTour,
     handleSetBookingTourList,
@@ -22,7 +22,6 @@ function BookingTourItem(props) {
     const { item } = props;
     const dispatch = useDispatch();
     const tabSelected = useSelector(currentTab);
-    const bookingView = useSelector(bookingSelected);
 
     const handleViewBookingTour = () => {
         dispatch(handleSelectBookingTour(item));
@@ -54,7 +53,6 @@ function BookingTourItem(props) {
     };
     return (
         <tr>
-            <td className={cx('text-center')}>{item.bt_ma}</td>
             <td className={cx('text-left name-tour')}>{item.bt_tour.t_ten}</td>
             <td className={cx('text-center departure-day')}>
                 {moment(item.bt_lichkhoihanh.lkh_ngaykhoihanh).format(
@@ -65,11 +63,13 @@ function BookingTourItem(props) {
                 {moment(item.bt_ngaydat).format('HH:mm DD/MM/YYYY')}
             </td>
             <td className={cx('text-center total-payment')}>
-                {' '}
-                {item.bt_tongthanhtoan.toLocaleString('vi', {
-                    style: 'currency',
-                    currency: 'VND',
-                })}
+                <GiTwoCoins className={cx('icon-coin')} />
+                <span>
+                    {item.bt_tongthanhtoan.toLocaleString('vi', {
+                        style: 'currency',
+                        currency: 'VND',
+                    })}
+                </span>
             </td>
             <td className={cx('text-center')}>
                 <IconButton

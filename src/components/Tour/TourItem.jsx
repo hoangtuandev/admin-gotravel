@@ -1,7 +1,7 @@
 import { React } from 'react';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { GiTwoCoins } from 'react-icons/gi';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
@@ -62,15 +62,18 @@ function TourItem(props) {
             <td className={cx('center-col img-tour')}>
                 <img src={data.t_hinhanh[0]} alt="" />
             </td>
-            <td className={cx('center-col')}>{data.t_ma}</td>
             <td className={cx('left-col name-tour-col')}>{data.t_ten}</td>
+            <td className={cx('left-col')}>{data.t_loaihinh.lht_ten}</td>
             <td className={cx('center-col')}>{data.t_thoigian} ngày</td>
             <td className={cx('center-col price-tour-col')}>
-                {data.gia > 0 &&
-                    data.t_gia.toLocaleString('vi', {
-                        style: 'currency',
-                        currency: 'VND',
-                    })}
+                <GiTwoCoins className={cx('icon-coin')} />
+                <span>
+                    {data.t_gia > 0 &&
+                        data.t_gia.toLocaleString('vi', {
+                            style: 'currency',
+                            currency: 'VND',
+                        })}
+                </span>
             </td>
             <td className={cx('button-group')}>
                 {!showStopedTour && (

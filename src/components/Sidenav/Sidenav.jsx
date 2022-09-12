@@ -13,7 +13,6 @@ import {
     FcAssistant,
     FcPortraitMode,
     FcAdvertising,
-    FcMoneyTransfer,
 } from 'react-icons/fc';
 
 import styles from './Sidenav.scss';
@@ -31,7 +30,7 @@ const selectedStyle = {
     borderLeft: '13px solid #0b9de0',
     boxShadow: '1px 1px 7px #a8a8a8',
     color: '#005cbefe',
-    fontWeight: '600',
+    fontWeight: '700',
 };
 
 function Sidenav() {

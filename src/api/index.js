@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const URL = 'http://localhost:5000';
-const URL = 'https://go-travel-server.herokuapp.com';
+const URL = 'http://localhost:5000';
+// const URL = 'https://go-travel-server.herokuapp.com';
 
 export const handleSignIn = (data) =>
     axios.post(`${URL}/AdminAccount/SignIn`, data);
@@ -63,6 +63,9 @@ export const updateStopTour = (data) =>
 export const updateActiveTour = (data) =>
     axios.post(`${URL}/Tour/updateActiveTour`, data);
 
+export const searchingTour = (data) =>
+    axios.post(`${URL}/Tour/searchingTour`, data);
+
 // DEPARTURE
 export const getAllDeparture = () => axios.get(`${URL}/Departure`);
 
@@ -99,3 +102,15 @@ export const updateStatusBookingTour = (data) =>
 
 export const getBookingTourByStatus = (data) =>
     axios.post(`${URL}/BookingTour/getBookingTourByStatus`, data);
+
+export const filterBookingTourByPrice = (data) =>
+    axios.post(`${URL}/BookingTour/filterBookingTourByPrice`, data);
+
+export const filterBookingTourByDeparture = (data) =>
+    axios.post(`${URL}/BookingTour/filterBookingTourByDeparture`, data);
+
+export const filterBookingTourByBookingDate = (data) =>
+    axios.post(`${URL}/BookingTour/filterBookingTourByBookingDate`, data);
+
+export const filterBookingTourByParams = (data) =>
+    axios.post(`${URL}/BookingTour/filterBookingTourByParams`, data);

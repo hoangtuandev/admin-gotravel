@@ -41,6 +41,76 @@ $mainFamily: "Mulish", sans-serif;
     }
   }
 
+  .filter-tours {
+    margin-bottom: 20px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .searching-tour {
+      position: relative;
+      width: 400px;
+
+      input {
+        outline: none;
+        font-family: $mainFamily;
+        font-weight: 600;
+        font-size: 15px;
+        width: 100%;
+        border: 1px solid #878787;
+        border-radius: 50px;
+        padding: 8px 15px;
+        color: #474747;
+      }
+
+      .icon-search {
+        position: absolute;
+        right: 13px;
+        top: 8px;
+        font-size: 20px;
+        color: #585858;
+      }
+    }
+
+    .toggle-button-group {
+      button {
+        color: #4a4a4a;
+        font-size: 13px;
+        font-family: $mainFamily;
+        font-weight: 800;
+        padding: 7px 10px;
+      }
+
+      .css-17pma60-MuiButtonBase-root-MuiToggleButton-root.Mui-selected {
+        color: #ef0404;
+        background-color: #f6f6f6;
+      }
+    }
+  }
+
+  .empty-tourList {
+    width: 1230px;
+    padding: 30px 0;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 15px;
+    p {
+      font-family: $mainFamily;
+      font-weight: 700;
+      font-size: 23px;
+      margin: 0 0;
+      color: #606060;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 500px;
+      height: 300px;
+    }
+  }
+
   .tour_table {
     border: 1px solid $mainColor;
     border-collapse: collapse;
@@ -50,13 +120,13 @@ $mainFamily: "Mulish", sans-serif;
 
     .center-col {
       text-align: center;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
     .left-col {
       text-align: left;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
     .name-tour-col {
@@ -67,8 +137,14 @@ $mainFamily: "Mulish", sans-serif;
     }
 
     .price-tour-col {
-      color: #ef0404;
       font-weight: 700;
+      color: #efab00;
+      font-size: 17px;
+
+      .icon-coin {
+        font-size: 20px;
+        margin-right: 5px;
+      }
     }
 
     .img-tour {
@@ -103,7 +179,7 @@ $mainFamily: "Mulish", sans-serif;
 
         .button-group {
           padding-right: 20px;
-          padding-left: 100px;
+          padding-left: 80px;
 
           .icon {
             font-size: 19px;
