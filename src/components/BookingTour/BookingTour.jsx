@@ -42,7 +42,7 @@ function BookingTour() {
 
     // const [sortValue, setSortValue] = useState(0);
     // const [allTour, setAllTour] = useState([]);
-    console.log('rerender');
+
     const handleChangeTab = (event, newValue) => {
         dispatch(handleChangeCurrentTab(newValue));
     };

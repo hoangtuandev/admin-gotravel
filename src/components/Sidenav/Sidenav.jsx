@@ -156,20 +156,25 @@ function Sidenav() {
                             Bài chia sẻ
                         </span>
                     </li>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Bài quảng bá"
-                        style={
-                            labelOption === 'Bài quảng bá' ? selectedStyle : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Bài quảng bá">
-                            <FcAdvertising />
-                        </span>
-                        <span className={cx('label')} title="Bài quảng bá">
-                            Bài quảng bá
-                        </span>
-                    </li>
+                    <Link to="/quang-ba" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Bài quảng bá"
+                            style={
+                                labelOption === 'Bài quảng bá'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Bài quảng bá">
+                                <FcAdvertising />
+                            </span>
+                            <span className={cx('label')} title="Bài quảng bá">
+                                Bài quảng bá
+                            </span>
+                        </li>
+                    </Link>
+
                     <li
                         onClick={(e) => handleSelectOption(e)}
                         title="Hướng dẫn viên"

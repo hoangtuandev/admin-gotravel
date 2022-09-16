@@ -6,6 +6,7 @@ import VehiclePage from '../pages/VehiclePage/VehiclePage';
 import BookingTourPage from '../pages/BookingTour/BookingTour';
 import VoucherPage from '../pages/VoucherPage/VoucherPage';
 import CalendarGuidePage from '../pages/CalendarGuidePage/CalendarGuidePage';
+import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 
 export const privateRoutes = [
     { path: '/', component: Home },
@@ -15,6 +16,7 @@ export const privateRoutes = [
     { path: '/booking-tour', component: BookingTourPage },
     { path: '/phieu-giam-gia', component: VoucherPage },
     { path: '/lich-dan-tour', component: CalendarGuidePage },
+    { path: '/quang-ba', component: AdvertisementPage },
     { path: '/:somestring', component: Home },
 ];
 

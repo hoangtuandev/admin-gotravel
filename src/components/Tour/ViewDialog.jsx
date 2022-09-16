@@ -1,4 +1,4 @@
-import { React, memo, forwardRef } from 'react';
+import { React, memo, forwardRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
@@ -23,6 +23,7 @@ import {
     isOpenViewDialog,
     itemSelected,
 } from './TourSlice';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -34,6 +35,19 @@ function ViewDialog(props) {
     const dispatch = useDispatch();
     const tourSelected = useSelector(itemSelected);
     const openDialog = useSelector(isOpenViewDialog);
+
+    const [listDeparture, setListDeparture] = useState([]);
+
+    useEffect(() => {
+        const current = new Date();
+        const filterByDeparture = (departure) => {
+            const date = new Date(departure.lkh_ngaykhoihanh);
+            return date.toLocaleDateString() > current.toLocaleDateString();
+        };
+        const newDeparture =
+            tourSelected.t_lichkhoihanh.filter(filterByDeparture);
+        setListDeparture(newDeparture);
+    }, [tourSelected]);
 
     return (
         <div>
@@ -155,8 +169,8 @@ function ViewDialog(props) {
                                 <p className={cx('title-infor')}>
                                     Lịch khởi hành
                                 </p>
-                                {tourSelected.t_lichkhoihanh.map(
-                                    (item, index) => (
+                                {listDeparture.length !== 0 &&
+                                    listDeparture.map((item, index) => (
                                         <Accordion
                                             key={index}
                                             className={cx('accordion')}
@@ -248,8 +262,7 @@ function ViewDialog(props) {
                                                 </Typography>
                                             </AccordionDetails>
                                         </Accordion>
-                                    )
-                                )}
+                                    ))}
                             </div>
                             <div className={cx('schedules-tour')}>
                                 <p className={cx('title-infor')}>

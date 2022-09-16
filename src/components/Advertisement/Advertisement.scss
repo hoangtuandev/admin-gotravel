@@ -1,0 +1,831 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.advertisement {
+    // background-color: aquamarine;
+    margin-left: 220px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+
+    .button-add-advertisement {
+        font-size: 14px;
+        font-family: $mainFamily;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        border-radius: 50px;
+        background-color: #0b9de0;
+
+        .icon {
+            margin-right: 5px;
+            font-size: 23px;
+        }
+    }
+
+    .list-advertisements {
+        margin: 10px 0 0 0;
+        padding: 0 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+
+        li {
+            margin: 20px 17px 20px 0;
+            position: relative;
+            .card {
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                padding-bottom: 0;
+
+                .card-action-area {
+                    .card-content {
+                        padding-bottom: 10px;
+                        .typography-title {
+                            color: #0b9de0;
+                            font-family: $mainFamily;
+                            font-size: 17px;
+                            font-weight: 700;
+                        }
+                        .typography-content {
+                            text-align: justify;
+                            max-width: 400px;
+                            display: -webkit-box;
+                            overflow: hidden;
+                            -webkit-line-clamp: 4;
+                            -webkit-box-orient: vertical;
+                            font-family: $mainFamily;
+                            font-weight: 600;
+                            font-size: 15px;
+                            margin-top: 5px;
+                        }
+
+                        .typography-control {
+                            margin-top: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            .expired-date {
+                                display: flex;
+                                align-items: center;
+                                color: #ee0000;
+
+                                .icon {
+                                    margin-right: 5px;
+                                    font-size: 20px;
+                                }
+
+                                span {
+                                    font-size: 14.5px;
+                                    font-family: $mainFamily;
+                                    font-weight: 800;
+                                }
+                            }
+
+                            .favorite-time {
+                                display: flex;
+                                align-items: center;
+
+                                span {
+                                    font-family: $mainFamily;
+                                    font-weight: 800;
+                                    font-size: 16px;
+                                    color: #ff0090;
+                                }
+                                .icon {
+                                    font-size: 24px;
+                                    color: #fd008f;
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .speed-dial {
+                    position: absolute;
+                    right: 0px;
+                    bottom: 170px;
+                    z-index: 9;
+
+                    .icon-action {
+                        font-size: 20px;
+                    }
+
+                    .css-118zhtq-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
+                        width: 40px;
+                        height: 40px;
+
+                        .css-i4bv87-MuiSvgIcon-root {
+                            font-size: 22px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.detail-advertisement {
+    ul {
+        padding: 0 0;
+        li {
+            list-style-type: none;
+        }
+    }
+
+    .react-datepicker-wrapper {
+        .react-datepicker__input-container {
+            input {
+                width: 320px;
+                outline: none;
+                font-family: $mainFamily;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 7px 10px;
+                border-radius: 5px;
+                border: 1px solid #a3a3a3;
+            }
+        }
+    }
+
+    .react-datepicker-popper {
+        padding-bottom: 15px;
+
+        .react-datepicker {
+            font-size: 16px;
+            border: 0px solid #b1b1b1;
+
+            button {
+                margin-top: 4px;
+            }
+
+            .react-datepicker__month-container {
+                width: 350px;
+                height: 325px;
+                padding: 0px 5px;
+                box-shadow: 1px 1px 10px #bbbbbb;
+                border-radius: 5px;
+                border: 0px solid #0b9de0;
+
+                .react-datepicker__header {
+                    font-family: $mainFamily;
+                    background-color: #fff;
+                    padding-top: 10px;
+
+                    .react-datepicker__current-month {
+                        font-size: 17px;
+                        color: #0b9de0;
+                        font-weight: 800;
+                    }
+
+                    .react-datepicker__day-names {
+                        .react-datepicker__day-name {
+                            margin: 15px 12px 10px 12px;
+                            color: #4a4a4a;
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                .react-datepicker__month {
+                    .react-datepicker__week {
+                        .react-datepicker__day {
+                            margin: 5px 5px;
+                            padding-top: 7px;
+                            padding-right: 1px;
+                            width: 31px;
+                            height: 31px;
+
+                            font-family: $mainFamily;
+                            border-radius: 50px;
+                            font-size: 15px;
+                        }
+
+                        .react-datepicker__day--selected {
+                            background-color: #0b9de0;
+                            color: #fff;
+                            font-weight: 600;
+                            transition: ease-in-out 0.1s;
+                        }
+
+                        .react-datepicker__day:hover {
+                            background-color: #0b9de0;
+                            color: #fff;
+                            font-weight: 600;
+                            transition: ease-in-out 0.1s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .add-dialog-toolbar {
+        position: fixed;
+        width: 100%;
+        background-color: $mainColor;
+        font-family: $mainFamily;
+
+        .add-dialog-iconButton {
+            .add-dialog-icon {
+                font-size: 25px;
+                font-weight: 800;
+            }
+        }
+
+        .add-dialog-typography {
+            font-family: $mainFamily;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .add-dialog-btn-save {
+            font-family: $mainFamily;
+            font-size: 13px;
+            font-weight: 800;
+            width: 90px;
+            border: 0px solid #fff;
+            background-color: #fff;
+            color: $mainColor;
+        }
+    }
+
+    .add-form {
+        background-image: url("https://res.cloudinary.com/phtuandev/image/upload/v1657607532/GoTravel/background_hahalolo_euqfgv.svg");
+        background-size: cover;
+        color: #0b9de0;
+        padding-top: 90px;
+        padding-bottom: 50px;
+        padding-left: 13%;
+        padding-right: 13%;
+
+        .add-form-main {
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 2px 2px 12px #a3a3a3;
+            border-radius: 10px;
+            padding: 0px 30px 30px 30px;
+
+            .title-panel {
+                text-align: center;
+                color: #fff;
+                font-family: $mainFamily;
+                font-weight: 800;
+                font-size: 15px;
+
+                margin-bottom: 20px;
+
+                span {
+                    display: inline-block;
+                    width: 280px;
+                    background-color: $mainColor;
+                    padding: 10px 0px;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+            }
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+
+                .fields-item {
+                    position: relative;
+                    margin: 35px 0;
+
+                    .icon-field {
+                        position: absolute;
+                        top: 4px;
+                        color: white;
+                        font-size: 18px;
+                        margin: 11px 9px 5px 9px;
+                        padding-right: 7px;
+                        color: #5d5d5d;
+
+                        // height: 20px;
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+                    }
+
+                    .label-field {
+                        position: absolute;
+                        background-color: rgba(255, 255, 255, 0);
+                        font-weight: 700;
+                        font-size: 15px;
+                        font-family: $mainFamily;
+                        left: 0px;
+                        top: 10px;
+
+                        color: #4a4a4a;
+                        user-select: none;
+                        pointer-events: none;
+                        transition: ease-in-out 0.15s;
+                        padding: 2px 2px;
+                        border-radius: 10px;
+                    }
+
+                    .text-field {
+                        outline: none;
+                        width: 500px;
+                        height: 40px;
+                        // border-radius: 5px;
+                        border: 0px solid #0b9de0;
+                        border-bottom: 2px solid #bababa;
+                        background-color: rgba(255, 255, 255, 0);
+                        font-family: $mainFamily;
+                        color: #5d5d5d;
+                        padding: 10px 10px 0px 4px;
+                        font-size: 17px;
+                        font-weight: 700;
+                    }
+
+                    .text-field:not(:placeholder-shown) + .label-field,
+                    .text-field:focus + .label-field {
+                        top: -16px;
+                        left: 0px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #0080bc;
+                        background-color: rgba(255, 255, 255, 0);
+                        border-top: 0px solid #0b9de0;
+                        transition: ease-in-out 0.15s;
+                    }
+
+                    .text-field:focus {
+                        border: 0px solid #0b9de0;
+                        border-bottom: 2px solid #b6b6b6;
+                    }
+                }
+
+                .field-id {
+                    .text-field {
+                        width: 320px;
+                        font-weight: 700;
+                        color: #6b6b6b;
+                    }
+                }
+
+                .field-name {
+                    .text-field {
+                        width: 680px;
+                    }
+                }
+            }
+
+            .expired-datepicker {
+                margin-bottom: 40px;
+                position: relative;
+
+                .label {
+                    margin: 0 0;
+                    padding-bottom: 10px;
+                    font-family: $mainFamily;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #0080bc;
+                }
+
+                .icon {
+                    font-size: 24px;
+                    color: #757575;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 10px;
+                }
+            }
+
+            .images-upload {
+                // background-color: #ebebeb;
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                justify-content: left;
+                padding-left: 5px;
+                padding-right: 5px;
+
+                p {
+                    color: #0070a4;
+                    font-weight: 600;
+                    font-size: 17px;
+                    margin: 0px 0 20px 0;
+                }
+
+                .images-control {
+                    .url-link {
+                        input {
+                            width: 500px;
+                            height: 40px;
+                            outline: none;
+                            padding: 0px 15px 0px 55px;
+                            font-family: $mainFamily;
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #4a4a4a;
+                            border-radius: 4px;
+                            border: 2px solid #0b9de0;
+                        }
+
+                        label {
+                            font-size: 14px;
+                            display: flex;
+                            align-items: center;
+                            position: absolute;
+                            background-color: #0b9de0;
+                            color: #fff;
+                            font-weight: 700;
+                            height: 40px;
+                            padding-left: 7px;
+                            padding-right: 7px;
+                            border-top-left-radius: 4px;
+                            border-bottom-left-radius: 4px;
+                        }
+                    }
+
+                    .preview-iamge {
+                        text-align: center;
+                        margin: 30px 0 10px 0;
+
+                        img {
+                            width: 495px;
+                            height: 300px;
+                            border-radius: 3px;
+                            box-shadow: 1px 1px 10px #bebebe;
+                        }
+                    }
+
+                    .button-group {
+                        text-align: right;
+
+                        .error-save-img {
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: #ef0404;
+                        }
+
+                        .button-save {
+                            // background-color: #2ab25e;
+                            font-size: 13px;
+                            font-family: $mainFamily;
+                            font-weight: 800;
+                        }
+                    }
+                }
+
+                .images-list {
+                    max-width: 500px;
+                    max-height: 455px;
+                    text-align: left;
+                    // background-color: #dcdcdc;
+                    margin-top: 0px;
+                    display: block;
+                    margin-left: 60px;
+                    overflow: auto;
+                    // box-shadow: 1px 1px 10px #aaaaaa;
+
+                    ul {
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+
+                        li {
+                            position: relative;
+                            margin-bottom: 5px;
+
+                            img {
+                                padding: 0 0;
+                                margin: 2px 2px;
+                                width: 231px;
+                                height: 140px;
+                                border-radius: 4px;
+                                box-shadow: 1px 1px 5px #e3e3e3;
+                            }
+
+                            .delete-departure {
+                                background-color: #fff;
+                                padding: 6px 6px;
+                                position: absolute;
+
+                                visibility: hidden;
+                                bottom: 10px;
+                                right: 6px;
+
+                                .icon {
+                                    color: #ef0404;
+                                    font-size: 19px;
+                                }
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                                img {
+                                    box-shadow: 1px 1px 10px #c2c2c2;
+                                }
+
+                                .delete-departure {
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .advertisement-content {
+                textarea {
+                    width: 100%;
+                    height: 400px;
+                    max-height: 400px;
+                    outline: none;
+                    border: 2px solid #c3c3c3;
+                    border-radius: 5px;
+                    font-family: $mainFamily;
+                    font-weight: 600;
+                    font-size: 16px;
+                    padding: 10px 10px;
+                    margin-bottom: 20px;
+                }
+            }
+
+            .save-tour {
+                text-align: right;
+                margin: 70px 5px 0 0;
+
+                button {
+                    width: 200px;
+                    margin-left: 20px;
+                    font-size: 15px;
+                    font-weight: 800;
+                    font-family: $mainFamily;
+                }
+
+                .button-close {
+                    padding-left: 50px;
+                    padding-right: 50px;
+                    background-color: #e20401fb;
+                    font-size: 15px;
+                    font-weight: 800;
+                    font-family: $mainFamily;
+                }
+
+                .button-save {
+                    background-color: #00904dfb;
+                }
+            }
+        }
+
+        .view-details {
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 2px 2px 12px #a3a3a3;
+            border-radius: 10px;
+            padding: 0px 30px 30px 30px;
+
+            display: flex;
+            flex-direction: column;
+
+            .details-component {
+                font-family: $mainFamily;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+
+                .infor-tour {
+                    width: 510px;
+                    max-height: 250px;
+                    max-width: 510px;
+
+                    tbody {
+                        tr {
+                            td {
+                                padding: 10px 0;
+                                font-size: 17px;
+                            }
+
+                            .label {
+                                width: 170px;
+                                color: #006594;
+                                font-weight: 600;
+                            }
+
+                            .content {
+                                color: #585858;
+                                padding-left: 0px;
+                                font-weight: 700;
+                            }
+
+                            .id-tour {
+                                color: #ef0404;
+                            }
+                        }
+                    }
+                }
+
+                .images-tour {
+                    text-align: left;
+                    margin-top: 17px;
+                    display: block;
+                    margin-left: 60px;
+
+                    p {
+                        color: #0070a4;
+                        font-weight: 700;
+                        font-size: 17px;
+                    }
+
+                    ul {
+                        max-width: 500px;
+                        max-height: 305px;
+                        overflow: auto;
+                        margin-top: 15px;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+
+                        li {
+                            position: relative;
+                            margin-bottom: 5px;
+
+                            img {
+                                padding: 0 0;
+                                margin: 2px 2px;
+                                width: 231px;
+                                height: 140px;
+                                border-radius: 4px;
+                                box-shadow: 1px 1px 5px #e3e3e3;
+                            }
+
+                            .delete-departure {
+                                background-color: #fff;
+                                padding: 6px 6px;
+                                position: absolute;
+
+                                visibility: hidden;
+                                bottom: 10px;
+                                right: 6px;
+
+                                .icon {
+                                    color: #ef0404;
+                                    font-size: 19px;
+                                }
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                                img {
+                                    box-shadow: 1px 1px 10px #c2c2c2;
+                                }
+
+                                .delete-departure {
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .title-infor {
+                    font-size: 17px;
+                    color: #0070a4;
+                    font-weight: 700;
+                    margin: 30px 0 20px 0;
+                }
+
+                .accordion {
+                    width: 500px;
+                    max-width: 500px;
+                    border: 1px solid #e3e3e3;
+
+                    .typography {
+                        font-size: 17px;
+                        font-family: $mainFamily;
+                        font-weight: 600;
+                    }
+                    .accordion-summary {
+                        .typography-summary {
+                            display: flex;
+                            align-items: center;
+
+                            span {
+                                font-weight: 700;
+                                padding: 0 15px 0 15px;
+                                color: #ef0404;
+                            }
+                        }
+                    }
+
+                    .accordion-details {
+                        padding-top: 0;
+                        padding-bottom: 0;
+
+                        .typography-details {
+                            .details-item {
+                                display: inline-flex;
+                                flex-direction: row;
+                                font-size: 15px;
+                                margin: 0 0 10px 0;
+
+                                .label {
+                                    width: 120px;
+                                    color: #0070a4;
+                                    font-weight: 700;
+                                }
+                                .content {
+                                    width: 320px;
+                                }
+                            }
+
+                            .delete-departure {
+                                position: absolute;
+                                bottom: 0;
+                                right: 0px;
+
+                                .icon {
+                                    color: #ef0404;
+                                    font-size: 22px;
+                                }
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .schedules-tour {
+                    .accordion {
+                        .accordion-summary {
+                            .typography-summary {
+                                font-weight: 700;
+                                color: #ef0404;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.view-advertisement {
+    margin: 90px 250px 0 250px;
+
+    .infor-advertisement {
+        border-bottom: 1px solid #e3e3e3;
+        padding: 0 0 20px 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            font-family: $mainFamily;
+
+            .label {
+                color: #0080bc;
+                margin-right: 10px;
+                font-size: 17px;
+                font-weight: 700;
+            }
+
+            .content {
+                font-size: 17px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .title-advetisement {
+        font-size: $mainFamily;
+        font-size: 25px;
+        font-weight: 600;
+        color: #ff6f00;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+
+        .icon {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+    }
+
+    .content-advertisement {
+        text-align: justify;
+        width: 100%;
+        font-size: 17px;
+        font-family: $mainFamily;
+        color: black;
+
+        .images-advertisement {
+            text-align: center;
+
+            img {
+                margin: 15px 0;
+                border-radius: 5px;
+                width: 800px;
+                height: 400px;
+            }
+        }
+    }
+}

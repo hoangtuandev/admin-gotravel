@@ -114,3 +114,16 @@ export const filterBookingTourByBookingDate = (data) =>
 
 export const filterBookingTourByParams = (data) =>
     axios.post(`${URL}/BookingTour/filterBookingTourByParams`, data);
+
+// ADVERTISEMENT
+
+export const getAllAdvertiseqment = () => axios.get(`${URL}/Advertisement`);
+
+export const getActiveAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/getActiveAdvertisement`, data);
+
+export const createAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement`, data);
+
+export const updateAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/updateAdvertisement`, data);
