@@ -37,7 +37,7 @@ function AddAdvertisement(props) {
     const dispatch = useDispatch();
     const openAdd = useSelector(addAdvertisement);
     const imageRef = useRef(null);
-
+    const [onLoading, setOnLoading] = useState(false);
     const [errorImg, setErrorImg] = useState('');
     const [imagePreview, setImagePreview] = useState('');
     const [idAdvertisement, setIdAdvertisement] = useState('');
@@ -76,8 +76,7 @@ function AddAdvertisement(props) {
     };
 
     const handleSaveAdvertisement = () => {
-        console.log(advertisementContent);
-        console.log(idAdvertisement, titleAdvertisement, expiredDate);
+        setOnLoading(true);
         api.createAdvertisement({
             bvqb_ma: idAdvertisement,
             bvqb_tieude: titleAdvertisement,
@@ -88,10 +87,14 @@ function AddAdvertisement(props) {
             bvqb_hinhanh: imageList,
             bvqb_trangthai: 1,
         }).then((res) => {
-            dispatch(handleToggleAddAdvertisement(false));
+            setImageList([]);
             api.getActiveAdvertisement().then((res) => {
                 dispatch(handleSetListAdvertisement(res.data));
                 setAdvertisementList(res.data);
+                setOnLoading(false);
+                setImagePreview('');
+                setImageList([]);
+                dispatch(handleToggleAddAdvertisement(false));
             });
         });
     };
@@ -278,14 +281,31 @@ function AddAdvertisement(props) {
                                 >
                                     THOÁT
                                 </Button>
-                                <Button
-                                    className={cx('button-save')}
-                                    variant="contained"
-                                    size="large"
-                                    onClick={() => handleSaveAdvertisement()}
-                                >
-                                    LƯU BÀI VIẾT
-                                </Button>
+                                {!onLoading && (
+                                    <Button
+                                        className={cx('button-save')}
+                                        variant="contained"
+                                        size="large"
+                                        onClick={() =>
+                                            handleSaveAdvertisement()
+                                        }
+                                    >
+                                        LƯU BÀI VIẾT
+                                    </Button>
+                                )}
+                                {onLoading && (
+                                    <Button
+                                        disabled
+                                        variant="contained"
+                                        size="large"
+                                        color="primary"
+                                        onClick={() =>
+                                            handleSaveAdvertisement()
+                                        }
+                                    >
+                                        LƯU BÀI VIẾT
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>

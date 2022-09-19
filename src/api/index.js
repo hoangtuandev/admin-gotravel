@@ -122,8 +122,20 @@ export const getAllAdvertiseqment = () => axios.get(`${URL}/Advertisement`);
 export const getActiveAdvertisement = (data) =>
     axios.post(`${URL}/Advertisement/getActiveAdvertisement`, data);
 
+export const getRemoveAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/getRemoveAdvertisement`, data);
+
 export const createAdvertisement = (data) =>
     axios.post(`${URL}/Advertisement`, data);
 
 export const updateAdvertisement = (data) =>
     axios.post(`${URL}/Advertisement/updateAdvertisement`, data);
+
+export const removeAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/removeAdvertisement`, data);
+
+export const activeAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/activeAdvertisement`, data);
+
+export const deleteAdvertisement = (data) =>
+    axios.post(`${URL}/Advertisement/deleteAdvertisement`, data);

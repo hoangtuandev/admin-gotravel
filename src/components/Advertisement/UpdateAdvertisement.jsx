@@ -37,7 +37,7 @@ function UpdateAdvertisement(props) {
     const openUpdate = useSelector(updateAdvertisement);
     const advertisement = useSelector(advertisementSelected);
     const imageRef = useRef(null);
-
+    const [onLoading, setOnLoading] = useState(false);
     const [errorImg, setErrorImg] = useState('');
     const [imagePreview, setImagePreview] = useState('');
     const [titleAdvertisement, setTitleAdvertisement] = useState(
@@ -50,8 +50,6 @@ function UpdateAdvertisement(props) {
         new Date(advertisement.bvqb_thoihan)
     );
     const [imageList, setImageList] = useState(advertisement.bvqb_hinhanh);
-
-    console.log('sfjhsbdfjsfd');
 
     const handleChangeURLImg = (e) => {
         setImagePreview(e.target.value);
@@ -84,6 +82,7 @@ function UpdateAdvertisement(props) {
     };
 
     const handleSubmitUpdateAdvertisement = () => {
+        setOnLoading(true);
         api.updateAdvertisement({
             _id: advertisement._id,
             bvqb_tieude: titleAdvertisement,
@@ -93,6 +92,7 @@ function UpdateAdvertisement(props) {
         }).then((res) => {
             api.getActiveAdvertisement().then((res) => {
                 setAdvertisementList(res.data);
+                setOnLoading(false);
                 dispatch(handleToggleUpdateAdvertisement(false));
             });
         });
@@ -295,16 +295,31 @@ function UpdateAdvertisement(props) {
                                 >
                                     THOÁT
                                 </Button>
-                                <Button
-                                    className={cx('button-save')}
-                                    variant="contained"
-                                    size="large"
-                                    onClick={() =>
-                                        handleSubmitUpdateAdvertisement()
-                                    }
-                                >
-                                    CẬP NHẬT
-                                </Button>
+                                {!onLoading && (
+                                    <Button
+                                        className={cx('button-save')}
+                                        variant="contained"
+                                        size="large"
+                                        onClick={() =>
+                                            handleSubmitUpdateAdvertisement()
+                                        }
+                                    >
+                                        CẬP NHẬT
+                                    </Button>
+                                )}
+                                {onLoading && (
+                                    <Button
+                                        disabled
+                                        variant="contained"
+                                        size="large"
+                                        color="primary"
+                                        onClick={() =>
+                                            handleSubmitUpdateAdvertisement()
+                                        }
+                                    >
+                                        CẬP NHẬT
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>

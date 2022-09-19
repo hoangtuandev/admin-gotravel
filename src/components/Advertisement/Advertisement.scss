@@ -8,18 +8,73 @@ $mainFamily: "Mulish", sans-serif;
     display: flex;
     flex-direction: column;
 
-    .button-add-advertisement {
-        font-size: 14px;
-        font-family: $mainFamily;
-        font-weight: 700;
+    .btn-group {
         display: flex;
         align-items: center;
-        border-radius: 50px;
-        background-color: #0b9de0;
 
-        .icon {
-            margin-right: 5px;
-            font-size: 23px;
+        button {
+            margin-right: 10px;
+        }
+
+        .button-add-advertisement {
+            font-size: 14px;
+            font-family: $mainFamily;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            background-color: #0b9de0;
+
+            .icon {
+                margin-right: 5px;
+                font-size: 23px;
+            }
+        }
+        .button-remove-advertisement {
+            font-size: 14px;
+            font-family: $mainFamily;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            background-color: #b6b6b6;
+            color: #fff;
+
+            .icon {
+                margin-right: 5px;
+                font-size: 23px;
+            }
+        }
+    }
+
+    .filter-advertisement {
+        margin-top: 0px;
+        margin-right: 20px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+
+        .searching {
+            position: relative;
+            input {
+                width: 400px;
+                padding: 8px 15px;
+                font-family: $mainFamily;
+                font-weight: 700;
+                font-size: 15px;
+                outline: none;
+                color: #616161;
+                border: 2px solid #a4a4a4;
+                border-radius: 50px;
+            }
+
+            .icon {
+                position: absolute;
+                right: 8px;
+                top: 7px;
+                font-size: 25px;
+                color: #878787;
+            }
         }
     }
 
@@ -32,10 +87,13 @@ $mainFamily: "Mulish", sans-serif;
         flex-wrap: wrap;
 
         li {
+            height: 390px;
+            max-height: 390px;
             margin: 20px 17px 20px 0;
             position: relative;
+
             .card {
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 padding-bottom: 0;
 
                 .card-action-area {
@@ -49,7 +107,9 @@ $mainFamily: "Mulish", sans-serif;
                         }
                         .typography-content {
                             text-align: justify;
-                            max-width: 400px;
+                            width: 365px;
+                            max-width: 365px;
+
                             display: -webkit-box;
                             overflow: hidden;
                             -webkit-line-clamp: 4;
@@ -121,6 +181,62 @@ $mainFamily: "Mulish", sans-serif;
                             font-size: 22px;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    .remove-list {
+        li {
+            .card {
+                .card-action-area {
+                    .card-content {
+                        .typography-title {
+                            font-weight: 800;
+                            color: #000000;
+                        }
+
+                        .typography-control {
+                            .expired-date {
+                                color: #7e7e7e;
+                            }
+
+                            .favorite-time {
+                                span {
+                                    color: #7e7e7e;
+                                }
+                                .icon {
+                                    color: #7e7e7e;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .speed-dial {
+                    position: absolute;
+                    right: 0px;
+                    bottom: 170px;
+                    z-index: 9;
+
+                    .icon-action {
+                        font-size: 20px;
+                    }
+
+                    .css-118zhtq-MuiButtonBase-root-MuiFab-root-MuiSpeedDial-fab {
+                        width: 40px;
+                        height: 40px;
+
+                        .css-i4bv87-MuiSvgIcon-root {
+                            font-size: 22px;
+                        }
+                    }
+                }
+
+                .repost-advertisement {
+                    position: absolute;
+                    right: 10px;
+                    bottom: 170px;
                 }
             }
         }
@@ -826,6 +942,54 @@ $mainFamily: "Mulish", sans-serif;
                 width: 800px;
                 height: 400px;
             }
+        }
+    }
+}
+
+.dialog {
+    .dialog-title {
+        font-family: $mainFamily;
+        font-weight: 700;
+        font-size: 19px;
+    }
+    .dialog-content {
+        padding: 0px 20px;
+        margin-bottom: 10px;
+
+        table {
+            padding-top: 20px;
+            td {
+                padding: 0px 0;
+                margin: 0 0;
+                font-family: $mainFamily;
+            }
+
+            .title-td {
+                padding: 0px 0 10px 0;
+                font-weight: 700;
+                color: #0b9de0;
+                padding-right: 30px;
+            }
+
+            .content-td {
+                padding: 0px 0 10px 0;
+                font-weight: 600;
+            }
+
+            .expired-td {
+                font-weight: 700;
+                color: #ef0404;
+            }
+        }
+    }
+
+    .dialog-actions {
+        button {
+            padding: 4px 0px;
+            width: 90px;
+            font-family: $mainFamily;
+            font-size: 13px;
+            font-weight: 700;
         }
     }
 }
