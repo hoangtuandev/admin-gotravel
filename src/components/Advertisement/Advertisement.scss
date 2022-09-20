@@ -943,6 +943,19 @@ $mainFamily: "Mulish", sans-serif;
                 height: 400px;
             }
         }
+
+        .paragraph {
+            .image {
+                text-align: center;
+
+                img {
+                    margin: 15px 0;
+                    border-radius: 5px;
+                    width: 800px;
+                    height: 400px;
+                }
+            }
+        }
     }
 }
 

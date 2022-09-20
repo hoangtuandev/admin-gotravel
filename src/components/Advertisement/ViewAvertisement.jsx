@@ -31,6 +31,16 @@ export default function ViewAdvertisement(props) {
     const openView = useSelector(viewAdvertisement);
     const advertisement = useSelector(advertisementSelected);
 
+    const filterContent = (item) => item !== '';
+
+    const contentAdvertisement = advertisement.bvqb_noidung
+        .split('\n')
+        .filter(filterContent);
+
+    // useEffect(() => {
+    //     setContentAdvertisement(contentAdvertisement.filter(filterContent));
+    // }, [contentAdvertisement]);
+
     return (
         <Fragment>
             <CssBaseline />
@@ -130,13 +140,17 @@ export default function ViewAdvertisement(props) {
                                     alt=""
                                 />
                             </p>
-                            {advertisement.bvqb_noidung}
-                            <p className={cx('images-advertisement')}>
-                                <img
-                                    src={advertisement.bvqb_hinhanh[1]}
-                                    alt=""
-                                />
-                            </p>
+                            {contentAdvertisement.map((paragraph, index) => (
+                                <div key={index} className={cx('paragraph')}>
+                                    <p>{paragraph}</p>
+                                    <div className={cx('image')}>
+                                        <img
+                                            src={advertisement.bvqb_hinhanh[1]}
+                                            alt=""
+                                        />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </Dialog>
