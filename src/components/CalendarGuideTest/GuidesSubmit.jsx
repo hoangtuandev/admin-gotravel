@@ -19,7 +19,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './CalendarGuide.scss';
+import styles from './CalendarGuideTest.scss';
 import {
     calendarSelected,
     handleCloseGuidesSubmit,

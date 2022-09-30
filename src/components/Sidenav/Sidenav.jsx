@@ -174,37 +174,47 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
+                    <Link to="/huong-dan-vien" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Hướng dẫn viên"
+                            style={
+                                labelOption === 'Hướng dẫn viên'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Hướng dẫn viên">
+                                <FcAssistant />
+                            </span>
+                            <span
+                                className={cx('label')}
+                                title="Hướng dẫn viên"
+                            >
+                                Hướng dẫn viên
+                            </span>
+                        </li>
+                    </Link>
 
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Hướng dẫn viên"
-                        style={
-                            labelOption === 'Hướng dẫn viên'
-                                ? selectedStyle
-                                : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Hướng dẫn viên">
-                            <FcAssistant />
-                        </span>
-                        <span className={cx('label')} title="Hướng dẫn viên">
-                            Hướng dẫn viên
-                        </span>
-                    </li>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Quản trị viên"
-                        style={
-                            labelOption === 'Quản trị viên' ? selectedStyle : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Quản trị viên">
-                            <FcPortraitMode />
-                        </span>
-                        <span className={cx('label')} title="Quản trị viên">
-                            Quản trị viên
-                        </span>
-                    </li>
+                    <Link to="/quan-tri-vien" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Quản trị viên"
+                            style={
+                                labelOption === 'Quản trị viên'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Quản trị viên">
+                                <FcPortraitMode />
+                            </span>
+                            <span className={cx('label')} title="Quản trị viên">
+                                Quản trị viên
+                            </span>
+                        </li>
+                    </Link>
+
                     <li
                         onClick={(e) => handleSelectOption(e)}
                         title="Thống kê"

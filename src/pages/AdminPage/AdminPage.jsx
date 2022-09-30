@@ -1,21 +1,21 @@
 import { React, Fragment } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import Header from '../../components/Header/Header';
 import Sidenav from '../../components/Sidenav/Sidenav';
-import CalendarGuide from '../../components/CalendarGuide/CalendarGuide';
+import Header from '../../components/Header/Header';
+import AdminManager from '../../components/AdminManager/AdminManager';
 
-function CalendarGuidePage() {
+function AdminPage() {
     return (
         <Fragment>
             <Sidenav></Sidenav>
             <Header></Header>
             <CssBaseline />
             <Container maxWidth="xl">
-                <CalendarGuide></CalendarGuide>
+                <AdminManager></AdminManager>
             </Container>
         </Fragment>
     );
 }
 
-export default CalendarGuidePage;
+export default AdminPage;

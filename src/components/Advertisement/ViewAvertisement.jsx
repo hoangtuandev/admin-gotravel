@@ -144,10 +144,18 @@ export default function ViewAdvertisement(props) {
                                 <div key={index} className={cx('paragraph')}>
                                     <p>{paragraph}</p>
                                     <div className={cx('image')}>
-                                        <img
-                                            src={advertisement.bvqb_hinhanh[1]}
-                                            alt=""
-                                        />
+                                        {advertisement.bvqb_hinhanh[
+                                            index + 1
+                                        ] && (
+                                            <img
+                                                src={
+                                                    advertisement.bvqb_hinhanh[
+                                                        index + 1
+                                                    ]
+                                                }
+                                                alt=""
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             ))}

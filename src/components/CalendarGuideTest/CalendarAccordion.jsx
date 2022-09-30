@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 
-import styles from './CalendarGuide.scss';
+import styles from './CalendarGuideTest.scss';
 import * as api from '../../api';
 import {
     handleOpenGuidesSubmit,

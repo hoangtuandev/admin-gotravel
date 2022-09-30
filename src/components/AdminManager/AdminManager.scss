@@ -1,0 +1,159 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+.admin-manager {
+    margin-left: 200px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+
+    .btn-group {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+
+        button {
+            margin-right: 15px;
+        }
+
+        .button-add-advertisement {
+            font-size: 14px;
+            font-family: $mainFamily;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            background-color: #0b9de0;
+
+            .icon {
+                margin-right: 10px;
+                font-size: 23px;
+            }
+        }
+        .button-remove-advertisement {
+            font-size: 14px;
+            font-family: $mainFamily;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            background-color: #b6b6b6;
+            color: #fff;
+
+            .icon {
+                margin-right: 10px;
+                font-size: 23px;
+            }
+        }
+    }
+
+    .account-list {
+        display: flex;
+        justify-content: center;
+        margin: 50px 0 0 0;
+
+        table {
+            border-collapse: collapse;
+            font-family: $mainFamily;
+            font-size: 16px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+            .content-center {
+                text-align: center;
+            }
+
+            .manager-level {
+                background-color: #ffdad7;
+                color: #f01400;
+                padding: 4px 15px;
+                border-radius: 50px;
+                font-weight: 800;
+                font-size: 15px;
+            }
+
+            thead {
+                tr {
+                    td {
+                        padding: 12px 35px;
+                        color: #fff;
+                        font-size: 17px;
+                        font-weight: 800;
+                        background-color: #0b9de0;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding: 12px 35px;
+                        font-weight: 600;
+                        background-color: #fff;
+
+                        .user-icon {
+                            color: #008bcb;
+                            font-size: 30px;
+                        }
+
+                        button {
+                            padding: 4px 20px;
+                            .icon {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .admin-name {
+                        width: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dialog {
+    .dialog-title {
+        font-family: $mainFamily;
+        font-weight: 700;
+        font-size: 19px;
+    }
+    .dialog-content {
+        padding: 0px 20px;
+        margin-bottom: 10px;
+
+        table {
+            padding-top: 20px;
+            td {
+                padding: 0px 0;
+                margin: 0 0;
+                font-family: $mainFamily;
+            }
+
+            .title-td {
+                padding: 0px 0 10px 0;
+                font-weight: 700;
+                color: #0b9de0;
+                padding-right: 30px;
+            }
+
+            .content-td {
+                padding: 0px 0 10px 0;
+                font-weight: 600;
+            }
+
+            .expired-td {
+                font-weight: 700;
+                color: #ef0404;
+            }
+        }
+    }
+
+    .dialog-actions {
+        button {
+            padding: 4px 0px;
+            width: 90px;
+            font-family: $mainFamily;
+            font-size: 13px;
+            font-weight: 700;
+        }
+    }
+}
