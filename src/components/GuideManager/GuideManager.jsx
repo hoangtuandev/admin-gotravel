@@ -1,28 +1,40 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import PersonIcon from '@mui/icons-material/Person';
-import StarIcon from '@mui/icons-material/Star';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import styles from './GuideManager.scss';
-import { addProfile, handleToggleAddProfile } from './GuideManagerSlice';
+import {
+    addProfile,
+    handleToggleAddProfile,
+    updateProfile,
+} from './GuideManagerSlice';
 import AddProfile from './AddProfile';
+import ProfileItem from './ProfileItem';
+import * as api from '../../api';
+import { useState } from 'react';
+import UpdateProfile from './UpdateProfile';
 
 const cx = classNames.bind(styles);
 
 function GuideManager() {
     const dispatch = useDispatch();
     const openAdd = useSelector(addProfile);
+    const openUpdate = useSelector(updateProfile);
+
+    const [accountGuideList, setAccountGuideList] = useState([]);
 
     const handleAddProfile = () => {
         dispatch(handleToggleAddProfile(true));
     };
+
+    useEffect(() => {
+        api.getAllGuideAccount().then((res) => {
+            setAccountGuideList(res.data);
+        });
+    }, []);
 
     return (
         <div className={cx('guide-manager')}>
@@ -37,105 +49,61 @@ function GuideManager() {
                 </Button>
             </div>
             <div className="box-manager">
-                <table>
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td>Tài khoản</td>
-                            <td className={cx('name-guide')}>Hướng dẫn viên</td>
-                            <td>Năm sinh</td>
-                            <td>Đánh giá</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <PersonIcon
-                                    className={cx('user-icon')}
-                                ></PersonIcon>
-                            </td>
-                            <td>HDV220134</td>
-                            <td className={cx('name-guide')}>
-                                Phạm Hoàng Tuấn
-                            </td>
-                            <td>2000</td>
-                            <td>
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                            </td>
-                            <td></td>
-                            <td>
-                                <ButtonGroup
-                                    variant="contained"
-                                    aria-label="outlined primary button group"
-                                    className={cx('button-group')}
-                                >
-                                    <Button color="error">
-                                        <DeleteIcon className={cx('icon')} />
-                                    </Button>
-                                    <Button>
-                                        <VisibilityIcon
-                                            className={cx('icon')}
-                                        />
-                                    </Button>
-                                    <Button color="success">
-                                        <EditIcon className={cx('icon')} />
-                                    </Button>
-                                </ButtonGroup>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <PersonIcon
-                                    className={cx('user-icon')}
-                                ></PersonIcon>
-                            </td>
-                            <td>HDV220134</td>
-                            <td className={cx('name-guide')}>
-                                Phạm Hoàng Tuấn
-                            </td>
-                            <td>2000</td>
-                            <td>
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                                <StarIcon className={cx('star-icon')} />
-                            </td>
-                            <td></td>
-                            <td>
-                                <ButtonGroup
-                                    variant="contained"
-                                    aria-label="outlined primary button group"
-                                    className={cx('button-group')}
-                                >
-                                    <Button color="error">
-                                        <DeleteIcon className={cx('icon')} />
-                                    </Button>
-                                    <Button>
-                                        <VisibilityIcon
-                                            className={cx('icon')}
-                                        />
-                                    </Button>
-                                    <Button color="success">
-                                        <EditIcon className={cx('icon')} />
-                                    </Button>
-                                </ButtonGroup>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                {accountGuideList.length !== 0 && (
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>Tài khoản</td>
+                                    <td className={cx('name-guide')}>
+                                        Hướng dẫn viên
+                                    </td>
+                                    <td>Năm sinh</td>
+                                    <td>Đánh giá</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                {accountGuideList.map((account, index) => (
+                                    <ProfileItem
+                                        key={index}
+                                        account={account}
+                                    ></ProfileItem>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+                {accountGuideList.length === 0 && (
+                    <div className={cx('empty-list')}>
+                        <div>
+                            <CircularProgress />
+                        </div>
+                        <div>
+                            <img
+                                src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
 
-            {openAdd && <AddProfile></AddProfile>}
+            {openAdd && (
+                <AddProfile
+                    setAccountGuideList={setAccountGuideList}
+                ></AddProfile>
+            )}
+            {openUpdate && (
+                <UpdateProfile
+                    setAccountGuideList={setAccountGuideList}
+                ></UpdateProfile>
+            )}
         </div>
     );
 }

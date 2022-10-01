@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import CreateIcon from '@mui/icons-material/Create';
 import Slide from '@mui/material/Slide';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,8 +17,11 @@ import TextField from '@mui/material/TextField';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import styles from './GuideManager.scss';
-import { addProfile, handleToggleAddProfile } from './GuideManagerSlice';
-import { useEffect } from 'react';
+import {
+    handleToggleUpdateProfile,
+    profileSelected,
+    updateProfile,
+} from './GuideManagerSlice';
 import * as api from '../../api';
 
 const cx = classNames.bind(styles);
@@ -27,74 +29,48 @@ const cx = classNames.bind(styles);
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-export default function AddProfile(props) {
+export default function UpdateProfile(props) {
     const dispatch = useDispatch();
-    const openDialog = useSelector(addProfile);
+    const openDialog = useSelector(updateProfile);
+    const profile = useSelector(profileSelected);
 
     const { setAccountGuideList } = props;
 
     const imageRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [createdAccount, setCreateAccount] = useState(false);
-    const [imagePreview, setImagePreview] = useState('');
-    const [idProfile, setIdProfile] = useState('');
-    const [nameGuide, setNameGuide] = useState('');
-    const [gendarGuide, setGendarGuide] = useState(null);
-    const [yearBornGuide, setYearBornGuide] = useState('');
-    const [identifyGuide, setIdentifyGuide] = useState('');
-    const [emailGuide, setEmailGuide] = useState('');
-    const [phoneGuide, setPhoneGuide] = useState('');
-    const [addressGuide, setAddressGuide] = useState('');
+    const [imagePreview, setImagePreview] = useState(profile.tkhdv_anhdaidien);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    console.log('rerender');
-    useEffect(() => {
-        setIdProfile(setRandomID());
-    }, []);
+    const [nameGuide, setNameGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_hoten
+    );
+    const [gendarGuide, setGendarGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_gioitinh
+    );
+    const [yearBornGuide, setYearBornGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_namsinh
+    );
+    const [identifyGuide, setIdentifyGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_cccd
+    );
+    const [emailGuide, setEmailGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_mail
+    );
+    const [phoneGuide, setPhoneGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_sodienthoai
+    );
+    const [addressGuide, setAddressGuide] = useState(
+        profile.tkhdv_huongdanvien.hdv_quequan
+    );
 
     const handleChangeURLImg = (e) => {
         setImagePreview(e.target.value);
     };
 
-    function generateString(length) {
-        let result = ' ';
-        const charactersLength = characters.length;
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(
-                Math.floor(Math.random() * charactersLength)
-            );
-        }
-        return result;
-    }
-
-    const setRandomID = () => {
-        const current = new Date().getTime();
-        const randomID = `PG0${current}`;
-        return randomID;
-    };
-
-    const handleCreateAccount = () => {
-        const yearCurrent = new Date().getFullYear();
-        setCreateAccount(true);
-        api.getAllGuideAccount().then((res) => {
-            setUsername(
-                'G' +
-                    `${yearCurrent}`.slice(-2) +
-                    `0000${res.data.length + 1}`.slice(-5)
-            );
-            setPassword(generateString(6));
-        });
-    };
-
-    const submitSaveProfileGuide = () => {
+    const submitUpdateProfileGuide = () => {
         setIsLoading(true);
-        api.createGuide({
-            hdv_ma: idProfile,
+        api.updateProfileGuide({
+            _id: profile.tkhdv_huongdanvien._id,
             hdv_hoten: nameGuide,
             hdv_gioitinh: gendarGuide,
             hdv_namsinh: yearBornGuide,
@@ -103,17 +79,14 @@ export default function AddProfile(props) {
             hdv_cccd: identifyGuide,
             hdv_sodienthoai: phoneGuide,
         }).then((res) => {
-            api.createAccountGuide({
-                tkhdv_tendangnhap: username,
-                tkhdv_matkhau: password,
-                tkhdv_anhdaidien: imagePreview,
-                tkhdv_trangthai: 1,
-                tkhdv_huongdanvien: res.data,
+            api.updateProfileGuideOfAccount({
+                _id: profile._id,
+                tkhdv_huongdanvien: res.data[0],
             }).then((res) => {
-                setIsLoading(false);
                 api.getAllGuideAccount().then((res) => {
                     setAccountGuideList(res.data);
-                    dispatch(handleToggleAddProfile(false));
+                    setIsLoading(false);
+                    dispatch(handleToggleUpdateProfile(false));
                 });
             });
         });
@@ -125,7 +98,7 @@ export default function AddProfile(props) {
             <Container maxWidth="xl">
                 <Dialog
                     open={openDialog}
-                    onClose={() => dispatch(handleToggleAddProfile(false))}
+                    onClose={() => dispatch(handleToggleUpdateProfile(false))}
                     fullScreen
                     TransitionComponent={Transition}
                     className={cx('dialog')}
@@ -141,7 +114,7 @@ export default function AddProfile(props) {
                                 aria-label="close"
                                 className={cx('icon-button')}
                                 onClick={() =>
-                                    dispatch(handleToggleAddProfile(false))
+                                    dispatch(handleToggleUpdateProfile(false))
                                 }
                             >
                                 <CloseIcon className={cx('close-icon')} />
@@ -152,7 +125,7 @@ export default function AddProfile(props) {
                                 component="div"
                                 className={cx('typography')}
                             >
-                                THÊM HỒ SƠ HƯỚNG DẪN VIÊN
+                                CẬP NHẬT HỒ SƠ HƯỚNG DẪN VIÊN
                             </Typography>
 
                             <Button
@@ -160,7 +133,7 @@ export default function AddProfile(props) {
                                 color="inherit"
                                 className={cx('btn-decline')}
                                 onClick={() =>
-                                    dispatch(handleToggleAddProfile(false))
+                                    dispatch(handleToggleUpdateProfile(false))
                                 }
                             >
                                 THOÁT
@@ -178,7 +151,7 @@ export default function AddProfile(props) {
                                     aria-readonly
                                     label="Mã hồ sơ"
                                     variant="standard"
-                                    value={idProfile}
+                                    value={profile.tkhdv_huongdanvien.hdv_ma}
                                 />
                             </li>
                             <li>
@@ -299,87 +272,64 @@ export default function AddProfile(props) {
                             </li>
                         </ul>
 
-                        <Button
-                            disabled={
-                                !nameGuide ||
-                                !yearBornGuide ||
-                                !phoneGuide ||
-                                !identifyGuide ||
-                                !addressGuide ||
-                                !gendarGuide ||
-                                !emailGuide
-                            }
-                            variant="contained"
-                            className={cx('create-account-btn')}
-                            onClick={() => handleCreateAccount()}
-                        >
-                            <CreateIcon className={cx('icon-create')} />
-                            TẠO TÀI KHOẢN HƯỚNG DẪN VIÊN
-                        </Button>
+                        <p className={cx('label-panel')}>
+                            Tài khoản hướng dẫn viên
+                        </p>
 
-                        {createdAccount && (
-                            <div className={cx('account-guide')}>
-                                <ul>
-                                    <li className={cx('images-control')}>
-                                        <div className={cx('preview-iamge')}>
-                                            {!imagePreview && (
-                                                <img
-                                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1664595628/Avatar/5e95f0868372e90a8251da40_blank_lxfy3f.png"
-                                                    alt=""
-                                                />
-                                            )}
-                                            {imagePreview && (
-                                                <img
-                                                    src={imagePreview}
-                                                    ref={imageRef}
-                                                    alt=""
-                                                    onError={(e) =>
-                                                        (e.currentTarget.src =
-                                                            'https://res.cloudinary.com/phtuandev/image/upload/v1664595628/Avatar/5e95f0868372e90a8251da40_blank_lxfy3f.png')
-                                                    }
-                                                />
-                                            )}
-                                        </div>
-                                        <div className={cx('url-link')}>
-                                            <label>URL</label>
-                                            <input
-                                                placeholder="Dán đường dẫn hình ảnh vào đây..."
-                                                type="text"
-                                                value={imagePreview}
-                                                onChange={(e) =>
-                                                    handleChangeURLImg(e)
+                        <div className={cx('account-guide')}>
+                            <ul>
+                                <li className={cx('images-control')}>
+                                    <div className={cx('preview-iamge')}>
+                                        {!imagePreview && (
+                                            <img
+                                                src="https://res.cloudinary.com/phtuandev/image/upload/v1664595628/Avatar/5e95f0868372e90a8251da40_blank_lxfy3f.png"
+                                                alt=""
+                                            />
+                                        )}
+                                        {imagePreview && (
+                                            <img
+                                                src={imagePreview}
+                                                ref={imageRef}
+                                                alt=""
+                                                onError={(e) =>
+                                                    (e.currentTarget.src =
+                                                        'https://res.cloudinary.com/phtuandev/image/upload/v1664595628/Avatar/5e95f0868372e90a8251da40_blank_lxfy3f.png')
                                                 }
                                             />
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <p className={cx('label')}>
-                                            Tên đăng nhập
-                                        </p>
-                                        <p className={cx('content')}>
-                                            {username}
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p className={cx('label')}>Mật khẩu</p>
-                                        <p className={cx('content')}>
-                                            {password}
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p className={cx('label')}>
-                                            Trạng thái tài khoản
-                                        </p>
-                                        <p className={cx('content status')}>
-                                            <FiberManualRecordIcon
-                                                className={cx('status-icon')}
-                                            />
-                                            Hoạt động
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
+                                        )}
+                                    </div>
+                                    <div className={cx('url-link')}>
+                                        <label>URL</label>
+                                        <input
+                                            placeholder="Dán đường dẫn hình ảnh vào đây..."
+                                            type="text"
+                                            value={imagePreview}
+                                            onChange={(e) =>
+                                                handleChangeURLImg(e)
+                                            }
+                                        />
+                                    </div>
+                                </li>
+                                <li>
+                                    <p className={cx('label')}>Tên đăng nhập</p>
+                                    <p className={cx('content')}>
+                                        {profile.tkhdv_tendangnhap}
+                                    </p>
+                                </li>
+                                <li>
+                                    <p className={cx('label')}>
+                                        Trạng thái tài khoản
+                                    </p>
+                                    <p className={cx('content status')}>
+                                        <FiberManualRecordIcon
+                                            className={cx('status-icon')}
+                                        />
+                                        Hoạt động
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+
                         <div className={cx('button-form')}>
                             <Button
                                 color="error"
@@ -390,13 +340,12 @@ export default function AddProfile(props) {
                             </Button>
                             {!isLoading && (
                                 <Button
-                                    disabled={!createdAccount}
                                     color="success"
                                     variant="contained"
                                     className={cx('save-button')}
-                                    onClick={() => submitSaveProfileGuide()}
+                                    onClick={() => submitUpdateProfileGuide()}
                                 >
-                                    LƯU
+                                    CẬP NHẬT
                                 </Button>
                             )}
 
@@ -407,7 +356,7 @@ export default function AddProfile(props) {
                                     variant="contained"
                                     className={cx('save-button')}
                                 >
-                                    LƯU
+                                    CẬP NHẬT
                                 </Button>
                             )}
                         </div>

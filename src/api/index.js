@@ -139,3 +139,18 @@ export const activeAdvertisement = (data) =>
 
 export const deleteAdvertisement = (data) =>
     axios.post(`${URL}/Advertisement/deleteAdvertisement`, data);
+
+// GUIDE
+export const createGuide = (data) => axios.post(`${URL}/Guide`, data);
+
+export const updateProfileGuide = (data) =>
+    axios.post(`${URL}/Guide/updateProfileGuide`, data);
+
+// ACCOUNT GUIDE
+export const getAllGuideAccount = () => axios.get(`${URL}/GuideAccount`);
+
+export const createAccountGuide = (data) =>
+    axios.post(`${URL}/GuideAccount`, data);
+
+export const updateProfileGuideOfAccount = (data) =>
+    axios.post(`${URL}/GuideAccount/updateProfileGuideOfAccount`, data);
