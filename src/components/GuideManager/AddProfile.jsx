@@ -52,7 +52,6 @@ export default function AddProfile(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    console.log('rerender');
     useEffect(() => {
         setIdProfile(setRandomID());
     }, []);
@@ -62,7 +61,7 @@ export default function AddProfile(props) {
     };
 
     function generateString(length) {
-        let result = ' ';
+        let result = '';
         const charactersLength = characters.length;
         for (let i = 0; i < length; i++) {
             result += characters.charAt(
@@ -111,7 +110,7 @@ export default function AddProfile(props) {
                 tkhdv_huongdanvien: res.data,
             }).then((res) => {
                 setIsLoading(false);
-                api.getAllGuideAccount().then((res) => {
+                api.getActiveGuideAccount().then((res) => {
                     setAccountGuideList(res.data);
                     dispatch(handleToggleAddProfile(false));
                 });

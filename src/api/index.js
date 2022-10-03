@@ -149,8 +149,20 @@ export const updateProfileGuide = (data) =>
 // ACCOUNT GUIDE
 export const getAllGuideAccount = () => axios.get(`${URL}/GuideAccount`);
 
+export const getActiveGuideAccount = () =>
+    axios.get(`${URL}/GuideAccount/getActiveGuideAccount`);
+
+export const getLockedGuideAccount = () =>
+    axios.get(`${URL}/GuideAccount/getLockedGuideAccount`);
+
 export const createAccountGuide = (data) =>
     axios.post(`${URL}/GuideAccount`, data);
+
+export const lockProfile = (data) =>
+    axios.post(`${URL}/GuideAccount/lockProfile`, data);
+
+export const activeProfile = (data) =>
+    axios.post(`${URL}/GuideAccount/activeProfile`, data);
 
 export const updateProfileGuideOfAccount = (data) =>
     axios.post(`${URL}/GuideAccount/updateProfileGuideOfAccount`, data);

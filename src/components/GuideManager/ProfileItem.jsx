@@ -1,17 +1,22 @@
 import { React } from 'react';
 import classNames from 'classnames/bind';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
+import VpnKeyOffIcon from '@mui/icons-material/VpnKeyOff';
 
 import styles from './GuideManager.scss';
 import {
+    currentList,
     handleSelectProfile,
+    handleToggleActiveProfile,
+    handleToggleLockProfile,
     handleToggleUpdateProfile,
+    handleToggleViewProfile,
 } from './GuideManagerSlice';
 
 const cx = classNames.bind(styles);
@@ -19,10 +24,26 @@ const cx = classNames.bind(styles);
 function ProfileItem(props) {
     const { account } = props;
     const dispatch = useDispatch();
+    const typeList = useSelector(currentList);
 
     const handleUpdateProfile = () => {
         dispatch(handleSelectProfile(account));
         dispatch(handleToggleUpdateProfile(true));
+    };
+
+    const handleViewProfile = () => {
+        dispatch(handleSelectProfile(account));
+        dispatch(handleToggleViewProfile(true));
+    };
+
+    const handleLockProfile = () => {
+        dispatch(handleSelectProfile(account));
+        dispatch(handleToggleLockProfile(true));
+    };
+
+    const handleActiveProfile = () => {
+        dispatch(handleSelectProfile(account));
+        dispatch(handleToggleActiveProfile(true));
     };
 
     return (
@@ -53,18 +74,42 @@ function ProfileItem(props) {
                     aria-label="outlined primary button group"
                     className={cx('button-group')}
                 >
-                    <Button color="error">
-                        <DeleteIcon className={cx('icon')} />
-                    </Button>
-                    <Button>
+                    {typeList === 'actived' && (
+                        <Button
+                            color="error"
+                            onClick={() => handleLockProfile()}
+                        >
+                            <VpnKeyIcon className={cx('icon')} />
+                        </Button>
+                    )}
+                    {typeList === 'locked' && (
+                        <Button
+                            color="error"
+                            onClick={() => handleActiveProfile()}
+                        >
+                            <VpnKeyOffIcon className={cx('icon')} />
+                        </Button>
+                    )}
+                    <Button onClick={() => handleViewProfile()}>
                         <VisibilityIcon className={cx('icon')} />
                     </Button>
-                    <Button
-                        color="success"
-                        onClick={() => handleUpdateProfile()}
-                    >
-                        <EditIcon className={cx('icon')} />
-                    </Button>
+                    {typeList === 'actived' && (
+                        <Button
+                            color="success"
+                            onClick={() => handleUpdateProfile()}
+                        >
+                            <EditIcon className={cx('icon')} />
+                        </Button>
+                    )}
+                    {typeList === 'locked' && (
+                        <Button
+                            disabled
+                            color="success"
+                            onClick={() => handleUpdateProfile()}
+                        >
+                            <EditIcon className={cx('icon')} />
+                        </Button>
+                    )}
                 </ButtonGroup>
             </td>
         </tr>

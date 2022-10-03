@@ -17,21 +17,30 @@ $mainFamily: "Mulish", sans-serif;
         margin-left: 20px;
 
         button {
+            width: 200px;
             margin-right: 20px;
-        }
-
-        .button-add-advertisement {
             font-size: 14px;
             font-family: $mainFamily;
             font-weight: 700;
             display: flex;
             align-items: center;
             border-radius: 50px;
-            background-color: #0b9de0;
 
             .icon {
                 margin-right: 6px;
                 font-size: 23px;
+            }
+        }
+
+        .button-add {
+            background-color: #0b9de0;
+        }
+
+        .button-lock {
+            background-color: #aaaaaa;
+
+            .icon {
+                font-size: 20px;
             }
         }
         // .button-remove-advertisement {
@@ -64,6 +73,7 @@ $mainFamily: "Mulish", sans-serif;
         justify-content: center;
         align-items: center;
         margin-top: 30px;
+        margin-bottom: 50px;
 
         .empty-list {
             text-align: center;
@@ -91,8 +101,8 @@ $mainFamily: "Mulish", sans-serif;
                 padding: 5px 20px;
 
                 .avatar {
-                    width: 40px;
-                    height: 40px;
+                    width: 45px;
+                    height: 45px;
                     border-radius: 50%;
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 }
@@ -143,6 +153,17 @@ $mainFamily: "Mulish", sans-serif;
                             }
                         }
                     }
+                }
+            }
+        }
+
+        .locked-table {
+            border: 1px solid #aaaaaa;
+            background-color: #fff;
+
+            thead {
+                tr {
+                    background-color: #aaaaaa;
                 }
             }
         }
@@ -393,6 +414,112 @@ $mainFamily: "Mulish", sans-serif;
             font-family: $mainFamily;
             font-weight: 700;
             font-size: 14px;
+        }
+    }
+}
+
+.view-profile {
+    padding: 90px 70px 50px 70px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    .profile-infor {
+        border-right: 1px solid #d0d0d0;
+        padding-right: 20px;
+
+        .header-profile {
+            text-align: center;
+
+            .avatar-guide {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            .name-guide {
+                margin-top: 10px;
+                font-family: $mainFamily;
+                font-size: 20px;
+                font-weight: 700;
+                color: #4a4a4a;
+            }
+
+            .rating {
+                margin-top: 5px;
+                .star-icon {
+                    font-size: 24px;
+                    color: #ffcc00;
+                }
+            }
+        }
+        .content-profile {
+            ul {
+                padding: 0 0;
+                list-style-type: none;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    margin: 10px 0;
+
+                    .icon-profile {
+                        color: #888888;
+                        font-size: 23px;
+                        margin-right: 15px;
+                    }
+                    .content {
+                        font-family: $mainFamily;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+    .profile-evaluate {
+    }
+}
+
+.lock-profile {
+    .dialog-title {
+        text-align: center;
+        background-color: $mainColor;
+        color: #fff;
+        font-family: $mainFamily;
+        font-size: 19px;
+        font-weight: 700;
+        padding: 10px 20px;
+    }
+
+    .dialog-content {
+        padding: 10px 5px;
+        table {
+            margin-top: 10px;
+            tbody {
+                tr {
+                    td {
+                        font-family: $mainFamily;
+                        font-size: 17px;
+                        font-weight: 600;
+                        padding: 5px 15px;
+                    }
+
+                    .label {
+                        font-weight: 700;
+                        color: #949494;
+                    }
+                }
+            }
+        }
+    }
+
+    .dialog-actions {
+        button {
+            font-family: $mainFamily;
+            font-weight: 700;
+            font-size: 13px;
+            width: 100px;
+            padding: 5px 10px;
         }
     }
 }

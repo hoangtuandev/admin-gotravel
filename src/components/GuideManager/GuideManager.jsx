@@ -3,19 +3,29 @@ import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import ReplyIcon from '@mui/icons-material/Reply';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import styles from './GuideManager.scss';
 import {
+    activeProfile,
     addProfile,
+    currentList,
+    handleSetCurrentList,
     handleToggleAddProfile,
+    lockProfile,
     updateProfile,
+    viewProfile,
 } from './GuideManagerSlice';
 import AddProfile from './AddProfile';
 import ProfileItem from './ProfileItem';
 import * as api from '../../api';
 import { useState } from 'react';
 import UpdateProfile from './UpdateProfile';
+import ViewProfile from './ViewProfile';
+import LockProfile from './LockProfile';
+import ActiveProfile from './ActiveProfile';
 
 const cx = classNames.bind(styles);
 
@@ -23,60 +33,133 @@ function GuideManager() {
     const dispatch = useDispatch();
     const openAdd = useSelector(addProfile);
     const openUpdate = useSelector(updateProfile);
+    const openView = useSelector(viewProfile);
+    const openLock = useSelector(lockProfile);
+    const openActive = useSelector(activeProfile);
+    const typeList = useSelector(currentList);
 
     const [accountGuideList, setAccountGuideList] = useState([]);
+    const [lockedAccountGuideList, setLockedAccountGuideList] = useState([]);
 
     const handleAddProfile = () => {
         dispatch(handleToggleAddProfile(true));
     };
 
     useEffect(() => {
-        api.getAllGuideAccount().then((res) => {
+        api.getActiveGuideAccount().then((res) => {
             setAccountGuideList(res.data);
         });
+
+        api.getLockedGuideAccount().then((res) => {
+            setLockedAccountGuideList(res.data);
+        });
     }, []);
+
+    const handleShowLockedProfile = () => {
+        dispatch(handleSetCurrentList('locked'));
+    };
+
+    const handleShowActivedProfile = () => {
+        dispatch(handleSetCurrentList('actived'));
+    };
 
     return (
         <div className={cx('guide-manager')}>
             <div className={cx('buttons-group')}>
-                <Button
-                    variant="contained"
-                    className="button-add-advertisement"
-                    onClick={() => handleAddProfile()}
-                >
-                    <AddIcon className={cx('icon')} />
-                    <span>THÊM HỒ SƠ HDV</span>
-                </Button>
+                {typeList === 'actived' && (
+                    <Button
+                        variant="contained"
+                        className="button-add"
+                        onClick={() => handleAddProfile()}
+                    >
+                        <AddIcon className={cx('icon')} />
+                        <span>THÊM HỒ SƠ HDV</span>
+                    </Button>
+                )}
+                {typeList === 'locked' && (
+                    <Button
+                        color="error"
+                        variant="contained"
+                        className="button-add"
+                        onClick={() => handleShowActivedProfile()}
+                    >
+                        <ReplyIcon className={cx('icon')} />
+                        <span>HỒ SƠ HDV</span>
+                    </Button>
+                )}
+                {typeList === 'actived' && (
+                    <Button
+                        color="error"
+                        variant="contained"
+                        className="button-lock"
+                        onClick={() => handleShowLockedProfile()}
+                    >
+                        <VpnKeyIcon className={cx('icon')} />
+                        <span>HỒ SƠ BỊ KHÓA</span>
+                    </Button>
+                )}
             </div>
             <div className="box-manager">
                 {accountGuideList.length !== 0 && (
                     <div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                    <td>Tài khoản</td>
-                                    <td className={cx('name-guide')}>
-                                        Hướng dẫn viên
-                                    </td>
-                                    <td>Năm sinh</td>
-                                    <td>Đánh giá</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                                {accountGuideList.map((account, index) => (
-                                    <ProfileItem
-                                        key={index}
-                                        account={account}
-                                    ></ProfileItem>
-                                ))}
-                            </tbody>
-                        </table>
+                        {typeList === 'actived' && (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Tài khoản</td>
+                                        <td className={cx('name-guide')}>
+                                            Hướng dẫn viên
+                                        </td>
+                                        <td>Năm sinh</td>
+                                        <td>Đánh giá</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    {accountGuideList.map((account, index) => (
+                                        <ProfileItem
+                                            key={index}
+                                            account={account}
+                                        ></ProfileItem>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
+                        {typeList === 'locked' && (
+                            <table className={cx('locked-table')}>
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Tài khoản</td>
+                                        <td className={cx('name-guide')}>
+                                            Hướng dẫn viên
+                                        </td>
+                                        <td>Năm sinh</td>
+                                        <td>Đánh giá</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    {lockedAccountGuideList.map(
+                                        (account, index) => (
+                                            <ProfileItem
+                                                key={index}
+                                                account={account}
+                                            ></ProfileItem>
+                                        )
+                                    )}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 )}
                 {accountGuideList.length === 0 && (
@@ -104,6 +187,19 @@ function GuideManager() {
                     setAccountGuideList={setAccountGuideList}
                 ></UpdateProfile>
             )}
+            {openLock && (
+                <LockProfile
+                    setAccountGuideList={setAccountGuideList}
+                    setLockedAccountGuideList={setLockedAccountGuideList}
+                ></LockProfile>
+            )}
+            {openActive && (
+                <ActiveProfile
+                    setAccountGuideList={setAccountGuideList}
+                    setLockedAccountGuideList={setLockedAccountGuideList}
+                ></ActiveProfile>
+            )}
+            {openView && <ViewProfile></ViewProfile>}
         </div>
     );
 }
