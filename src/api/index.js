@@ -66,6 +66,9 @@ export const updateActiveTour = (data) =>
 export const searchingTour = (data) =>
     axios.post(`${URL}/Tour/searchingTour`, data);
 
+// export const takeThirtyNextDateDeparture = () =>
+//     axios.get(`${URL}/Tour/takeThirtyNextDateDeparture`);
+
 // DEPARTURE
 export const getAllDeparture = () => axios.get(`${URL}/Departure`);
 

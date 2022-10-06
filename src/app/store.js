@@ -5,7 +5,7 @@ import TypeTourismReducer from '../components/TypeTourism/TypeTourismSlice';
 import VehicleReducer from '../components/Vehicle/VehicleSlice';
 import TourReducer from '../components/Tour/TourSlice';
 import VoucherReducer from '../components/Voucher/VoucherSlice';
-// import CalendarGuideReducer from '../components/CalendarGuide/CalendarGuideSlice';
+import CalendarGuideReducer from '../components/CalendarGuide/CalendarGuideSlice';
 import BookingTourReducer from '../components/BookingTour/BookingTourSlice';
 import AdvertisementReducer from '../components/Advertisement/AdvertisementSlice';
 import AdminManagerReducer from '../components/AdminManager/AdminManagerSlice';
@@ -19,7 +19,7 @@ export const store = configureStore({
         vehicle: VehicleReducer,
         tour: TourReducer,
         voucher: VoucherReducer,
-        // calendarGuide: CalendarGuideReducer,
+        calendarGuide: CalendarGuideReducer,
         bookingTour: BookingTourReducer,
         advertisement: AdvertisementReducer,
         adminManager: AdminManagerReducer,
