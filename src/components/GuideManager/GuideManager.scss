@@ -98,13 +98,21 @@ $mainFamily: "Mulish", sans-serif;
 
             td {
                 text-align: center;
-                padding: 5px 20px;
+                padding: 5px 15px;
 
                 .avatar {
                     width: 45px;
                     height: 45px;
                     border-radius: 50%;
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                }
+
+                .css-1llwt7-MuiBadge-badge {
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50px;
+                    border: 3px solid #fff;
+                    background-color: #28b463;
                 }
             }
 
@@ -114,12 +122,18 @@ $mainFamily: "Mulish", sans-serif;
                 width: 250px;
             }
 
+            .rating {
+                .css-jue3ft-MuiRating-root {
+                    font-size: 25px;
+                }
+            }
+
             thead {
                 tr {
                     background-color: #0b9de0;
                     td {
                         color: #fff;
-                        font-size: 17px;
+                        font-size: 16px;
                         font-weight: 700;
                         padding-top: 10px;
                         padding-bottom: 10px;
@@ -136,7 +150,7 @@ $mainFamily: "Mulish", sans-serif;
                         }
 
                         .star-icon {
-                            color: #ffcc00;
+                            color: #faaf00;
                             font-size: 20px;
                         }
 
@@ -419,20 +433,35 @@ $mainFamily: "Mulish", sans-serif;
 }
 
 .view-profile {
-    padding: 90px 70px 50px 70px;
+    padding: 90px 30px 50px 30px;
     display: grid;
     grid-template-columns: 50% 50%;
 
+    .panel-profile {
+        display: flex;
+        align-items: center;
+        font-family: $mainFamily;
+        font-size: 17px;
+        font-weight: 700;
+        color: #0179b0;
+        margin: 10px 0;
+
+        .achievement-icon {
+            font-size: 23px;
+            margin-right: 10px;
+        }
+    }
+
     .profile-infor {
-        border-right: 1px solid #d0d0d0;
+        border-right: 2px solid #eeeeee;
         padding-right: 20px;
 
         .header-profile {
             text-align: center;
 
             .avatar-guide {
-                width: 150px;
-                height: 150px;
+                width: 140px;
+                height: 140px;
                 border-radius: 50%;
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
@@ -441,7 +470,7 @@ $mainFamily: "Mulish", sans-serif;
                 font-family: $mainFamily;
                 font-size: 20px;
                 font-weight: 700;
-                color: #4a4a4a;
+                color: #0179b0;
             }
 
             .rating {
@@ -453,23 +482,62 @@ $mainFamily: "Mulish", sans-serif;
             }
         }
         .content-profile {
+            margin-top: 40px;
+            margin-bottom: 20px;
+
+            table {
+                td {
+                    padding: 10px 0;
+                    width: 320px;
+
+                    .infor-item {
+                        display: flex;
+                        align-items: center;
+
+                        .icon-profile {
+                            color: #888888;
+                            font-size: 19px;
+                            margin-right: 15px;
+                        }
+                        .content {
+                            font-size: 15px;
+                            font-family: $mainFamily;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .achievements-profile {
             ul {
-                padding: 0 0;
+                padding: 0 0 0 35px;
                 list-style-type: none;
 
                 li {
                     display: flex;
                     align-items: center;
-                    margin: 10px 0;
+                    margin: 8px 0;
 
-                    .icon-profile {
-                        color: #888888;
-                        font-size: 23px;
-                        margin-right: 15px;
-                    }
-                    .content {
-                        font-family: $mainFamily;
+                    .label-achievement {
+                        margin-right: 10px;
+                        color: #e74c3c;
                         font-weight: 600;
+                        font-family: $mainFamily;
+                        font-size: 16px;
+                    }
+                    .content-achievement {
+                        font-family: $mainFamily;
+                        display: flex;
+                        align-items: center;
+                        font-weight: 700;
+                        font-size: 15px;
+
+                        .star-icon {
+                            font-size: 20px;
+                            color: #ffcc00;
+                            margin-left: 2px;
+                        }
                     }
                 }
             }
@@ -477,6 +545,207 @@ $mainFamily: "Mulish", sans-serif;
     }
 
     .profile-evaluate {
+        margin-left: 40px;
+
+        .label-profile-evaluate {
+            font-weight: 800;
+            font-family: $mainFamily;
+            font-size: 18px;
+            text-align: center;
+            color: #0b9de0;
+        }
+
+        .history-calendar {
+            margin-top: 30px;
+            margin-bottom: 40px;
+
+            .accordion {
+                box-shadow: rgba(114, 114, 114, 0.3) 0px 1px 2px 0px, rgba(134, 134, 134, 0.15) 0px 2px 6px 2px;
+
+                .accordion-summary {
+                    .expand-icon {
+                        font-size: 20px;
+                    }
+                    .typography {
+                        font-family: $mainFamily;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        padding: 5px 0;
+
+                        .tour-icon {
+                            font-size: 24px;
+                            color: #0b9de0;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+                .accordion-details {
+                    .details-evaluate {
+                        font-family: $mainFamily;
+
+                        .departure-tour {
+                            display: flex;
+                            align-items: center;
+                            justify-content: right;
+
+                            p {
+                                width: 200px;
+                                font-weight: 600;
+                                font-size: 15px;
+
+                                span {
+                                    font-weight: 700;
+                                    color: #e74c3c;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+
+                        .informations-calendar {
+                            ul {
+                                margin-top: 20px;
+                                padding: 0 0;
+                                list-style-type: none;
+                                display: flex;
+                                flex-wrap: wrap;
+
+                                li {
+                                    margin: 5px 0;
+                                    width: 320px;
+                                    display: flex;
+                                    font-family: $mainFamily;
+                                    font-size: 15px;
+
+                                    .label-infor {
+                                        font-weight: 700;
+                                        font-size: 14px;
+                                        margin-right: 10px;
+                                        color: #0179b0;
+                                    }
+                                    .content-infor {
+                                        font-weight: 600;
+                                    }
+                                }
+                            }
+
+                            .guide-list {
+                                padding: 0 0;
+                                list-style-type: none;
+                                display: flex;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+
+                                li {
+                                    margin: 10px 0px 10px 0px;
+
+                                    .accordition {
+                                        border-radius: 10px;
+                                        width: 333px;
+                                        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                                            rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+                                        .accordition-summary {
+                                            .css-o4b71y-MuiAccordionSummary-content {
+                                                margin: 0px 0 0px 0;
+                                            }
+
+                                            .expandIcon {
+                                                font-size: 20px;
+                                            }
+
+                                            .accordition-guide {
+                                                font-family: $mainFamily;
+                                                font-weight: 700;
+                                                display: flex;
+                                                align-items: center;
+
+                                                img {
+                                                    width: 35px;
+                                                    height: 35px;
+                                                    border-radius: 50px;
+                                                    margin-right: 15px;
+                                                    box-shadow: rgba(90, 90, 90, 0.12) 0px 1px 3px,
+                                                        rgba(90, 90, 90, 0.24) 0px 1px 2px;
+                                                }
+
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #ef0410;
+                                                }
+
+                                                .rating {
+                                                    margin-left: 55px;
+                                                    display: flex;
+                                                    align-items: center;
+
+                                                    span {
+                                                        font-family: $mainFamily;
+                                                        font-size: 15px;
+                                                        font-weight: 600;
+                                                        color: #000;
+                                                    }
+
+                                                    .iconStart {
+                                                        font-size: 18px;
+                                                        color: #faaf00;
+                                                        margin-left: 5px;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .accordition-details {
+                                            .css-15v22id-MuiAccordionDetails-root {
+                                                padding: 0 0;
+                                            }
+
+                                            .guide-details {
+                                                list-style-type: none;
+                                                padding-left: 0px;
+                                                margin-top: 0;
+
+                                                li {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    margin: 2px 0 2px 0;
+
+                                                    .label-infor {
+                                                        font-weight: 700;
+                                                        font-size: 13.5px;
+                                                        margin-right: 10px;
+                                                        color: #0179b0;
+                                                    }
+                                                    .content-infor {
+                                                        font-weight: 600;
+                                                        font-size: 14px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .history-rating {
+            margin-top: 30px;
+
+            .accordion {
+                .accordion-summary {
+                    .expand-icon {
+                        font-size: 20px;
+                    }
+                }
+                .accordion-details {
+                }
+            }
+        }
     }
 }
 

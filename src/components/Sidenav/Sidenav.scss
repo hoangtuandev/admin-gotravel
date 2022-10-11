@@ -33,19 +33,7 @@ $mainFamily: "Mulish", sans-serif;
                 padding: 5px 0 2px 3px;
                 transition: ease-in-out 0.2s;
                 width: 212px;
-
-                &:hover {
-                    cursor: pointer;
-                    transform: scale(1.05);
-                    transition: ease-in-out 0.2s;
-                    background-color: white;
-                    border-top-right-radius: 50px;
-                    border-bottom-right-radius: 50px;
-                    border-left: 13px solid #0b9de0;
-                    box-shadow: 1px 1px 7px #a8a8a8;
-                    color: #005cbefe;
-                    font-weight: 700;
-                }
+                height: 40px;
 
                 span {
                     font-family: $mainFamily;
@@ -59,6 +47,19 @@ $mainFamily: "Mulish", sans-serif;
                 .icon {
                     padding-top: 2px;
                     font-size: 22px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    transform: scale(1.05);
+                    transition: ease-in-out 0.2s;
+                    background-color: white;
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                    border-left: 13px solid #0b9de0;
+                    box-shadow: 1px 1px 7px #a8a8a8;
+                    color: #005cbefe;
+                    font-weight: 700;
                 }
             }
         }

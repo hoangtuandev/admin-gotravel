@@ -6,10 +6,11 @@ import Button from '@mui/material/Button';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import EditIcon from '@mui/icons-material/Edit';
+import Badge from '@mui/material/Badge';
 import StarIcon from '@mui/icons-material/Star';
 import VpnKeyOffIcon from '@mui/icons-material/VpnKeyOff';
-
 import styles from './GuideManager.scss';
+import * as api from '../../api';
 import {
     currentList,
     handleSelectProfile,
@@ -18,6 +19,8 @@ import {
     handleToggleUpdateProfile,
     handleToggleViewProfile,
 } from './GuideManagerSlice';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +28,41 @@ function ProfileItem(props) {
     const { account } = props;
     const dispatch = useDispatch();
     const typeList = useSelector(currentList);
+
+    const [ratingList, setRatingList] = useState([]);
+    const [averageStar, setAvarageStar] = useState(0);
+    const [guideTimes, setGuideTimes] = useState(0);
+    const [workingStatus, setWorkingStatus] = useState(0);
+
+    useEffect(() => {
+        api.getRatingGuideByGuideAccount({ _id: account._id }).then((res) => {
+            const ratings = res.data;
+            setRatingList(res.data);
+            setAvarageStar(
+                ratings.reduce(
+                    (previousValue, currentValue) =>
+                        previousValue + currentValue.dghdv_saodanhgia,
+                    0
+                ) / ratings.length
+            );
+        });
+    }, [account]);
+
+    useEffect(() => {
+        api.getGuideTimesByAccount({
+            username: account.tkhdv_tendangnhap,
+        }).then((res) => {
+            setGuideTimes(res.data.length);
+        });
+    }, [account]);
+
+    useEffect(() => {
+        api.getStatusCurrentOfGuide({
+            username: account.tkhdv_tendangnhap,
+        }).then((res) => {
+            res.data.length > 0 ? setWorkingStatus(1) : setWorkingStatus(0);
+        });
+    }, [account]);
 
     const handleUpdateProfile = () => {
         dispatch(handleSelectProfile(account));
@@ -49,25 +87,36 @@ function ProfileItem(props) {
     return (
         <tr>
             <td>
-                <img
-                    className={cx('avatar')}
-                    src={account.tkhdv_anhdaidien}
-                    alt=""
-                />
+                {workingStatus !== 0 && (
+                    <Badge color="success" overlap="circular" variant="dot">
+                        <img
+                            className={cx('avatar')}
+                            src={account.tkhdv_anhdaidien}
+                            alt=""
+                        />
+                    </Badge>
+                )}
+                {workingStatus === 0 && (
+                    <img
+                        className={cx('avatar')}
+                        src={account.tkhdv_anhdaidien}
+                        alt=""
+                    />
+                )}
             </td>
             <td>{account.tkhdv_tendangnhap}</td>
             <td className={cx('name-guide')}>
                 {account.tkhdv_huongdanvien.hdv_hoten}
             </td>
-            <td>{account.tkhdv_huongdanvien.hdv_namsinh}</td>
+            <td>{guideTimes}</td>
+            <td>{ratingList.length}</td>
             <td>
-                <StarIcon className={cx('star-icon')} />
-                <StarIcon className={cx('star-icon')} />
-                <StarIcon className={cx('star-icon')} />
-                <StarIcon className={cx('star-icon')} />
-                <StarIcon className={cx('star-icon')} />
+                <div className={cx('rating')}>
+                    <span>{Math.round(averageStar * 10) / 10 || 0}</span>
+                    <StarIcon className={cx('star-icon')} />
+                </div>
             </td>
-            <td></td>
+            <td>Đang công tác</td>
             <td>
                 <ButtonGroup
                     variant="contained"

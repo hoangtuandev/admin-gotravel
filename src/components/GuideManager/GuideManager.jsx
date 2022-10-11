@@ -111,9 +111,10 @@ function GuideManager() {
                                         <td className={cx('name-guide')}>
                                             Hướng dẫn viên
                                         </td>
-                                        <td>Năm sinh</td>
-                                        <td>Đánh giá</td>
-                                        <td></td>
+                                        <td>Lượt dẫn tour</td>
+                                        <td>Lượt đánh giá</td>
+                                        <td>Sao trung bình</td>
+                                        <td>Trạng thái</td>
                                         <td></td>
                                     </tr>
                                 </thead>

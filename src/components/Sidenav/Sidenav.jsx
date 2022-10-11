@@ -72,7 +72,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <Link to="/phuong-tien" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -91,7 +90,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <Link to="/tour" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -122,7 +120,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <Link to="/lich-dan-tour" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -141,7 +138,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <li
                         onClick={(e) => handleSelectOption(e)}
                         title="Bài chia sẻ"
@@ -195,7 +191,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <Link to="/quan-tri-vien" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}
@@ -214,7 +209,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <li
                         onClick={(e) => handleSelectOption(e)}
                         title="Thống kê"

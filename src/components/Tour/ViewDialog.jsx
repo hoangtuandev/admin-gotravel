@@ -41,8 +41,9 @@ function ViewDialog(props) {
     useEffect(() => {
         const current = new Date();
         const filterByDeparture = (departure) => {
-            const date = new Date(departure.lkh_ngaykhoihanh);
-            return date.toLocaleDateString() > current.toLocaleDateString();
+            const startDate = new Date(departure.lkh_ngaykhoihanh);
+            // return date.toLocaleDateString() > current.toLocaleDateString();
+            return current < startDate;
         };
         const newDeparture =
             tourSelected.t_lichkhoihanh.filter(filterByDeparture);
