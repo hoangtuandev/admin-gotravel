@@ -1,9 +1,7 @@
 import { React, useState } from 'react';
 import classNames from 'classnames/bind';
-// import { useSelector, useDispatch } from 'react-redux';
-import StarIcon from '@mui/icons-material/Star';
+import moment from 'moment';
 import TourIcon from '@mui/icons-material/Tour';
-import PersonIcon from '@mui/icons-material/Person';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -13,6 +11,7 @@ import styles from './GuideManager.scss';
 const cx = classNames.bind(styles);
 
 export default function HistoryCalendarItem(props) {
+    const { guidetime } = props;
     const [expanded, setExpanded] = useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
@@ -36,20 +35,23 @@ export default function HistoryCalendarItem(props) {
                     sx={{ color: 'text.secondary' }}
                 >
                     <TourIcon className={cx('tour-icon')} />
-                    <span>
-                        Hà Nội - Du Thuyền Hạ Long 5 Sao - Lịch Trình 6 Tiếng
-                        Trong Ngày
-                    </span>
+                    <span>{guidetime.ldt_tour.t_ten}</span>
                 </div>
             </AccordionSummary>
             <AccordionDetails className={cx('accordion-details')}>
                 <div className={cx('details-evaluate')}>
                     <div className={cx('departure-tour')}>
                         <p>
-                            <span>Khởi hành:</span> 20/09/2022
+                            <span>Khởi hành:</span>{' '}
+                            {moment(
+                                guidetime.ldt_lichkhoihanh.lkh_ngaykhoihanh
+                            ).format('DD/MM/YYYY')}
                         </p>
                         <p>
-                            <span>Kết thúc:</span> 25/09/2022
+                            <span>Kết thúc:</span>{' '}
+                            {moment(
+                                guidetime.ldt_lichkhoihanh.lkh_ngayketthuc
+                            ).format('DD/MM/YYYY')}
                         </p>
                     </div>
                     <div className={cx('informations-calendar')}>
@@ -57,174 +59,129 @@ export default function HistoryCalendarItem(props) {
                             <li>
                                 <p className={cx('label-infor')}>Mã tour:</p>
                                 <p className={cx('content-infor')}>
-                                    T001661305449580
+                                    {guidetime.ldt_tour.t_ma}
                                 </p>
                             </li>
                             <li>
                                 <p className={cx('label-infor')}>Loại hình:</p>
                                 <p className={cx('content-infor')}>
-                                    Tour khám khá
+                                    {guidetime.ldt_tour.t_loaihinh.lht_ten}
                                 </p>
                             </li>
                             <li>
                                 <p className={cx('label-infor')}>Thời gian:</p>
-                                <p className={cx('content-infor')}>3 ngày</p>
+                                <p className={cx('content-infor')}>
+                                    {guidetime.ldt_tour.t_thoigian} ngày
+                                </p>
                             </li>
                             <li>
                                 <p className={cx('label-infor')}>
                                     Khách tối đa:
                                 </p>
-                                <p className={cx('content-infor')}>3 </p>
+                                <p className={cx('content-infor')}>
+                                    {guidetime.ldt_tour.t_soluongkhach}
+                                </p>
                             </li>
                             <li>
                                 <p className={cx('label-infor')}>
                                     Số hướng dẫn viên:
                                 </p>
-                                <p className={cx('content-infor')}>3 </p>
+                                <p className={cx('content-infor')}>
+                                    {guidetime.ldt_tour.t_soluonghuongdanvien}
+                                </p>
                             </li>
                             <li>
                                 <p className={cx('label-infor')}>
                                     Điểm khởi hành:
                                 </p>
                                 <p className={cx('content-infor')}>
-                                    Sân bay Tan Sơn NHất
+                                    {guidetime.ldt_lichkhoihanh.lkh_diadiem}
                                 </p>
                             </li>
                         </ul>
 
                         <ul className={cx('guide-list')}>
-                            <li>
-                                <Accordion className={cx('accordition')}>
-                                    <AccordionSummary
-                                        expandIcon={
-                                            <ExpandMoreIcon
-                                                className={cx('expandIcon')}
-                                            />
-                                        }
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                        className={cx('accordition-summary')}
-                                    >
-                                        <div
-                                            className={cx('accordition-guide')}
+                            {guidetime.ldt_huongdanvien.map((guide, index) => (
+                                <li key={index} guide={guide}>
+                                    <Accordion className={cx('accordition')}>
+                                        <AccordionSummary
+                                            expandIcon={
+                                                <ExpandMoreIcon
+                                                    className={cx('expandIcon')}
+                                                />
+                                            }
+                                            aria-controls="panel1a-content"
+                                            id="panel1a-header"
+                                            className={cx(
+                                                'accordition-summary'
+                                            )}
                                         >
-                                            <img
-                                                src="https://res.cloudinary.com/phtuandev/image/upload/v1664161366/GoTravel/avatar_fb_wmhyh2.jpg"
-                                                alt=""
-                                            />
-                                            <span>Pham Hoang Tuan</span>
-                                            <p className={cx('rating')}>
-                                                <span>4.5</span>
-                                                <StarIcon className="iconStart" />
-                                            </p>
-                                        </div>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordition-details')}
-                                    >
-                                        <ul className={cx('guide-details')}>
-                                            <li>
-                                                <p
-                                                    className={cx(
-                                                        'label-infor'
-                                                    )}
-                                                >
-                                                    Mã HDV:
-                                                </p>
-                                                <p
-                                                    className={cx(
-                                                        'content-infor'
-                                                    )}
-                                                >
-                                                    T001661305449580
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p
-                                                    className={cx(
-                                                        'label-infor'
-                                                    )}
-                                                >
-                                                    Tên đăng nhập
-                                                </p>
-                                                <p
-                                                    className={cx(
-                                                        'content-infor'
-                                                    )}
-                                                >
-                                                    T001661305449580
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </li>
-                            <li>
-                                <Accordion className={cx('accordition')}>
-                                    <AccordionSummary
-                                        expandIcon={
-                                            <ExpandMoreIcon
-                                                className={cx('expandIcon')}
-                                            />
-                                        }
-                                        aria-controls="panel1a-content"
-                                        id="panel1a-header"
-                                        className={cx('accordition-summary')}
-                                    >
-                                        <div
-                                            className={cx('accordition-guide')}
+                                            <div
+                                                className={cx(
+                                                    'accordition-guide'
+                                                )}
+                                            >
+                                                <img
+                                                    src={guide.tkhdv_anhdaidien}
+                                                    alt=""
+                                                />
+                                                <span>
+                                                    {
+                                                        guide.tkhdv_huongdanvien
+                                                            .hdv_hoten
+                                                    }
+                                                </span>
+                                            </div>
+                                        </AccordionSummary>
+                                        <AccordionDetails
+                                            className={cx(
+                                                'accordition-details'
+                                            )}
                                         >
-                                            <img
-                                                src="https://res.cloudinary.com/phtuandev/image/upload/v1664161366/GoTravel/avatar_fb_wmhyh2.jpg"
-                                                alt=""
-                                            />
-                                            <span>Pham Hoang Tuan</span>
-                                            <p className={cx('rating')}>
-                                                <span>4.5</span>
-                                                <StarIcon className="iconStart" />
-                                            </p>
-                                        </div>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordition-details')}
-                                    >
-                                        <ul className={cx('guide-details')}>
-                                            <li>
-                                                <p
-                                                    className={cx(
-                                                        'label-infor'
-                                                    )}
-                                                >
-                                                    Mã HDV:
-                                                </p>
-                                                <p
-                                                    className={cx(
-                                                        'content-infor'
-                                                    )}
-                                                >
-                                                    T001661305449580
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p
-                                                    className={cx(
-                                                        'label-infor'
-                                                    )}
-                                                >
-                                                    Tên đăng nhập
-                                                </p>
-                                                <p
-                                                    className={cx(
-                                                        'content-infor'
-                                                    )}
-                                                >
-                                                    T001661305449580
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </li>
+                                            <ul className={cx('guide-details')}>
+                                                <li>
+                                                    <p
+                                                        className={cx(
+                                                            'label-infor'
+                                                        )}
+                                                    >
+                                                        Mã HDV:
+                                                    </p>
+                                                    <p
+                                                        className={cx(
+                                                            'content-infor'
+                                                        )}
+                                                    >
+                                                        {
+                                                            guide
+                                                                .tkhdv_huongdanvien
+                                                                .hdv_ma
+                                                        }
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p
+                                                        className={cx(
+                                                            'label-infor'
+                                                        )}
+                                                    >
+                                                        Tên đăng nhập
+                                                    </p>
+                                                    <p
+                                                        className={cx(
+                                                            'content-infor'
+                                                        )}
+                                                    >
+                                                        {
+                                                            guide.tkhdv_tendangnhap
+                                                        }
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

@@ -57,6 +57,8 @@ function CalendarAccordion(props) {
     const { calendar } = props;
     const [expanded, setExpanded] = useState('panel1');
 
+    console.log(calendar);
+
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
@@ -163,26 +165,15 @@ function CalendarAccordion(props) {
                                 className={cx('list-guide')}
                                 onClick={() => handleViewCalendarGuide()}
                             >
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1658649734/GoTravel/tran-thanh-1_tq38tx.png"
-                                />
-                                <Avatar
-                                    alt="Agnes Walker"
-                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1658649721/GoTravel/hari-1_r7zjev.jpg"
-                                />
-                                <Avatar
-                                    alt="Travis Howard"
-                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1658649722/GoTravel/karik_zfjwem.jpg"
-                                />
-                                <Avatar
-                                    alt="Trevor Henderson"
-                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1658645865/GoTravel/Thoat-kiep-ta-1656037029-25-width660height660_rj4jy5.jpg"
-                                />
-                                <Avatar
-                                    alt="Cindy Baker"
-                                    src="https://res.cloudinary.com/phtuandev/image/upload/v1658649721/GoTravel/miule_nbsahv.jpg"
-                                />
+                                {calendar.ldt_huongdanvien.map(
+                                    (guide, index) => (
+                                        <Avatar
+                                            key={index}
+                                            alt="Remy Sharp"
+                                            src={guide.tkhdv_anhdaidien}
+                                        />
+                                    )
+                                )}
                             </AvatarGroup>
                         </div>
                     </AccordionSummary>

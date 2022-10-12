@@ -6,17 +6,8 @@ import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import StarIcon from '@mui/icons-material/Star';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
-import FingerprintIcon from '@mui/icons-material/Fingerprint';
-import TransgenderIcon from '@mui/icons-material/Transgender';
-import CakeIcon from '@mui/icons-material/Cake';
-import HomeIcon from '@mui/icons-material/Home';
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import Rating from '@mui/material/Rating';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Slide from '@mui/material/Slide';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -29,6 +20,7 @@ import {
 import * as api from '../../api';
 import HistoryCalendarItem from './HistoryCalendarItem';
 import HistoryRatingItem from './HistoryRatingItem';
+import InformationsProfile from './InformationProfileView';
 
 const cx = classNames.bind(styles);
 
@@ -42,20 +34,11 @@ export default function ViewProfile(props) {
     const profile = useSelector(profileSelected);
 
     const [ratingList, setRatingList] = useState([]);
-    const [averageStar, setAvarageStar] = useState(0);
-    const [guideTimes, setGuideTimes] = useState(0);
+    const [guideTimes, setGuideTimes] = useState([]);
 
     useEffect(() => {
         api.getRatingGuideByGuideAccount({ _id: profile._id }).then((res) => {
-            const ratings = res.data;
             setRatingList(res.data);
-            setAvarageStar(
-                ratings.reduce(
-                    (previousValue, currentValue) =>
-                        previousValue + currentValue.dghdv_saodanhgia,
-                    0
-                ) / ratings.length
-            );
         });
     }, [profile]);
 
@@ -63,11 +46,9 @@ export default function ViewProfile(props) {
         api.getGuideTimesByAccount({
             username: profile.tkhdv_tendangnhap,
         }).then((res) => {
-            setGuideTimes(res.data.length);
+            setGuideTimes(res.data);
         });
     }, [profile]);
-
-    console.log(ratingList);
 
     return (
         <Fragment>
@@ -119,228 +100,53 @@ export default function ViewProfile(props) {
                     </AppBar>
 
                     <div className={cx('view-profile')}>
-                        <div className={cx('profile-infor')}>
-                            <div className={cx('header-profile')}>
-                                <div>
-                                    <img
-                                        className={cx('avatar-guide')}
-                                        src={profile.tkhdv_anhdaidien}
-                                        alt=""
-                                    />
-                                    <div>
-                                        <p className={cx('name-guide')}>
-                                            {
-                                                profile.tkhdv_huongdanvien
-                                                    .hdv_hoten
-                                            }
-                                        </p>
-                                    </div>
-                                    <div className={cx('rating')}>
-                                        <Rating
-                                            className="half-rating"
-                                            defaultValue={4.7}
-                                            precision={0.5}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx('content-profile')}>
-                                <p></p>
-                                <table>
-                                    <thead></thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div className="infor-item">
-                                                    <FingerprintIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_ma
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="infor-item">
-                                                    <TransgenderIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_gioitinh
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="infor-item">
-                                                    <CakeIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_namsinh
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div className="infor-item">
-                                                    <LocalPhoneIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_sodienthoai
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div className="infor-item">
-                                                    <EmailIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_mail
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colSpan={3}>
-                                                <div className="infor-item infor-address">
-                                                    <HomeIcon
-                                                        className={cx(
-                                                            'icon-profile'
-                                                        )}
-                                                    />
-
-                                                    <p
-                                                        className={cx(
-                                                            'content'
-                                                        )}
-                                                    >
-                                                        {
-                                                            profile
-                                                                .tkhdv_huongdanvien
-                                                                .hdv_quequan
-                                                        }
-                                                    </p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="achievements-profile">
-                                <p className={cx('panel-profile')}>
-                                    <EmojiEventsIcon
-                                        className={cx('achievement-icon')}
-                                    />
-                                    <span>Thành tích</span>
-                                </p>
-                                <ul>
-                                    <li>
-                                        <p className="label-achievement">
-                                            Sao trung bình:
-                                        </p>
-                                        <p className="content-achievement">
-                                            <span>
-                                                {Math.round(averageStar * 10) /
-                                                    10 || 0}
-                                            </span>
-                                            <StarIcon
-                                                className={cx('star-icon')}
-                                            />
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p className="label-achievement">
-                                            Số lượng đánh giá:
-                                        </p>
-                                        <p className="content-achievement">
-                                            {ratingList.length}
-                                        </p>
-                                    </li>
-
-                                    <li>
-                                        <p className="label-achievement">
-                                            Số tour đã hướng dẫn:
-                                        </p>
-                                        <p className="content-achievement">
-                                            {guideTimes}
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <InformationsProfile></InformationsProfile>
                         <div className={cx('profile-evaluate')}>
                             <p className={cx('label-profile-evaluate')}>
                                 LỊCH SỬ DẪN TOUR
                             </p>
                             <div className={cx('history-calendar')}>
-                                <HistoryCalendarItem></HistoryCalendarItem>
-                                <HistoryCalendarItem></HistoryCalendarItem>
-                                <HistoryCalendarItem></HistoryCalendarItem>
-                                <HistoryCalendarItem></HistoryCalendarItem>
+                                {guideTimes.map((guidetime, index) => (
+                                    <HistoryCalendarItem
+                                        key={index}
+                                        guidetime={guidetime}
+                                    ></HistoryCalendarItem>
+                                ))}
                             </div>
+                            {guideTimes.length === 0 && (
+                                <div className={cx('empty-list')}>
+                                    <p className={cx('notification')}>
+                                        Lịch sử dẫn tour rỗng
+                                    </p>
+                                    <img
+                                        src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png"
+                                        alt=""
+                                    />
+                                </div>
+                            )}
+
                             <p className={cx('label-profile-evaluate')}>
                                 LỊCH SỬ ĐÁNH GIÁ
                             </p>
-                            <div className={cx('history-rating')}></div>
-                            <HistoryRatingItem></HistoryRatingItem>
-                            <HistoryRatingItem></HistoryRatingItem>
-                            <HistoryRatingItem></HistoryRatingItem>
+                            <div className={cx('history-rating')}>
+                                {ratingList.map((rating, index) => (
+                                    <HistoryRatingItem
+                                        key={index}
+                                        rating={rating}
+                                    ></HistoryRatingItem>
+                                ))}
+                            </div>
+                            {ratingList.length === 0 && (
+                                <div className={cx('empty-list')}>
+                                    <p className={cx('notification')}>
+                                        Lịch sử đánh giá rỗng !
+                                    </p>
+                                    <img
+                                        src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png"
+                                        alt=""
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </Dialog>

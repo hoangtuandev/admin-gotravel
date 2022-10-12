@@ -110,13 +110,12 @@ function ProfileItem(props) {
             </td>
             <td>{guideTimes}</td>
             <td>{ratingList.length}</td>
-            <td>
+            <td className={cx('rating-td')}>
                 <div className={cx('rating')}>
                     <span>{Math.round(averageStar * 10) / 10 || 0}</span>
                     <StarIcon className={cx('star-icon')} />
                 </div>
             </td>
-            <td>Đang công tác</td>
             <td>
                 <ButtonGroup
                     variant="contained"

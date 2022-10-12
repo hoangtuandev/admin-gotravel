@@ -97,6 +97,9 @@ export const getGuideTimesByAccount = (data) =>
 export const getStatusCurrentOfGuide = (data) =>
     axios.post(`${URL}/CalendarGuide/getStatusCurrentOfGuide`, data);
 
+export const get30NextDayCalendarGuide = (data) =>
+    axios.post(`${URL}/CalendarGuide/get30NextDayCalendarGuide`, data);
+
 // BOOKING TOUR
 export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);
 

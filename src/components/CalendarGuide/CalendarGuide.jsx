@@ -22,7 +22,7 @@ function CalendarGuide() {
     // const [endDate, setEndDate] = useState(new Date());
 
     useEffect(() => {
-        api.getCalendarGuide().then((res) => {
+        api.get30NextDayCalendarGuide().then((res) => {
             setCalendarGuide(
                 res.data.sort(
                     (a, b) =>
