@@ -1,25 +1,43 @@
 import { React, useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import classNames from 'classnames/bind';
-import { useSelector, useDispatch } from 'react-redux';
-
-import styles from './CalendarGuideTest.scss';
+import { useSelector } from 'react-redux';
+import styles from './CalendarGuide.scss';
 import * as api from '../../api';
 import CalendarAccordion from './CalendarAccordion';
+import Switch from '@mui/material/Switch';
+import { BsCalendar3 } from 'react-icons/bs';
 import { isOpenGuidesSubmit } from './CalendarGuideSlice';
 import GuidesSubmit from './GuidesSubmit';
+import SearchIcon from '@mui/icons-material/Search';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const cx = classNames.bind(styles);
 
 function CalendarGuide() {
     const openGuidesSubmit = useSelector(isOpenGuidesSubmit);
-    // const [currentDate, setCurrentDate] = useState(new Date().getTime());
-    // const [tourList, setTourList] = useState([]);
-    // const [departureList, setDepartureList] = useState([]);
-    // const [calendarGuide, setCalendarGuide] = useState([]);
     const [calendarGuide, setCalendarGuide] = useState([]);
-    // const [calendarGuideGoupBy, setCalendarGuideGoupBy] = useState([]);
-    // const [startDate, setStartDate] = useState(new Date());
-    // const [endDate, setEndDate] = useState(new Date());
+    const [departure, setDeparture] = useState(new Date());
+    const [selectAll, setSelectAll] = useState(true);
+    const [searchingKey, setSearchingKey] = useState('');
+
+    const handleToggleSelectAll = (event) => {
+        setSelectAll(event.target.checked);
+    };
+
+    useEffect(() => {
+        if (selectAll === true) {
+            api.get30NextDayCalendarGuide().then((res) => {
+                setCalendarGuide(
+                    res.data.sort(
+                        (a, b) =>
+                            Date.parse(a.ldt_lichkhoihanh.lkh_ngaykhoihanh) -
+                            Date.parse(b.ldt_lichkhoihanh.lkh_ngaykhoihanh)
+                    )
+                );
+            });
+        }
+    }, [selectAll]);
 
     useEffect(() => {
         api.get30NextDayCalendarGuide().then((res) => {
@@ -30,83 +48,101 @@ function CalendarGuide() {
                         Date.parse(b.ldt_lichkhoihanh.lkh_ngaykhoihanh)
                 )
             );
-            console.log(res.data);
         });
     }, []);
 
-    // useEffect(() => {
-    //     setCalendarGuideGoupBy(
-    //         calendarGuide.group(
-    //             ({ type }) =>
-    //                 calendarGuide.data.ldt_lichkhoihanh.lkh_ngaykhoihanh
-    //         )
-    //     );
-    // }, [calendarGuide]);
-    // console.log(calendarGuideGoupBy);
+    const handleChangeDepartureDate = (date) => {
+        setSelectAll(false);
+        setDeparture(date);
+        api.getCalendarGuidebyDeaprtureDate({ date: date }).then((res) => {
+            setCalendarGuide(
+                res.data.sort(
+                    (a, b) =>
+                        Date.parse(a.ldt_lichkhoihanh.lkh_ngaykhoihanh) -
+                        Date.parse(b.ldt_lichkhoihanh.lkh_ngaykhoihanh)
+                )
+            );
+        });
+    };
 
-    // const createCalendarGuide = (departure, tour, start, end) => {
-    //     // console.log(departure.lkh_ngaykhoihanh.getTime());
-    //     let date = new Date(departure.lkh_ngaykhoihanh);
-    //     console.log(date);
-    //     // let dateStart = new Date(item.lkh_ngaykhoihanh);
-    //     // if (dateStart >= start && dateStart <= end) {
-    //     //     console.log(item.lkh_ngaykhoihanh, tour.t_ten);
-    //     // }
-    // };
+    const handleChangeSearchingKey = (key) => {
+        setSelectAll(false);
+        setSearchingKey(key);
+        api.searchingCalendarGuideByTourName({
+            keySearching: key,
+        }).then((res) => {
+            setCalendarGuide(
+                res.data.sort(
+                    (a, b) =>
+                        Date.parse(a.ldt_lichkhoihanh.lkh_ngaykhoihanh) -
+                        Date.parse(b.ldt_lichkhoihanh.lkh_ngaykhoihanh)
+                )
+            );
+        });
+    };
 
-    // useEffect(() => {
-    //     var date = new Date();
-    //     date.setDate(date.getDate() + 15);
-    //     var dateString = new Date(date.toISOString().split('T')[0]);
-
-    //     const end = new Date(dateString.toLocaleDateString());
-    //     setEndDate(new Date(dateString.toLocaleDateString()));
-
-    //     let loop = new Date(new Date());
-    //     while (loop <= end) {
-    //         console.log(loop);
-    //         let calendar = [];
-    //         calendarGuide.map(
-    //             (item, index) =>
-
-    //                 // item.ldt_lichkhoihanh.lkh_ngaykhoihanh >= startDate &&
-    //                 // item.ldt_lichkhoihanh.lkh_ngaykhoihanh <= end
-    //                 // ?
-    //                 //     const calendarItem = {
-    //                 //         date: item.ldt_lichkhoihanh.lkh_ngaykhoihanh,
-    //                 //     }
-    //                 // :
-    //         );
-    //         // calendarGuide.map((item, index) => console.log(item));
-    //         // departureList.map((departure, index) =>
-    //         //     tourList.map((tour, index) =>
-    //         //         createCalendarGuide(departure, tour, start, end)
-    //         //     )
-    //         // );
-    //         // // tourList.map((tour) =>
-    //         // //     tour.t_lichkhoihanh.map(
-    //         // //         (item) => createCalendarGuide(tour, item, start, end)
-    //         // //         // item.lkh_ngaykhoihanh >= start &&
-    //         // //         // item.lkh_ngayketthuc <= end
-    //         // //         //     ? console.log(item.lkh_ngaykhoihanh, tour.t_ten)
-    //         // //         //     : console.log('Error')
-    //         // //     )
-    //         // // );
-    //         let newDate = loop.setDate(loop.getDate() + 1);
-    //         loop = new Date(newDate);
-    //     }
-    // }, []);
+    console.log('re-render');
 
     return (
         <div className={cx('calendar-guide')}>
-            {openGuidesSubmit && <GuidesSubmit></GuidesSubmit>}
+            <div className={cx('filter-calendar-guide')}>
+                <div className={cx('filter-departure')}>
+                    <p className={cx('label-filter')}>Ngày khởi hành</p>
+                    <DatePicker
+                        dateFormat="dd / MM / yyyy"
+                        placeholderText="ngày / tháng / năm"
+                        selected={departure}
+                        onChange={(date) => {
+                            handleChangeDepartureDate(date);
+                        }}
+                    />
+                    <BsCalendar3 className={cx('icon-calendar')} />
+                </div>
+                <div className={cx('search-tour')}>
+                    <input
+                        className={'textfield-search'}
+                        type="text"
+                        placeholder="Nhập tên tour để tìm kiếm..."
+                        value={searchingKey}
+                        onChange={(e) =>
+                            handleChangeSearchingKey(e.target.value)
+                        }
+                    />
+                    <label>
+                        <SearchIcon className={cx('search-icon')} />
+                    </label>
+                </div>
+            </div>
+            <div className={cx('select-all')}>
+                <span className={cx('label')}>Tất cả</span>
+                <Switch
+                    size="large"
+                    color="error"
+                    checked={selectAll}
+                    onChange={handleToggleSelectAll}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                />
+            </div>
 
-            {calendarGuide.map((calendar, index) => (
-                <CalendarAccordion
-                    key={index}
-                    calendar={calendar}
-                ></CalendarAccordion>
-            ))}
+            {calendarGuide.length === 0 && (
+                <div className={cx('empty-list')}>
+                    <p className={cx('notifications')}>
+                        Không tìm thấy lịch dẫn tour phù hợp !
+                    </p>
+                    <img
+                        src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png"
+                        alt=""
+                    />
+                </div>
+            )}
+            {openGuidesSubmit && <GuidesSubmit></GuidesSubmit>}
+            {calendarGuide.length !== 0 &&
+                calendarGuide.map((calendar, index) => (
+                    <CalendarAccordion
+                        key={index}
+                        calendar={calendar}
+                    ></CalendarAccordion>
+                ))}
         </div>
     );
 }

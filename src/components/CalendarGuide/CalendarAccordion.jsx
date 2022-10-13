@@ -1,8 +1,7 @@
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import classNames from 'classnames/bind';
 import moment from 'moment';
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion from '@mui/material/Accordion';
@@ -11,9 +10,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-
-import styles from './CalendarGuideTest.scss';
-import * as api from '../../api';
+import styles from './CalendarGuide.scss';
 import {
     handleOpenGuidesSubmit,
     handleSelectCalendar,
@@ -57,8 +54,6 @@ function CalendarAccordion(props) {
     const { calendar } = props;
     const [expanded, setExpanded] = useState('panel1');
 
-    console.log(calendar);
-
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
@@ -99,37 +94,6 @@ function CalendarAccordion(props) {
             : dateStart.getDay() === 5
             ? 'Thứ 6'
             : 'Thứ 7';
-    // console.log(date.toLocaleDateString());
-
-    // useEffect(() => {
-    //     var date = new Date();
-    //     date.setDate(date.getDate() + 30);
-    //     var dateString = new Date(date.toISOString().split('T')[0]);
-
-    //     const start = new Date();
-
-    //     const end = new Date(dateString.toLocaleDateString());
-
-    //     let loop = new Date(start);
-    //     while (loop <= end) {
-    //         // departureList.map((departure, index) =>
-    //         //     tourList.map((tour, index) =>
-    //         //         createCalendarGuide(departure, tour, start, end)
-    //         //     )
-    //         // );
-    //         // // tourList.map((tour) =>
-    //         // //     tour.t_lichkhoihanh.map(
-    //         // //         (item) => createCalendarGuide(tour, item, start, end)
-    //         // //         // item.lkh_ngaykhoihanh >= start &&
-    //         // //         // item.lkh_ngayketthuc <= end
-    //         // //         //     ? console.log(item.lkh_ngaykhoihanh, tour.t_ten)
-    //         // //         //     : console.log('Error')
-    //         // //     )
-    //         // // );
-    //         let newDate = loop.setDate(loop.getDate() + 1);
-    //         loop = new Date(newDate);
-    //     }
-    // }, [tourList, departureList]);
 
     return (
         <Accordion

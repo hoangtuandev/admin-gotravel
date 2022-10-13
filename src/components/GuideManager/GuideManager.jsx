@@ -5,8 +5,9 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import ReplyIcon from '@mui/icons-material/Reply';
+import SearchIcon from '@mui/icons-material/Search';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import Switch from '@mui/material/Switch';
 import styles from './GuideManager.scss';
 import {
     activeProfile,
@@ -40,6 +41,12 @@ function GuideManager() {
 
     const [accountGuideList, setAccountGuideList] = useState([]);
     const [lockedAccountGuideList, setLockedAccountGuideList] = useState([]);
+    const [selectAll, setSelectAll] = useState(true);
+    const [searchingKey, setSearchingKey] = useState('');
+
+    const handleToggleSelectAll = (event) => {
+        setSelectAll(event.target.checked);
+    };
 
     const handleAddProfile = () => {
         dispatch(handleToggleAddProfile(true));
@@ -55,12 +62,28 @@ function GuideManager() {
         });
     }, []);
 
+    useEffect(() => {
+        if (selectAll) {
+            api.getActiveGuideAccount().then((res) => {
+                setAccountGuideList(res.data);
+            });
+        }
+    }, [selectAll]);
+
     const handleShowLockedProfile = () => {
         dispatch(handleSetCurrentList('locked'));
     };
 
     const handleShowActivedProfile = () => {
         dispatch(handleSetCurrentList('actived'));
+    };
+
+    const handleChangeSearchingKey = (key) => {
+        setSelectAll(false);
+        setSearchingKey(key);
+        api.searchingGuide({ keySearch: key }).then((res) => {
+            setAccountGuideList(res.data);
+        });
     };
 
     return (
@@ -99,6 +122,35 @@ function GuideManager() {
                     </Button>
                 )}
             </div>
+            {typeList === 'actived' && (
+                <div className={cx('filter-guide')}>
+                    <div className={cx('select-all')}>
+                        <span className={cx('label')}>Tất cả</span>
+                        <Switch
+                            size="large"
+                            color="error"
+                            checked={selectAll}
+                            onChange={handleToggleSelectAll}
+                            inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    </div>
+                    <div className={cx('search-tour')}>
+                        <input
+                            className={'textfield-search'}
+                            type="text"
+                            placeholder="Nhập tên tour để tìm kiếm..."
+                            value={searchingKey}
+                            onChange={(e) =>
+                                handleChangeSearchingKey(e.target.value)
+                            }
+                        />
+                        <label>
+                            <SearchIcon className={cx('search-icon')} />
+                        </label>
+                    </div>
+                </div>
+            )}
+
             <div className="box-manager">
                 {accountGuideList.length !== 0 && (
                     <div>
@@ -111,6 +163,7 @@ function GuideManager() {
                                         <td className={cx('name-guide')}>
                                             Hướng dẫn viên
                                         </td>
+                                        <td>Số điện thoại</td>
                                         <td>Lượt dẫn tour</td>
                                         <td>Lượt đánh giá</td>
                                         <td>Sao trung bình</td>
@@ -140,6 +193,7 @@ function GuideManager() {
                                         <td className={cx('name-guide')}>
                                             Hướng dẫn viên
                                         </td>
+                                        <td>Số điện thoại</td>
                                         <td>Lượt dẫn tour</td>
                                         <td>Lượt đánh giá</td>
                                         <td>Sao trung bình</td>

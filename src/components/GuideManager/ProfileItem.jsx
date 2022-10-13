@@ -108,6 +108,7 @@ function ProfileItem(props) {
             <td className={cx('name-guide')}>
                 {account.tkhdv_huongdanvien.hdv_hoten}
             </td>
+            <td> {account.tkhdv_huongdanvien.hdv_sodienthoai}</td>
             <td>{guideTimes}</td>
             <td>{ratingList.length}</td>
             <td className={cx('rating-td')}>
@@ -116,6 +117,7 @@ function ProfileItem(props) {
                     <StarIcon className={cx('star-icon')} />
                 </div>
             </td>
+
             <td>
                 <ButtonGroup
                     variant="contained"

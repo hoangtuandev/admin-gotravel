@@ -8,7 +8,7 @@ import { ImSearch } from 'react-icons/im';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
-
+import Pagination from '@mui/material/Pagination';
 import styles from './Tour.scss';
 import * as api from '../../api';
 import TourItem from './TourItem';
@@ -42,9 +42,16 @@ function Tour() {
     const [stopedTourList, setStopedTourList] = useState([]);
     const [sortValue, setSortValue] = useState(0);
     const [keySearching, setKeySearching] = useState('');
+    const [page, setPage] = useState(1);
+
+    const handleChangePagination = (event, value) => {
+        setPage(value);
+        console.log(value);
+    };
 
     useEffect(() => {
         api.getAllActiveTour().then((res) => {
+            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
             setAllTour(res.data);
         });
@@ -52,14 +59,15 @@ function Tour() {
         api.getAllStopedTour().then((res) => {
             setStopedTourList(res.data);
         });
-    }, []);
+    }, [page]);
 
     useEffect(() => {
         api.searchingTour({ keySearch: keySearching }).then((res) => {
+            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
         });
         setSortValue(0);
-    }, [keySearching]);
+    }, [keySearching, page]);
 
     const handleChangeSortValue = (event, newAlignment) => {
         setSortValue(newAlignment);
@@ -73,6 +81,7 @@ function Tour() {
 
     const handleGetAllActiveTour = () => {
         api.getAllActiveTour().then((res) => {
+            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
             dispatch(handleCloseStopedTour());
         });
@@ -81,6 +90,8 @@ function Tour() {
             setStopedTourList(res.data);
         });
     };
+
+    console.log(tourList.length);
 
     return (
         <div className={cx('tour')}>
@@ -225,6 +236,17 @@ function Tour() {
                         </tbody>
                     </table>
                 )}
+                <div className={cx('pagination-list')}>
+                    <Pagination
+                        size="large"
+                        count={Math.ceil(tourList.length / 10)}
+                        page={page}
+                        color="error"
+                        variant="outlined"
+                        className={cx('pagination')}
+                        onChange={handleChangePagination}
+                    />
+                </div>
             </div>
             {openAddDialog && <AddDialog setTourList={setTourList}></AddDialog>}
             {openUpdateDialog && (

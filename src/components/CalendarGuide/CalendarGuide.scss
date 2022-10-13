@@ -5,12 +5,197 @@ $mainFamily: "Mulish", sans-serif;
     display: flex;
     justify-content: center;
     margin-left: 250px;
-    margin-top: 100px;
+    margin-top: 70px;
     margin-right: 50px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
+
+    .filter-calendar-guide {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .label-filter {
+            font-family: $mainFamily;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .filter-departure {
+            padding-left: 5px;
+            padding-top: 10px;
+            position: relative;
+
+            .icon-calendar {
+                position: absolute;
+                top: 50px;
+                right: 10px;
+                color: #0784be;
+                font-size: 20px;
+                user-select: none;
+                pointer-events: none;
+            }
+
+            .react-datepicker-wrapper {
+                margin-top: 0px;
+
+                .react-datepicker__input-container {
+                    input {
+                        outline: none;
+                        width: 350px;
+                        font-family: $mainFamily;
+                        font-size: 17px;
+                        font-weight: 700;
+                        color: #5b5b5b;
+                        padding: 8px 10px;
+                        border-radius: 4px;
+                        border: 2px solid #0b9de0;
+                    }
+                }
+            }
+
+            .react-datepicker-popper {
+                padding-bottom: 15px;
+
+                .react-datepicker {
+                    font-size: 15px;
+                    border: 0px solid #b1b1b1;
+
+                    button {
+                        margin-top: 4px;
+                    }
+
+                    .react-datepicker__month-container {
+                        width: 350px;
+                        height: 300px;
+                        padding: 0px 5px;
+                        box-shadow: 1px 1px 10px #bbbbbb;
+                        border-radius: 5px;
+                        border: 0px solid #0b9de0;
+
+                        .react-datepicker__header {
+                            font-family: $mainFamily;
+                            background-color: #fff;
+                            padding-top: 10px;
+
+                            .react-datepicker__current-month {
+                                font-size: 16px;
+                                color: #0b9de0;
+                                font-weight: 800;
+                            }
+
+                            .react-datepicker__day-names {
+                                .react-datepicker__day-name {
+                                    margin: 15px 15px 10px 10px;
+                                    color: #4a4a4a;
+                                    font-weight: 700;
+                                }
+                            }
+                        }
+
+                        .react-datepicker__month {
+                            .react-datepicker__week {
+                                .react-datepicker__day {
+                                    margin: 5px 9px;
+                                    padding-top: 4px;
+                                    padding-bottom: 0px;
+                                    padding-right: 1px;
+                                    width: 25px;
+                                    height: 25px;
+
+                                    font-family: $mainFamily;
+                                    border-radius: 50px;
+                                    font-size: 15px;
+                                }
+
+                                .react-datepicker__day--selected {
+                                    background-color: #0b9de0;
+                                    color: #fff;
+                                    font-weight: 600;
+                                    transition: ease-in-out 0.1s;
+                                }
+
+                                .react-datepicker__day:hover {
+                                    background-color: #0b9de0;
+                                    color: #fff;
+                                    font-weight: 600;
+                                    transition: ease-in-out 0.1s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .search-tour {
+            position: relative;
+
+            .textfield-search {
+                margin-top: 40px;
+                width: 350px;
+                height: 42px;
+                padding: 0px 15px;
+                font-family: $mainFamily;
+                font-weight: 600;
+                font-size: 15px;
+                outline: none;
+                border-radius: 5px;
+                border: 2px solid #0b9de0;
+            }
+
+            label {
+                position: absolute;
+                top: 40px;
+                right: 0px;
+                background-color: #0b9de0;
+                color: #fff;
+                height: 42px;
+                width: 42px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-icon {
+                font-size: 30px;
+            }
+        }
+    }
+
+    .select-all {
+        .label {
+            font-family: $mainFamily;
+            font-weight: 700;
+            font-size: 16px;
+            color: #ea1f08;
+        }
+    }
+
+    .empty-list {
+        margin-top: 22px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 15px 20px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+            rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
+        .notifications {
+            font-family: $mainFamily;
+            font-weight: 700;
+            font-size: 20px;
+            color: #ea1f08;
+        }
+        img {
+            width: 700px;
+            height: 400px;
+        }
+    }
 
     .accordion-date {
         margin: 0 0 20px 0;
@@ -127,6 +312,7 @@ $mainFamily: "Mulish", sans-serif;
 
         .accordion {
             border-radius: 7px;
+
             .typography {
                 font-size: 16px;
                 font-family: $mainFamily;
@@ -135,8 +321,10 @@ $mainFamily: "Mulish", sans-serif;
         }
 
         .details-tour {
-            // box-shadow: 1px 1px 10px #272727;
-            border: 2px solid #0495d8;
+            border: 1px solid #e8e8e8;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            padding: 7px 0 20px 0;
+
             .accordionSummary {
                 .typography {
                     display: flex;
@@ -158,6 +346,8 @@ $mainFamily: "Mulish", sans-serif;
             }
 
             .accordionDetails {
+                padding-bottom: 0;
+
                 .typography {
                     text-align: justify;
                     padding-left: 40px;
@@ -198,8 +388,8 @@ $mainFamily: "Mulish", sans-serif;
 
                         .accordion {
                             width: 480px;
-                            border: 1px solid #bebebe;
                             padding: 0px 0px;
+                            box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
                             .accordionSummary {
                                 .typography {
@@ -240,20 +430,29 @@ $mainFamily: "Mulish", sans-serif;
         }
     }
 
+    .label-list {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        font-family: $mainFamily;
+        font-size: 19px;
+        font-weight: 800;
+        color: #ea1f08;
+    }
+
     .guides-list {
         border-radius: 7px;
-        margin-top: 30px;
-        padding: 0 30px;
+        margin-top: 0px;
+        padding: 0 0px;
 
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
 
         .accordion {
-            width: 500px;
-            margin: 20px 0;
+            width: 530px;
+            margin: 0px 0;
             border: 1px solid #dbdbdb;
-            box-shadow: 1px 1px 6px #cccccc;
+            box-shadow: 1px 1px 6px #e2e2e2;
 
             .accordion-summary {
                 .css-o4b71y-MuiAccordionSummary-content {
@@ -277,6 +476,27 @@ $mainFamily: "Mulish", sans-serif;
                 .typography {
                     font-family: $mainFamily;
                     font-size: 15px;
+
+                    ul {
+                        padding: 0 0;
+                        list-style-type: none;
+
+                        li {
+                            display: flex;
+                            margin: 5px 0;
+
+                            .label {
+                                margin-right: 5px;
+                                color: #016796;
+                                font-size: 14.5px;
+                                font-weight: 700;
+                            }
+
+                            .content {
+                                font-size: 15px;
+                            }
+                        }
+                    }
                 }
                 .delete-button {
                     position: absolute;

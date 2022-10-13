@@ -2,7 +2,6 @@ import { React, memo, forwardRef } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -12,19 +11,17 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import Accordion from '@mui/material/Accordion';
-import Avatar from '@mui/material/Avatar';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import DeleteIcon from '@mui/icons-material/Delete';
-
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './CalendarGuideTest.scss';
+import styles from './CalendarGuide.scss';
 import {
     calendarSelected,
     handleCloseGuidesSubmit,
     isOpenGuidesSubmit,
 } from './CalendarGuideSlice';
+import GuideRegisted from './GuideRegisted';
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +34,6 @@ function GuidesSubmit(props) {
     const calendar = useSelector(calendarSelected);
     const dispatch = useDispatch();
 
-    console.log(calendar);
     const dateStart = new Date(calendar.ldt_lichkhoihanh.lkh_ngaykhoihanh);
     const dayStart =
         dateStart.getDay() === 0
@@ -95,7 +91,10 @@ function GuidesSubmit(props) {
                 </AppBar>
                 <div className={cx('guides-submit')}>
                     <div className={cx('guides-submit-details')}>
-                        <Accordion className={cx('accordion details-tour')}>
+                        <Accordion
+                            className={cx('accordion details-tour')}
+                            expanded
+                        >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
@@ -166,6 +165,28 @@ function GuidesSubmit(props) {
                                                             }
                                                         </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td
+                                                            className={cx(
+                                                                'label'
+                                                            )}
+                                                        >
+                                                            Ngày kết thúc
+                                                        </td>
+                                                        <td
+                                                            className={cx(
+                                                                'content'
+                                                            )}
+                                                        >
+                                                            {moment(
+                                                                calendar
+                                                                    .ldt_lichkhoihanh
+                                                                    .lkh_ngayketthuc
+                                                            ).format(
+                                                                'DD / MM / YYYY'
+                                                            )}
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -219,6 +240,26 @@ function GuidesSubmit(props) {
                                                                         'VND',
                                                                 }
                                                             )}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td
+                                                            className={cx(
+                                                                'label'
+                                                            )}
+                                                        >
+                                                            Điểm khởi hành
+                                                        </td>
+                                                        <td
+                                                            className={cx(
+                                                                'content'
+                                                            )}
+                                                        >
+                                                            {
+                                                                calendar
+                                                                    .ldt_lichkhoihanh
+                                                                    .lkh_diadiem
+                                                            }
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -324,83 +365,16 @@ function GuidesSubmit(props) {
                                 </div>
                             </AccordionDetails>
                         </Accordion>
+                        <p className={cx('label-list')}>
+                            HƯỚNG DẪN VIÊN ĐÃ ĐĂNG KÝ
+                        </p>
                         <div className={cx('guides-list')}>
-                            {/* <p className={cx('label-list')}>
-                                HƯỚNG DẪN VIÊN ĐÃ ĐĂNG KÝ
-                            </p> */}
-
-                            <div>
-                                <Accordion className={cx('accordion')}>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        className={cx('accordion-summary')}
-                                    >
-                                        <div className={cx('typography')}>
-                                            <Avatar
-                                                alt="Remy Sharp"
-                                                src="https://res.cloudinary.com/phtuandev/image/upload/v1658649722/GoTravel/karik_zfjwem.jpg"
-                                                sx={{ width: 50, height: 50 }}
-                                            />
-                                            <span>Phạm Hoàng Tuấn</span>
-                                        </div>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordion-details')}
-                                    >
-                                        <div className={cx('typography')}>
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit.
-                                            Suspendisse malesuada lacus ex, sit
-                                            amet blandit leo lobortis eget.
-                                        </div>
-                                        <IconButton
-                                            aria-label="delete"
-                                            className={cx('delete-button')}
-                                        >
-                                            <DeleteIcon
-                                                className={cx('icon')}
-                                            />
-                                        </IconButton>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </div>
-                            <div>
-                                <Accordion className={cx('accordion')}>
-                                    <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon />}
-                                        aria-controls="panel1a-content"
-                                        className={cx('accordion-summary')}
-                                    >
-                                        <div className={cx('typography')}>
-                                            <Avatar
-                                                alt="Remy Sharp"
-                                                src="https://res.cloudinary.com/phtuandev/image/upload/v1658649722/GoTravel/karik_zfjwem.jpg"
-                                                sx={{ width: 50, height: 50 }}
-                                            />
-                                            <span>Phạm Hoàng Tuấn</span>
-                                        </div>
-                                    </AccordionSummary>
-                                    <AccordionDetails
-                                        className={cx('accordion-details')}
-                                    >
-                                        <div className={cx('typography')}>
-                                            Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit.
-                                            Suspendisse malesuada lacus ex, sit
-                                            amet blandit leo lobortis eget.
-                                        </div>
-                                        <IconButton
-                                            aria-label="delete"
-                                            className={cx('delete-button')}
-                                        >
-                                            <DeleteIcon
-                                                className={cx('icon')}
-                                            />
-                                        </IconButton>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </div>
+                            {calendar.ldt_huongdanvien.map((guide, index) => (
+                                <GuideRegisted
+                                    key={index}
+                                    guide={guide}
+                                ></GuideRegisted>
+                            ))}
                         </div>
                     </div>
                 </div>

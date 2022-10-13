@@ -100,6 +100,12 @@ export const getStatusCurrentOfGuide = (data) =>
 export const get30NextDayCalendarGuide = (data) =>
     axios.post(`${URL}/CalendarGuide/get30NextDayCalendarGuide`, data);
 
+export const getCalendarGuidebyDeaprtureDate = (data) =>
+    axios.post(`${URL}/CalendarGuide/getCalendarGuidebyDeaprtureDate`, data);
+
+export const searchingCalendarGuideByTourName = (data) =>
+    axios.post(`${URL}/CalendarGuide/searchingCalendarGuideByTourName`, data);
+
 // BOOKING TOUR
 export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);
 
@@ -178,6 +184,9 @@ export const activeProfile = (data) =>
 
 export const updateProfileGuideOfAccount = (data) =>
     axios.post(`${URL}/GuideAccount/updateProfileGuideOfAccount`, data);
+
+export const searchingGuide = (data) =>
+    axios.post(`${URL}/GuideAccount/searchingGuide`, data);
 
 // RATING GUIDE
 export const getRatingGuideByGuideAccount = (data) =>
