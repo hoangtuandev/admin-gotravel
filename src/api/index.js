@@ -191,3 +191,9 @@ export const searchingGuide = (data) =>
 // RATING GUIDE
 export const getRatingGuideByGuideAccount = (data) =>
     axios.post(`${URL}/RatingGuide/getRatingGuideByGuideAccount`, data);
+
+export const updateStartGuide = (data) =>
+    axios.post(`${URL}/QualityGuide`, data);
+
+export const addQualityGuide = (data) =>
+    axios.post(`${URL}/QualityGuide`, data);

@@ -102,6 +102,17 @@ export default function AddProfile(props) {
             hdv_cccd: identifyGuide,
             hdv_sodienthoai: phoneGuide,
         }).then((res) => {
+            api.addQualityGuide({
+                clhdv_huongdanvien: {
+                    tkhdv_tendangnhap: username,
+                    tkhdv_matkhau: password,
+                    tkhdv_anhdaidien: imagePreview,
+                    tkhdv_trangthai: 1,
+                    tkhdv_huongdanvien: res.data,
+                },
+                clhdv_saotrungbinh: 0,
+            });
+
             api.createAccountGuide({
                 tkhdv_tendangnhap: username,
                 tkhdv_matkhau: password,

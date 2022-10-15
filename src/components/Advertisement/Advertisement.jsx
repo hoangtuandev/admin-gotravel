@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
+import Pagination from '@mui/material/Pagination';
 import AddIcon from '@mui/icons-material/Add';
 import styles from './Advertisement.scss';
 import AdvertisementItem from './AdvertisementItem';
@@ -44,6 +45,11 @@ function Advertisement() {
 
     const [advertisementList, setAdvertisementList] = useState(advertisements);
     const [keySearching, setKeySearching] = useState('');
+    const [page, setPage] = useState(1);
+
+    const handleChangePagination = (event, value) => {
+        setPage(value);
+    };
 
     useEffect(() => {
         typeList === 1 &&
@@ -175,12 +181,14 @@ function Advertisement() {
             <div>
                 {typeList === 1 && (
                     <ul className={cx('list-advertisements')}>
-                        {advertisementList.map((advertisement, index) => (
-                            <AdvertisementItem
-                                key={index}
-                                advertisement={advertisement}
-                            ></AdvertisementItem>
-                        ))}
+                        {advertisementList
+                            .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                            .map((advertisement, index) => (
+                                <AdvertisementItem
+                                    key={index}
+                                    advertisement={advertisement}
+                                ></AdvertisementItem>
+                            ))}
                     </ul>
                 )}
                 {typeList === 2 && (
@@ -194,6 +202,19 @@ function Advertisement() {
                     </ul>
                 )}
             </div>
+            {Math.ceil(advertisementList.length / 10) > 1 && (
+                <div className={cx('pagination-list')}>
+                    <Pagination
+                        size="large"
+                        count={Math.ceil(advertisementList.length / 10)}
+                        page={page}
+                        color="error"
+                        variant="outlined"
+                        className={cx('pagination')}
+                        onChange={handleChangePagination}
+                    />
+                </div>
+            )}
             {openView && <ViewAdvertisement></ViewAdvertisement>}
             {openAdd && (
                 <AddAdvertisement

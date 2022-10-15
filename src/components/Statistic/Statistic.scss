@@ -1,0 +1,515 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+ul {
+    padding: 0 0;
+    list-style-type: none;
+}
+
+.statistic {
+    padding-top: 80px;
+    padding-left: 210px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .label-statistic {
+        font-family: $mainFamily;
+        font-weight: 800;
+        font-size: 19px;
+        text-align: center;
+        color: #0084c2;
+        margin: 0 0 20px 0;
+    }
+
+    .general-statistic {
+        margin: 10px 0 30px 0;
+        .general-statistic-list {
+            display: flex;
+            justify-content: space-between;
+
+            li {
+                width: 240px;
+                display: flex;
+                flex-direction: column;
+                border: 0px solid #e74c3c;
+                background-color: #e74c3c;
+                border-radius: 10px;
+                padding: 0 0;
+
+                .figures {
+                    height: 90px;
+                    color: #fff;
+                    font-family: $mainFamily;
+                    font-size: 17px;
+                    font-weight: 700;
+                    padding: 10px 0;
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .icon-figure {
+                        font-size: 45px;
+                        padding-left: 3px;
+                    }
+                    .value-figure {
+                        padding-right: 10px;
+                        text-align: right;
+
+                        .total {
+                            font-size: 30px;
+
+                            sup {
+                                font-size: 20px;
+                            }
+                        }
+                        .label {
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+                .view-detail {
+                    background-color: #fff;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+
+                    border: 3px solid #e74c3c;
+                    font-family: $mainFamily;
+                    font-weight: 700;
+                    font-size: 14px;
+                    padding: 5px 5px;
+
+                    .icon {
+                        font-size: 19px;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .tour-general {
+                border: 0px solid #0b9de0;
+                background-color: #0b9de0;
+
+                .view-detail {
+                    border: 3px solid #0b9de0;
+                }
+            }
+
+            .booking-general {
+                border: 0px solid #28b463;
+                background-color: #28b463;
+
+                .figures {
+                    .icon-figure {
+                        font-size: 50px;
+                        padding-left: 10px;
+                    }
+                }
+
+                .view-detail {
+                    border: 3px solid #28b463;
+                }
+            }
+
+            .guide-general {
+                border: 0px solid #f39c12;
+                background-color: #f39c12;
+
+                .view-detail {
+                    border: 3px solid #f39c12;
+                }
+            }
+
+            .tourist-general {
+                border: 0px solid #a569bd;
+                background-color: #a569bd;
+
+                .view-detail {
+                    border: 3px solid #a569bd;
+                }
+            }
+        }
+    }
+
+    .revenue-statistic {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 20px 30px;
+        margin: 30px 0px;
+        box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
+
+        .select-year {
+            width: 250px;
+            margin-bottom: 10px;
+
+            .select-field {
+                font-size: 16px;
+                font-family: $mainFamily;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .tour-statistic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 30px 30px 30px;
+        border-radius: 15px;
+        margin: 20px 0px;
+
+        .label-statistic {
+            font-family: $mainFamily;
+            font-weight: 800;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            margin: 0 0 20px 0;
+            padding: 8px 25px;
+            border-radius: 50px;
+            background-color: #e74c3c;
+            box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 2px solid #0b9de0;
+
+            td {
+                font-family: $mainFamily;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 0px 15px;
+                text-align: center;
+            }
+
+            .tour-name {
+                text-align: left;
+                width: 400px;
+                max-width: 400px;
+            }
+
+            thead {
+                tr {
+                    td {
+                        background-color: #0b9de0;
+                        color: #fff;
+                        font-weight: 700;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        font-size: 17px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding-top: 7px;
+                        padding-bottom: 7px;
+
+                        img {
+                            width: 160px;
+                            height: 95px;
+                            border-radius: 4px;
+                        }
+
+                        p {
+                            width: 40px;
+                            font-size: 17px;
+                            font-weight: 700;
+                            border-radius: 50px;
+                            padding: 6px 0;
+                        }
+
+                        .top-index-one {
+                            width: 40px;
+                            font-size: 17px;
+                            font-weight: 700;
+                            background-color: #e74c3c;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 6px 0;
+                        }
+
+                        .top-index-two {
+                            width: 40px;
+                            font-size: 17px;
+                            font-weight: 700;
+                            background-color: #0b9de0;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 6px 0;
+                        }
+
+                        .top-index-three {
+                            width: 40px;
+                            font-size: 17px;
+                            font-weight: 700;
+                            background-color: #28b463;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 6px 0;
+                        }
+                    }
+
+                    .tour-name {
+                        font-weight: 700;
+                        color: #0084c2;
+                    }
+                }
+            }
+        }
+    }
+
+    .tourist-statistic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 30px 30px 30px;
+        border-radius: 15px;
+        margin: 20px 0px;
+
+        .label-statistic {
+            font-family: $mainFamily;
+            font-weight: 800;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            margin: 0 0 20px 0;
+            padding: 8px 25px;
+            border-radius: 50px;
+            background-color: #e74c3c;
+            box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 2px solid #0b9de0;
+
+            td {
+                font-family: $mainFamily;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 0px 15px;
+                text-align: center;
+            }
+
+            .tourist-name {
+                text-align: left;
+                width: 250px;
+                max-width: 400px;
+            }
+
+            thead {
+                tr {
+                    td {
+                        background-color: #0b9de0;
+                        color: #fff;
+                        font-weight: 700;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        font-size: 17px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding-top: 13px;
+                        padding-bottom: 13px;
+
+                        img {
+                            width: 160px;
+                            height: 95px;
+                            border-radius: 4px;
+                        }
+
+                        p {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-one {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #e74c3c;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-two {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #0b9de0;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-three {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #28b463;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+                    }
+
+                    .tourist-name {
+                        font-weight: 700;
+                        color: #0084c2;
+                    }
+
+                    .tourist-pay {
+                        color: #e74c3c;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+
+    .guide-star-statistic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 30px 30px 30px;
+        border-radius: 15px;
+        margin: 20px 0px;
+
+        .label-statistic {
+            font-family: $mainFamily;
+            font-weight: 800;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            margin: 0 0 20px 0;
+            padding: 8px 25px;
+            border-radius: 50px;
+            background-color: #e74c3c;
+            box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 2px solid #0b9de0;
+
+            td {
+                font-family: $mainFamily;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 0px 15px;
+                text-align: center;
+            }
+
+            .guide-name {
+                text-align: left;
+                width: 350px;
+                max-width: 400px;
+
+                img {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50px;
+                    margin-right: 10px;
+                }
+            }
+
+            thead {
+                tr {
+                    td {
+                        background-color: #0b9de0;
+                        color: #fff;
+                        font-weight: 700;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        font-size: 17px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding-top: 13px;
+                        padding-bottom: 13px;
+
+                        img {
+                            width: 160px;
+                            height: 95px;
+                            border-radius: 4px;
+                        }
+
+                        p {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-one {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #e74c3c;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-two {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #0b9de0;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-three {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #28b463;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+                    }
+
+                    .guide-name {
+                        font-weight: 700;
+                        color: #0084c2;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .tourist-pay {
+                        color: #e74c3c;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}

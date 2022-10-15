@@ -82,6 +82,7 @@ export default function UpdateProfile(props) {
             api.updateProfileGuideOfAccount({
                 _id: profile._id,
                 tkhdv_huongdanvien: res.data[0],
+                tkhdv_anhdaidien: imagePreview,
             }).then((res) => {
                 api.getAllGuideAccount().then((res) => {
                     setAccountGuideList(res.data);

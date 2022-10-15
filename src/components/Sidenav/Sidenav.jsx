@@ -51,6 +51,22 @@ function Sidenav() {
             </div>
             <div className={cx('menu')}>
                 <ul>
+                    <Link to="/thong-ke" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Thống kê"
+                            style={
+                                labelOption === 'Thống kê' ? selectedStyle : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Thống kê">
+                                <FcPositiveDynamic />
+                            </span>
+                            <span className={cx('label')} title="Thống kê">
+                                Thống kê
+                            </span>
+                        </li>
+                    </Link>
                     <Link to="/loai-hinh-tour" className={cx('link-router')}>
                         <li
                             title="Loại hình Tour"
@@ -209,18 +225,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Thống kê"
-                        style={labelOption === 'Thống kê' ? selectedStyle : {}}
-                    >
-                        <span className={cx('icon')} title="Thống kê">
-                            <FcPositiveDynamic />
-                        </span>
-                        <span className={cx('label')} title="Thống kê">
-                            Thống kê
-                        </span>
-                    </li>
                 </ul>
             </div>
         </div>

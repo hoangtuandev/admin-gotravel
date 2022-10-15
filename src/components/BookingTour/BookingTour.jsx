@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import DatePicker from 'react-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Pagination from '@mui/material/Pagination';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import { CgArrowLongRightC } from 'react-icons/cg';
 import { BsCalendar3 } from 'react-icons/bs';
@@ -37,6 +38,11 @@ function BookingTour() {
     const bookings = useSelector(bookingTourList);
     const viewBooking = useSelector(viewBookingTour);
     const paramsFilter = useSelector(paramsBookingFilter);
+    const [page, setPage] = useState(1);
+
+    const handleChangePagination = (event, value) => {
+        setPage(value);
+    };
 
     const handleChangeTab = (event, newValue) => {
         dispatch(handleChangeCurrentTab(newValue));
@@ -361,14 +367,30 @@ function BookingTour() {
                         </tr>
                     </thead>
                     <tbody>
-                        {bookings.map((item, index) => (
-                            <BookingTourItem
-                                key={index}
-                                item={item}
-                            ></BookingTourItem>
-                        ))}
+                        {bookings
+                            .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                            .map((item, index) => (
+                                <BookingTourItem
+                                    key={index}
+                                    item={item}
+                                ></BookingTourItem>
+                            ))}
                     </tbody>
                 </table>
+            )}
+
+            {Math.ceil(bookings.length / 10) > 1 && (
+                <div className={cx('pagination-list')}>
+                    <Pagination
+                        size="large"
+                        count={Math.ceil(bookings.length / 10)}
+                        page={page}
+                        color="error"
+                        variant="outlined"
+                        className={cx('pagination')}
+                        onChange={handleChangePagination}
+                    />
+                </div>
             )}
             {viewBooking && <ViewBookingTour></ViewBookingTour>}
         </div>

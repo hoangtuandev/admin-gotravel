@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import styles from './CalendarGuide.scss';
 import * as api from '../../api';
 import CalendarAccordion from './CalendarAccordion';
+import Pagination from '@mui/material/Pagination';
 import Switch from '@mui/material/Switch';
 import { BsCalendar3 } from 'react-icons/bs';
 import { isOpenGuidesSubmit } from './CalendarGuideSlice';
@@ -20,6 +21,11 @@ function CalendarGuide() {
     const [departure, setDeparture] = useState(new Date());
     const [selectAll, setSelectAll] = useState(true);
     const [searchingKey, setSearchingKey] = useState('');
+    const [page, setPage] = useState(1);
+
+    const handleChangePagination = (event, value) => {
+        setPage(value);
+    };
 
     const handleToggleSelectAll = (event) => {
         setSelectAll(event.target.checked);
@@ -27,6 +33,8 @@ function CalendarGuide() {
 
     useEffect(() => {
         if (selectAll === true) {
+            setSearchingKey('');
+            setDeparture(new Date());
             api.get30NextDayCalendarGuide().then((res) => {
                 setCalendarGuide(
                     res.data.sort(
@@ -81,8 +89,6 @@ function CalendarGuide() {
         });
     };
 
-    console.log('re-render');
-
     return (
         <div className={cx('calendar-guide')}>
             <div className={cx('filter-calendar-guide')}>
@@ -135,14 +141,31 @@ function CalendarGuide() {
                     />
                 </div>
             )}
+
             {openGuidesSubmit && <GuidesSubmit></GuidesSubmit>}
             {calendarGuide.length !== 0 &&
-                calendarGuide.map((calendar, index) => (
-                    <CalendarAccordion
-                        key={index}
-                        calendar={calendar}
-                    ></CalendarAccordion>
-                ))}
+                calendarGuide
+                    .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                    .map((calendar, index) => (
+                        <CalendarAccordion
+                            key={index}
+                            calendar={calendar}
+                        ></CalendarAccordion>
+                    ))}
+
+            {Math.ceil(calendarGuide.length / 10) > 1 && (
+                <div className={cx('pagination-list')}>
+                    <Pagination
+                        size="large"
+                        count={Math.ceil(calendarGuide.length / 10)}
+                        page={page}
+                        color="error"
+                        variant="outlined"
+                        className={cx('pagination')}
+                        onChange={handleChangePagination}
+                    />
+                </div>
+            )}
         </div>
     );
 }

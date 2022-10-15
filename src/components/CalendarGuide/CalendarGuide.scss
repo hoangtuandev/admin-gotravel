@@ -197,6 +197,41 @@ $mainFamily: "Mulish", sans-serif;
         }
     }
 
+    .pagination-list {
+        margin-top: 30px;
+        display: flex;
+        justify-content: right;
+
+        .pagination {
+            ul {
+                li {
+                    .css-1scal0h-MuiPaginationItem-root {
+                        font-size: 18px;
+                        font-weight: 700;
+                    }
+
+                    button {
+                        font-family: $mainFamily;
+                        font-size: 17px;
+                        font-weight: 700;
+                        background-color: #fff;
+                        margin: 0 10px;
+
+                        .css-n8417t-MuiSvgIcon-root-MuiPaginationItem-icon {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    .css-1jkhw7p-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+                        background-color: #e74c3c;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
     .accordion-date {
         margin: 0 0 20px 0;
         box-shadow: 1px 1px 8px #9c9c9c;

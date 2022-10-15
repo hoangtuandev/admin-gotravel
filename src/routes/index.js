@@ -9,6 +9,7 @@ import AdvertisementPage from '../pages/AdvertisementPage/AdvertisementPage';
 import AdminPage from '../pages/AdminPage/AdminPage';
 import CalendarGuidePage from '../pages/CalendarGuidePage/CalendarGuidePage';
 import GuidePage from '../pages/GuidePage/GuidePage';
+import StatisticPage from '../pages/StatisticPage/StatisticPage';
 
 export const privateRoutes = [
     { path: '/', component: Home },
@@ -21,6 +22,7 @@ export const privateRoutes = [
     { path: '/quang-ba', component: AdvertisementPage },
     { path: '/quan-tri-vien', component: AdminPage },
     { path: '/huong-dan-vien', component: GuidePage },
+    { path: '/thong-ke', component: StatisticPage },
     { path: '/:somestring', component: Home },
 ];
 

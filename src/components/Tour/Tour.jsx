@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { MdAdd } from 'react-icons/md';
 import { TbArrowBackUp } from 'react-icons/tb';
 import { ImSearch } from 'react-icons/im';
@@ -46,12 +45,10 @@ function Tour() {
 
     const handleChangePagination = (event, value) => {
         setPage(value);
-        console.log(value);
     };
 
     useEffect(() => {
         api.getAllActiveTour().then((res) => {
-            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
             setAllTour(res.data);
         });
@@ -63,7 +60,6 @@ function Tour() {
 
     useEffect(() => {
         api.searchingTour({ keySearch: keySearching }).then((res) => {
-            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
         });
         setSortValue(0);
@@ -81,7 +77,6 @@ function Tour() {
 
     const handleGetAllActiveTour = () => {
         api.getAllActiveTour().then((res) => {
-            // setTourList(res.data.slice((page - 1) * 10, (page - 1) * 10 + 10));
             setTourList(res.data);
             dispatch(handleCloseStopedTour());
         });
@@ -90,8 +85,6 @@ function Tour() {
             setStopedTourList(res.data);
         });
     };
-
-    console.log(tourList.length);
 
     return (
         <div className={cx('tour')}>
@@ -191,9 +184,14 @@ function Tour() {
                             <tr>
                                 <td></td>
                             </tr>
-                            {tourList.map((data, index) => (
-                                <TourItem key={index} data={data}></TourItem>
-                            ))}
+                            {tourList
+                                .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                                .map((data, index) => (
+                                    <TourItem
+                                        key={index}
+                                        data={data}
+                                    ></TourItem>
+                                ))}
                         </tbody>
                     </table>
                 )}
@@ -225,28 +223,32 @@ function Tour() {
                             <tr>
                                 <td></td>
                             </tr>
-                            {stopedTourList.map((data, index) => (
-                                <TourItem
-                                    setTourList={setTourList}
-                                    setStopedTourList={setStopedTourList}
-                                    key={index}
-                                    data={data}
-                                ></TourItem>
-                            ))}
+                            {stopedTourList
+                                .slice((page - 1) * 10, (page - 1) * 10 + 10)
+                                .map((data, index) => (
+                                    <TourItem
+                                        setTourList={setTourList}
+                                        setStopedTourList={setStopedTourList}
+                                        key={index}
+                                        data={data}
+                                    ></TourItem>
+                                ))}
                         </tbody>
                     </table>
                 )}
-                <div className={cx('pagination-list')}>
-                    <Pagination
-                        size="large"
-                        count={Math.ceil(tourList.length / 10)}
-                        page={page}
-                        color="error"
-                        variant="outlined"
-                        className={cx('pagination')}
-                        onChange={handleChangePagination}
-                    />
-                </div>
+                {Math.ceil(tourList.length / 10) > 1 && !showStopedTour && (
+                    <div className={cx('pagination-list')}>
+                        <Pagination
+                            size="large"
+                            count={Math.ceil(tourList.length / 10)}
+                            page={page}
+                            color="error"
+                            variant="outlined"
+                            className={cx('pagination')}
+                            onChange={handleChangePagination}
+                        />
+                    </div>
+                )}
             </div>
             {openAddDialog && <AddDialog setTourList={setTourList}></AddDialog>}
             {openUpdateDialog && (

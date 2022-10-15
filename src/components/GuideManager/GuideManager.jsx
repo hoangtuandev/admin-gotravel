@@ -63,6 +63,7 @@ function GuideManager() {
     }, []);
 
     useEffect(() => {
+        setSearchingKey('');
         if (selectAll) {
             api.getActiveGuideAccount().then((res) => {
                 setAccountGuideList(res.data);
@@ -138,7 +139,7 @@ function GuideManager() {
                         <input
                             className={'textfield-search'}
                             type="text"
-                            placeholder="Nhập tên tour để tìm kiếm..."
+                            placeholder="Tìm kiếm hướng dẫn viên..."
                             value={searchingKey}
                             onChange={(e) =>
                                 handleChangeSearchingKey(e.target.value)
