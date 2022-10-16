@@ -66,6 +66,8 @@ export const updateActiveTour = (data) =>
 export const searchingTour = (data) =>
     axios.post(`${URL}/Tour/searchingTour`, data);
 
+export const countAmountTour = () => axios.get(`${URL}/Tour/countAmountTour`);
+
 // export const takeThirtyNextDateDeparture = () =>
 //     axios.get(`${URL}/Tour/takeThirtyNextDateDeparture`);
 
@@ -133,6 +135,18 @@ export const filterBookingTourByBookingDate = (data) =>
 export const filterBookingTourByParams = (data) =>
     axios.post(`${URL}/BookingTour/filterBookingTourByParams`, data);
 
+export const countAmountBooking = () =>
+    axios.get(`${URL}/BookingTour/countAmountBooking`);
+
+export const totalRevenueBookingTour = () =>
+    axios.get(`${URL}/BookingTour/totalRevenueBookingTour`);
+
+export const getYearsBookingTour = () =>
+    axios.get(`${URL}/BookingTour/getYearsBookingTour`);
+
+export const revenueBookingTourByMonth = (data) =>
+    axios.post(`${URL}/BookingTour/revenueBookingTourByMonth`, data);
+
 // ADVERTISEMENT
 
 export const getAllAdvertiseqment = () => axios.get(`${URL}/Advertisement`);
@@ -188,6 +202,9 @@ export const updateProfileGuideOfAccount = (data) =>
 export const searchingGuide = (data) =>
     axios.post(`${URL}/GuideAccount/searchingGuide`, data);
 
+export const countAmountGuide = () =>
+    axios.get(`${URL}/GuideAccount/countAmountGuide`);
+
 // RATING GUIDE
 export const getRatingGuideByGuideAccount = (data) =>
     axios.post(`${URL}/RatingGuide/getRatingGuideByGuideAccount`, data);
@@ -197,3 +214,7 @@ export const updateStartGuide = (data) =>
 
 export const addQualityGuide = (data) =>
     axios.post(`${URL}/QualityGuide`, data);
+
+// TOURIST
+export const countAmountTouristAccount = () =>
+    axios.get(`${URL}/TouristAccount/countAmountTouristAccount`);
