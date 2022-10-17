@@ -147,6 +147,12 @@ export const getYearsBookingTour = () =>
 export const revenueBookingTourByMonth = (data) =>
     axios.post(`${URL}/BookingTour/revenueBookingTourByMonth`, data);
 
+export const revenueBookingByTour = () =>
+    axios.get(`${URL}/BookingTour/revenueBookingByTour`);
+
+export const revenueBookingByTourist = () =>
+    axios.get(`${URL}/BookingTour/revenueBookingByTourist`);
+
 // ADVERTISEMENT
 
 export const getAllAdvertiseqment = () => axios.get(`${URL}/Advertisement`);
@@ -204,6 +210,9 @@ export const searchingGuide = (data) =>
 
 export const countAmountGuide = () =>
     axios.get(`${URL}/GuideAccount/countAmountGuide`);
+
+export const sortAccountGuideByAverageStar = (data) =>
+    axios.post(`${URL}/GuideAccount/sortAccountGuideByAverageStar`, data);
 
 // RATING GUIDE
 export const getRatingGuideByGuideAccount = (data) =>

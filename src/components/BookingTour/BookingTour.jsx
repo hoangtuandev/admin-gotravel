@@ -49,6 +49,7 @@ function BookingTour() {
     };
 
     useEffect(() => {
+        console.log('render');
         api.updateBookingTourWorking({ bt_trangthai: 3 }).then((res) => {});
         api.updateBookingTourFinish({ bt_trangthai: 4 }).then((res) => {});
     }, []);

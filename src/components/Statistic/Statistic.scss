@@ -251,6 +251,20 @@ ul {
                 max-width: 400px;
             }
 
+            .total-revenue {
+                color: #ff9d00;
+                font-weight: 700;
+                font-size: 17px;
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    color: #ff9d00;
+                    font-size: 20px;
+                    margin-right: 5px;
+                }
+            }
+
             thead {
                 tr {
                     td {
@@ -270,8 +284,8 @@ ul {
                         padding-bottom: 7px;
 
                         img {
-                            width: 160px;
-                            height: 95px;
+                            width: 165px;
+                            height: 100px;
                             border-radius: 4px;
                         }
 
@@ -363,6 +377,20 @@ ul {
                 max-width: 400px;
             }
 
+            .tourist-pay {
+                color: #ff9d00;
+                font-weight: 700;
+                font-size: 17px;
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    color: #ff9d00;
+                    font-size: 20px;
+                    margin-right: 5px;
+                }
+            }
+
             thead {
                 tr {
                     td {
@@ -429,11 +457,6 @@ ul {
                     .tourist-name {
                         font-weight: 700;
                         color: #0084c2;
-                    }
-
-                    .tourist-pay {
-                        color: #e74c3c;
-                        font-weight: 700;
                     }
                 }
             }

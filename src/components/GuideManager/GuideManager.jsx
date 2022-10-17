@@ -6,8 +6,8 @@ import AddIcon from '@mui/icons-material/Add';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import ReplyIcon from '@mui/icons-material/Reply';
 import SearchIcon from '@mui/icons-material/Search';
-import CircularProgress from '@mui/material/CircularProgress';
 import Switch from '@mui/material/Switch';
+import Select from 'react-select';
 import styles from './GuideManager.scss';
 import {
     activeProfile,
@@ -30,6 +30,15 @@ import ActiveProfile from './ActiveProfile';
 
 const cx = classNames.bind(styles);
 
+const starSelectOptions = [
+    { value: 'starIncrement', label: 'Tăng dần' },
+    { value: 'starDecrement', label: 'Giảm dần' },
+];
+const timesSelectOptions = [
+    { value: 'timesIncrement', label: 'Tăng dần' },
+    { value: 'timesDecrement', label: 'Giảm dần' },
+];
+
 function GuideManager() {
     const dispatch = useDispatch();
     const openAdd = useSelector(addProfile);
@@ -43,6 +52,7 @@ function GuideManager() {
     const [lockedAccountGuideList, setLockedAccountGuideList] = useState([]);
     const [selectAll, setSelectAll] = useState(true);
     const [searchingKey, setSearchingKey] = useState('');
+    // const [typeSortStar, setTypeSortStar] = useState(null);
 
     const handleToggleSelectAll = (event) => {
         setSelectAll(event.target.checked);
@@ -85,6 +95,19 @@ function GuideManager() {
         api.searchingGuide({ keySearch: key }).then((res) => {
             setAccountGuideList(res.data);
         });
+    };
+
+    const handleChangeSelectSortStar = (option) => {
+        setSelectAll(false);
+        option.value === 'starIncrement' &&
+            api.sortAccountGuideByAverageStar({ typeSort: 1 }).then((res) => {
+                setAccountGuideList(res.data);
+            });
+
+        option.value === 'starDecrement' &&
+            api.sortAccountGuideByAverageStar({ typeSort: -1 }).then((res) => {
+                setAccountGuideList(res.data);
+            });
     };
 
     return (
@@ -133,6 +156,22 @@ function GuideManager() {
                             checked={selectAll}
                             onChange={handleToggleSelectAll}
                             inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    </div>
+                    {/* <div className={'select-sort'}>
+                        <Select
+                            placeholder="Lượt dẫn tour"
+                            className={cx('select-field')}
+                            options={timesSelectOptions}
+                            // onChange={handleChangeYearSelected}
+                        />
+                    </div> */}
+                    <div className={'select-sort'}>
+                        <Select
+                            placeholder="Sao trung bình"
+                            className={cx('select-field')}
+                            options={starSelectOptions}
+                            onChange={handleChangeSelectSortStar}
                         />
                     </div>
                     <div className={cx('search-tour')}>
@@ -220,9 +259,9 @@ function GuideManager() {
                 )}
                 {accountGuideList.length === 0 && (
                     <div className={cx('empty-list')}>
-                        <div>
-                            <CircularProgress />
-                        </div>
+                        <p className={cx('notification')}>
+                            Không tìm thấy hướng dẫn viên !
+                        </p>
                         <div>
                             <img
                                 src="https://res.cloudinary.com/phtuandev/image/upload/v1660285963/GoTravel/undraw_Explore_re_8l4v_lvunn9.png"

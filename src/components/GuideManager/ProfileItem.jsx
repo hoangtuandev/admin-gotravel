@@ -34,6 +34,8 @@ function ProfileItem(props) {
     const [guideTimes, setGuideTimes] = useState(0);
     const [workingStatus, setWorkingStatus] = useState(0);
 
+    // console.log(account);
+
     useEffect(() => {
         api.getRatingGuideByGuideAccount({ _id: account._id }).then((res) => {
             const ratings = res.data;

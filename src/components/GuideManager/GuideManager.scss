@@ -54,9 +54,9 @@ $mainFamily: "Mulish", sans-serif;
 
     .filter-guide {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         margin-top: 10px;
 
         .label-filter {
@@ -75,6 +75,13 @@ $mainFamily: "Mulish", sans-serif;
                 font-weight: 700;
                 font-size: 16px;
                 color: #ea1f08;
+            }
+        }
+
+        .select-sort {
+            .select-field {
+                width: 200px;
+                font-size: 15px;
             }
         }
 
@@ -124,11 +131,18 @@ $mainFamily: "Mulish", sans-serif;
 
         .empty-list {
             text-align: center;
-            width: 940px;
+            width: 1160px;
             padding: 15px 15px;
             background-color: #fff;
             border-radius: 15px;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+            .notification {
+                text-align: center;
+                font-family: $mainFamily;
+                font-weight: 700;
+                font-size: 20px;
+            }
 
             img {
                 width: 600px;
