@@ -30,7 +30,7 @@ function TouristStatistic() {
                             <td className={cx('tourist-name')}>
                                 Tên khách hàng
                             </td>
-                            <td>Số điện thoại</td>
+                            <td className={cx('tourist-contact')}>Liên hệ</td>
                             <td>Tổng thanh toán</td>
                         </tr>
                     </thead>
@@ -55,11 +55,11 @@ function TouristStatistic() {
                                         .kdl_hoten
                                 }
                             </td>
-                            <td className={cx('booking-times')}>
-                                {
+                            <td className={cx('tourist-contact')}>
+                                {touristRevenues[0]._id.tkkdl_khachdulich
+                                    .kdl_sodienthoai ||
                                     touristRevenues[0]._id.tkkdl_khachdulich
-                                        .kdl_sodienthoai
-                                }
+                                        .kdl_email}
                             </td>
                             <td>
                                 <div className={cx('tourist-pay')}>
@@ -93,11 +93,11 @@ function TouristStatistic() {
                                         .kdl_hoten
                                 }
                             </td>
-                            <td className={cx('booking-times')}>
-                                {
+                            <td className={cx('tourist-contact')}>
+                                {touristRevenues[1]._id.tkkdl_khachdulich
+                                    .kdl_sodienthoai ||
                                     touristRevenues[1]._id.tkkdl_khachdulich
-                                        .kdl_sodienthoai
-                                }
+                                        .kdl_email}
                             </td>
                             <td>
                                 <div className={cx('tourist-pay')}>
@@ -131,11 +131,11 @@ function TouristStatistic() {
                                         .kdl_hoten
                                 }
                             </td>
-                            <td className={cx('booking-times')}>
-                                {
+                            <td className={cx('tourist-contact')}>
+                                {touristRevenues[2]._id.tkkdl_khachdulich
+                                    .kdl_sodienthoai ||
                                     touristRevenues[2]._id.tkkdl_khachdulich
-                                        .kdl_sodienthoai
-                                }
+                                        .kdl_email}
                             </td>
                             <td>
                                 <div className={cx('tourist-pay')}>
@@ -169,11 +169,11 @@ function TouristStatistic() {
                                         .kdl_hoten
                                 }
                             </td>
-                            <td className={cx('booking-times')}>
-                                {
+                            <td className={cx('tourist-contact')}>
+                                {touristRevenues[3]._id.tkkdl_khachdulich
+                                    .kdl_sodienthoai ||
                                     touristRevenues[3]._id.tkkdl_khachdulich
-                                        .kdl_sodienthoai
-                                }
+                                        .kdl_email}
                             </td>
                             <td>
                                 <div className={cx('tourist-pay')}>
@@ -207,11 +207,11 @@ function TouristStatistic() {
                                         .kdl_hoten
                                 }
                             </td>
-                            <td className={cx('booking-times')}>
-                                {
+                            <td className={cx('tourist-contact')}>
+                                {touristRevenues[4]._id.tkkdl_khachdulich
+                                    .kdl_sodienthoai ||
                                     touristRevenues[4]._id.tkkdl_khachdulich
-                                        .kdl_sodienthoai
-                                }
+                                        .kdl_email}
                             </td>
                             <td>
                                 <div className={cx('tourist-pay')}>

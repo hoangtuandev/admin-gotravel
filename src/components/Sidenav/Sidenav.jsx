@@ -1,4 +1,5 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
@@ -14,11 +15,12 @@ import {
     FcPortraitMode,
     FcAdvertising,
 } from 'react-icons/fc';
-
+import * as api from '../../api';
 import styles from './Sidenav.scss';
 import { setLabelOption, selectLabelOption } from '../GlobalSlice';
 
 const cx = classNames.bind(styles);
+const cookies = new Cookies();
 
 const selectedStyle = {
     cursor: 'pointer',
@@ -36,6 +38,17 @@ const selectedStyle = {
 function Sidenav() {
     const dispatch = useDispatch();
     const labelOption = useSelector(selectLabelOption);
+    const usernameAdmin = cookies.get('useradmin');
+
+    const [admin, setAdmin] = useState(null);
+
+    useEffect(() => {
+        api.getAccountAdminByUsername({ username: usernameAdmin }).then(
+            (res) => {
+                setAdmin(res.data[0]);
+            }
+        );
+    }, []);
 
     const handleSelectOption = (e) => {
         dispatch(setLabelOption(e.target.title));
@@ -67,6 +80,32 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
+                    {admin && admin.tkqtv_nhanvien.qtv_chucvu === 'Quản lý' && (
+                        <Link to="/quan-tri-vien" className={cx('link-router')}>
+                            <li
+                                onClick={(e) => handleSelectOption(e)}
+                                title="Quản trị viên"
+                                style={
+                                    labelOption === 'Quản trị viên'
+                                        ? selectedStyle
+                                        : {}
+                                }
+                            >
+                                <span
+                                    className={cx('icon')}
+                                    title="Quản trị viên"
+                                >
+                                    <FcPortraitMode />
+                                </span>
+                                <span
+                                    className={cx('label')}
+                                    title="Quản trị viên"
+                                >
+                                    Quản trị viên
+                                </span>
+                            </li>
+                        </Link>
+                    )}
                     <Link to="/loai-hinh-tour" className={cx('link-router')}>
                         <li
                             title="Loại hình Tour"
@@ -204,24 +243,6 @@ function Sidenav() {
                                 title="Hướng dẫn viên"
                             >
                                 Hướng dẫn viên
-                            </span>
-                        </li>
-                    </Link>
-                    <Link to="/quan-tri-vien" className={cx('link-router')}>
-                        <li
-                            onClick={(e) => handleSelectOption(e)}
-                            title="Quản trị viên"
-                            style={
-                                labelOption === 'Quản trị viên'
-                                    ? selectedStyle
-                                    : {}
-                            }
-                        >
-                            <span className={cx('icon')} title="Quản trị viên">
-                                <FcPortraitMode />
-                            </span>
-                            <span className={cx('label')} title="Quản trị viên">
-                                Quản trị viên
                             </span>
                         </li>
                     </Link>

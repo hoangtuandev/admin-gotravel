@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
@@ -10,17 +10,31 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import styles from './AdminManager.scss';
-import AddAdminManager from './AddAdminManager';
+import AddProfile from './AddProfile';
+import * as api from '../../api';
 import {
     addAdminManager,
     handleToggleAddAdminManager,
+    updateProfile,
 } from './AdminManagerSlice';
+import ProfileAdmin from './ProfileAdmin';
+import UpdateProfile from './UpdateProfile';
 
 const cx = classNames.bind(styles);
 
 function AdminManager() {
     const dispatch = useDispatch();
     const openAdd = useSelector(addAdminManager);
+    const openUpdate = useSelector(updateProfile);
+
+    const [accountList, setAccountList] = useState([]);
+
+    useEffect(() => {
+        api.getActivedAccountAdmin().then((res) => {
+            setAccountList(res.data);
+        });
+    }, []);
+
     return (
         <div className={cx('admin-manager')}>
             <div className={cx('btn-group')}>
@@ -69,42 +83,17 @@ function AdminManager() {
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td>
-                                <PersonIcon className={cx('user-icon')} />
-                            </td>
-                            <td className={cx('content-center')}>
-                                PHTUAN00235
-                            </td>
-                            <td className={cx('admin-name')}>
-                                Phạm Hoàng Tuấn
-                            </td>
-                            <td className={cx('content-center')}>Nam</td>
-                            <td className={cx('content-center')}>
-                                <span className={cx('manager-level')}>
-                                    Quản lý
-                                </span>
-                            </td>
-                            <td>
-                                <ButtonGroup variant="contained">
-                                    <Button>
-                                        <VisibilityIcon
-                                            className={cx('icon')}
-                                        />
-                                    </Button>
-                                    <Button color="success">
-                                        <EditIcon className={cx('icon')} />
-                                    </Button>
-                                    <Button color="error">
-                                        <VpnKeyIcon className={cx('icon')} />
-                                    </Button>
-                                </ButtonGroup>
-                            </td>
-                        </tr>
+                        {accountList.map((account, index) => (
+                            <ProfileAdmin
+                                key={index}
+                                account={account}
+                            ></ProfileAdmin>
+                        ))}
                     </tbody>
                 </table>
             </div>
-            {openAdd && <AddAdminManager></AddAdminManager>}
+            {openAdd && <AddProfile></AddProfile>}
+            {openUpdate && <UpdateProfile></UpdateProfile>}
         </div>
     );
 }

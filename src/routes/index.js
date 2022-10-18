@@ -1,5 +1,4 @@
 import SignIn from '../components/SignIn/SignIn';
-import Home from '../pages/Home/Home';
 import TypeTourismPage from '../pages/TypeTourismPage/TypeTourismPage';
 import TourPage from '../pages/TourPage/TourPage';
 import VehiclePage from '../pages/VehiclePage/VehiclePage';
@@ -12,7 +11,7 @@ import GuidePage from '../pages/GuidePage/GuidePage';
 import StatisticPage from '../pages/StatisticPage/StatisticPage';
 
 export const privateRoutes = [
-    { path: '/', component: Home },
+    { path: '/', component: StatisticPage },
     { path: '/loai-hinh-tour', component: TypeTourismPage },
     { path: '/tour', component: TourPage },
     { path: '/phuong-tien', component: VehiclePage },
@@ -23,7 +22,7 @@ export const privateRoutes = [
     { path: '/quan-tri-vien', component: AdminPage },
     { path: '/huong-dan-vien', component: GuidePage },
     { path: '/thong-ke', component: StatisticPage },
-    { path: '/:somestring', component: Home },
+    { path: '/:somestring', component: StatisticPage },
 ];
 
 export const publicRoutes = [

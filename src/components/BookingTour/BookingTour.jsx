@@ -40,6 +40,8 @@ function BookingTour() {
     const paramsFilter = useSelector(paramsBookingFilter);
     const [page, setPage] = useState(1);
 
+    console.log(new Date());
+
     const handleChangePagination = (event, value) => {
         setPage(value);
     };

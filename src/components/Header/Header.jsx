@@ -1,28 +1,22 @@
 import { React } from 'react';
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
-
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-
 import { FcNext } from 'react-icons/fc';
-import { MdOutlineLogout, MdInfoOutline } from 'react-icons/md';
 
 import styles from './Header.scss';
-// import { clientURL } from '../../app/clientURL';
 import { selectLabelOption } from '../GlobalSlice';
+import AccountMenu from './AccountMenu';
 
 const cx = classNames.bind(styles);
 
 function Header() {
     const labelOption = useSelector(selectLabelOption);
-    // const handleLogout = async () => {
-    //     await localStorage.removeItem('username');
-    //     window.location.href = `${clientURL}`;
-    // };
+
     return (
         <div className={cx('header')}>
             <div className={cx('header-label')}>
@@ -56,7 +50,8 @@ function Header() {
                     </li>
                 </ul>
                 <span className={cx('account')}>
-                    <img
+                    <AccountMenu></AccountMenu>
+                    {/* <img
                         src="https://res.cloudinary.com/phtuandev/image/upload/v1658649721/GoTravel/miule_nbsahv.jpg"
                         alt=""
                     />
@@ -69,13 +64,13 @@ function Header() {
                                 Thông tin tài khoản
                             </span>
                         </li>
-                        <li>
+                        <li onClick={() => handleLogout()}>
                             <span className={cx('icon')}>
                                 <MdOutlineLogout />
                             </span>
                             <span className={cx('label')}>Đăng xuất</span>
                         </li>
-                    </ul>
+                    </ul> */}
                 </span>
             </div>
         </div>

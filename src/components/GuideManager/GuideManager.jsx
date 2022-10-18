@@ -34,10 +34,6 @@ const starSelectOptions = [
     { value: 'starIncrement', label: 'Tăng dần' },
     { value: 'starDecrement', label: 'Giảm dần' },
 ];
-const timesSelectOptions = [
-    { value: 'timesIncrement', label: 'Tăng dần' },
-    { value: 'timesDecrement', label: 'Giảm dần' },
-];
 
 function GuideManager() {
     const dispatch = useDispatch();

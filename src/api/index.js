@@ -3,6 +3,25 @@ import axios from 'axios';
 const URL = 'http://localhost:5000';
 // const URL = 'https://go-travel-server.herokuapp.com';
 
+// ADMIN
+export const createAdmin = (data) =>
+    axios.post(`${URL}/Admin/createAdmin`, data);
+
+export const getAllAdminAccount = () =>
+    axios.get(`${URL}/AdminAccount/getAllAdminAccount`);
+
+export const getActivedAccountAdmin = () =>
+    axios.get(`${URL}/AdminAccount/getActivedAccountAdmin`);
+
+export const getAdminById = (data) =>
+    axios.post(`${URL}/Admin/getAdminById`, data);
+
+export const getAccountAdminByUsername = (data) =>
+    axios.post(`${URL}/AdminAccount/getAccountAdminByUsername`, data);
+
+export const createAccountAdmin = (data) =>
+    axios.post(`${URL}/AdminAccount/createAccountAdmin`, data);
+
 export const handleSignIn = (data) =>
     axios.post(`${URL}/AdminAccount/SignIn`, data);
 
@@ -107,6 +126,9 @@ export const getCalendarGuidebyDeaprtureDate = (data) =>
 
 export const searchingCalendarGuideByTourName = (data) =>
     axios.post(`${URL}/CalendarGuide/searchingCalendarGuideByTourName`, data);
+
+export const deleteRegistedGuide = (data) =>
+    axios.post(`${URL}/CalendarGuide/deleteRegistedGuide`, data);
 
 // BOOKING TOUR
 export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);

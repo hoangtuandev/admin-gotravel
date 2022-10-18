@@ -1,4 +1,5 @@
-import { React, memo } from 'react';
+import { React, memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import IconButton from '@mui/material/IconButton';
 import Accordion from '@mui/material/Accordion';
@@ -7,14 +8,38 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './CalendarGuide.scss';
+import * as api from '../../api';
+import { calendarSelected } from './CalendarGuideSlice';
 
 const cx = classNames.bind(styles);
 
 function GuideRegisted(props) {
+    const { setCalendarGuide } = props;
+    const selectedCalendar = useSelector(calendarSelected);
     const { guide } = props;
+    const [calendar, setCalendar] = useState(selectedCalendar);
+
+    console.log('rerender');
+
+    const handleDeleteGuide = () => {
+        api.deleteRegistedGuide({
+            username: guide.tkhdv_tendangnhap,
+            idCalendar: calendar._id,
+        }).then((res) => {
+            api.get30NextDayCalendarGuide().then((res) => {
+                setCalendarGuide(
+                    res.data.sort(
+                        (a, b) =>
+                            Date.parse(a.ldt_lichkhoihanh.lkh_ngaykhoihanh) -
+                            Date.parse(b.ldt_lichkhoihanh.lkh_ngaykhoihanh)
+                    )
+                );
+            });
+            setCalendar(selectedCalendar);
+        });
+    };
 
     return (
         <div>
@@ -68,6 +93,7 @@ function GuideRegisted(props) {
                     <IconButton
                         aria-label="delete"
                         className={cx('delete-button')}
+                        onClick={() => handleDeleteGuide()}
                     >
                         <DeleteIcon className={cx('icon')} />
                     </IconButton>

@@ -30,6 +30,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 function GuidesSubmit(props) {
+    const { setCalendarGuide } = props;
     const openGuidesSubmit = useSelector(isOpenGuidesSubmit);
     const calendar = useSelector(calendarSelected);
     const dispatch = useDispatch();
@@ -373,6 +374,7 @@ function GuidesSubmit(props) {
                                 <GuideRegisted
                                     key={index}
                                     guide={guide}
+                                    setCalendarGuide={setCalendarGuide}
                                 ></GuideRegisted>
                             ))}
                         </div>

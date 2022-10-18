@@ -1,12 +1,10 @@
 import { React, useState } from 'react';
 import classNames from 'classnames/bind';
-
+import Cookies from 'universal-cookie';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-// import Backdrop from '@material-ui/core/Backdrop';
-// import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
@@ -14,9 +12,10 @@ import { MdPersonOutline } from 'react-icons/md';
 
 import styles from './SignIn.scss';
 import * as api from '../../api';
-import { clientURL } from '../../app/clientURL';
 
 const cx = classNames.bind(styles);
+
+const cookies = new Cookies();
 
 function SignIn() {
     const [isShowPassword, setIsShowPassword] = useState(false);
@@ -52,10 +51,8 @@ function SignIn() {
                 const admin = parseJwt(res.data);
                 if (password === admin.password) {
                     setContentError('');
-                    localStorage.setItem('username', admin.username);
-                    if (localStorage.getItem('username')) {
-                        window.location.href = `${clientURL}`;
-                    }
+                    cookies.set('useradmin', admin.username, { path: '/' });
+                    window.location.href = '/';
                 } else {
                     setContentError('Mật khẩu không đúng');
                 }

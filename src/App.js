@@ -1,13 +1,16 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { privateRoutes } from './routes';
+import { privateRoutes, publicRoutes } from './routes';
+
+const cookies = new Cookies();
 
 function App() {
     return (
         <Router>
             <div className="admin-app">
                 <Routes>
-                    {/* {localStorage.getItem('username')
+                    {cookies.get('useradmin')
                         ? privateRoutes.map((route, index) => {
                               const Page = route.component;
                               return (
@@ -27,8 +30,8 @@ function App() {
                                       element={<Page />}
                                   />
                               );
-                          })} */}
-                    {privateRoutes.map((route, index) => {
+                          })}
+                    {/* {privateRoutes.map((route, index) => {
                         const Page = route.component;
                         return (
                             <Route
@@ -37,7 +40,7 @@ function App() {
                                 element={<Page />}
                             />
                         );
-                    })}
+                    })} */}
                 </Routes>
             </div>
         </Router>

@@ -52,11 +52,11 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 function CalendarAccordion(props) {
     const dispatch = useDispatch();
     const { calendar } = props;
-    const [expanded, setExpanded] = useState('panel1');
+    // const [expanded, setExpanded] = useState('panel1');
 
-    const handleChange = (panel) => (event, newExpanded) => {
-        setExpanded(newExpanded ? panel : false);
-    };
+    // const handleChange = (panel) => (event, newExpanded) => {
+    //     setExpanded(newExpanded ? panel : false);
+    // };
 
     const handleViewCalendarGuide = () => {
         dispatch(handleOpenGuidesSubmit());
@@ -97,16 +97,20 @@ function CalendarAccordion(props) {
 
     return (
         <Accordion
+            expanded
             className={cx('accordion-date')}
-            expanded={expanded === 'panel1'}
-            onChange={handleChange('panel1')}
+            // expanded={expanded === 'panel1'}
+            // onChange={handleChange('panel1')}
         >
             <AccordionSummary
                 className={cx('accordion-summary')}
                 aria-controls="panel1d-content"
                 id="panel1d-header"
             >
-                <Typography className={cx('typography')}>
+                <Typography
+                    className={cx('typography')}
+                    onClick={() => handleViewCalendarGuide()}
+                >
                     <span>Khởi hành</span>
                     {`${dayStart}, `}
                     {moment(dateStart).format('DD / MM / YYYY')}{' '}

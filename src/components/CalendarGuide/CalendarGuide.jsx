@@ -142,7 +142,11 @@ function CalendarGuide() {
                 </div>
             )}
 
-            {openGuidesSubmit && <GuidesSubmit></GuidesSubmit>}
+            {openGuidesSubmit && (
+                <GuidesSubmit
+                    setCalendarGuide={setCalendarGuide}
+                ></GuidesSubmit>
+            )}
             {calendarGuide.length !== 0 &&
                 calendarGuide
                     .slice((page - 1) * 10, (page - 1) * 10 + 10)
