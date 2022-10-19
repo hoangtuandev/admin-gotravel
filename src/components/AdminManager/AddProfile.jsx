@@ -1,6 +1,5 @@
 import { React, Fragment, forwardRef, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
-import Cookies from 'universal-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import Button from '@mui/material/Button';
@@ -36,18 +35,15 @@ const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 const powerSelectOptions = [
-    { value: 'Nhân viên', label: 'Nhân viên' },
     { value: 'Quản lý', label: 'Quản lý' },
+    { value: 'Nhân sự', label: 'Nhân sự' },
+    { value: 'Nhân viên', label: 'Nhân viên' },
 ];
-const cookies = new Cookies();
 
 export default function AddProfile(props) {
+    const { setAccountList } = props;
     const dispatch = useDispatch();
     const openDialog = useSelector(addAdminManager);
-
-    const { setAccountGuideList } = props;
-
-    console.log(cookies.get('useradmin'));
 
     const imageRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -109,7 +105,6 @@ export default function AddProfile(props) {
     };
 
     const submitSaveProfileAdmin = () => {
-        console.log(powerSelect);
         setIsLoading(true);
 
         api.createAdmin({
@@ -129,44 +124,13 @@ export default function AddProfile(props) {
                 tkqtv_trangthai: 1,
                 tkqtv_nhanvien: res.data,
             }).then((res) => {
-                setIsLoading(false);
+                api.getActivedAccountAdmin().then((res) => {
+                    setAccountList(res.data);
+                    setIsLoading(false);
+                    dispatch(handleToggleAddAdminManager(false));
+                });
             });
         });
-
-        // api.createGuide({
-        //     hdv_ma: idProfile,
-        //     hdv_hoten: nameAdmin,
-        //     hdv_gioitinh: gendarAdmin,
-        //     hdv_namsinh: yearBornAdmin,
-        //     hdv_quequan: addressAdmin,
-        //     hdv_mail: emailAdmin,
-        //     hdv_cccd: identifyAdmin,
-        //     hdv_sodienthoai: phoneAdmin,
-        // }).then((res) => {
-        //     api.addQualityGuide({
-        //         clhdv_huongdanvien: {
-        //             tkhdv_tendangnhap: username,
-        //             tkhdv_matkhau: password,
-        //             tkhdv_anhdaidien: imagePreview,
-        //             tkhdv_trangthai: 1,
-        //             tkhdv_huongdanvien: res.data,
-        //         },
-        //         clhdv_saotrungbinh: 0,
-        //     });
-        //     api.createAccountGuide({
-        //         tkhdv_tendangnhap: username,
-        //         tkhdv_matkhau: password,
-        //         tkhdv_anhdaidien: imagePreview,
-        //         tkhdv_trangthai: 1,
-        //         tkhdv_huongdanvien: res.data,
-        //     }).then((res) => {
-        //         setIsLoading(false);
-        //         api.getActiveGuideAccount().then((res) => {
-        //             setAccountGuideList(res.data);
-        //             dispatch(handleToggleAddAdminManager(false));
-        //         });
-        //     });
-        // });
     };
 
     return (

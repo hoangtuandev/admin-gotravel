@@ -13,8 +13,14 @@ export const getAllAdminAccount = () =>
 export const getActivedAccountAdmin = () =>
     axios.get(`${URL}/AdminAccount/getActivedAccountAdmin`);
 
+export const getLockedAccountAdmin = () =>
+    axios.get(`${URL}/AdminAccount/getLockedAccountAdmin`);
+
 export const getAdminById = (data) =>
     axios.post(`${URL}/Admin/getAdminById`, data);
+
+export const updateAdmin = (data) =>
+    axios.post(`${URL}/Admin/updateAdmin`, data);
 
 export const getAccountAdminByUsername = (data) =>
     axios.post(`${URL}/AdminAccount/getAccountAdminByUsername`, data);
@@ -24,6 +30,21 @@ export const createAccountAdmin = (data) =>
 
 export const handleSignIn = (data) =>
     axios.post(`${URL}/AdminAccount/SignIn`, data);
+
+export const updateAccountAdmin = (data) =>
+    axios.post(`${URL}/AdminAccount/updateAccountAdmin`, data);
+
+export const lockAdminAccount = (data) =>
+    axios.post(`${URL}/AdminAccount/lockAdminAccount`, data);
+
+export const activeAdminAccount = (data) =>
+    axios.post(`${URL}/AdminAccount/activeAdminAccount`, data);
+
+export const filterAdminAccountByPower = (data) =>
+    axios.post(`${URL}/AdminAccount/filterAdminAccountByPower`, data);
+
+export const searchingAdminAccount = (data) =>
+    axios.post(`${URL}/AdminAccount/searchingAdminAccount`, data);
 
 // LOAI HINH TOUR
 export const getAllTypeTourism = () => axios.get(`${URL}/TypeTourism`);

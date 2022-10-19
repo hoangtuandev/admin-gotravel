@@ -1,8 +1,7 @@
 import { React, Fragment, forwardRef, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
-import Cookies from 'universal-cookie';
 import { useSelector, useDispatch } from 'react-redux';
-import Select from 'react-select';
+// import Select from 'react-select';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
@@ -33,18 +32,15 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const powerSelectOptions = [
-    { value: 'Nhân viên', label: 'Nhân viên' },
-    { value: 'Quản lý', label: 'Quản lý' },
-];
-const cookies = new Cookies();
+// const powerSelectOptions = [
+//     { value: 'Nhân viên', label: 'Nhân viên' },
+//     { value: 'Quản lý', label: 'Quản lý' },
 
 export default function UpdateProfile(props) {
+    const { setAccountList } = props;
     const dispatch = useDispatch();
     const openDialog = useSelector(updateProfile);
     const profile = useSelector(adminSelected);
-
-    const { setAccountGuideList } = props;
 
     const imageRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -68,45 +64,36 @@ export default function UpdateProfile(props) {
     const [addressAdmin, setAddressAdmin] = useState(
         profile.adminProfile.qtv_diachi
     );
-    const [powerSelect, setPowerSelect] = useState(
-        profile.adminProfile.qtv_chucvu
-    );
-
-    console.log(profile);
 
     const handleChangeURLImg = (e) => {
         setImagePreview(e.target.value);
     };
 
-    const handleChangeSelectPower = (option) => {
-        setPowerSelect(option.value);
+    const handleSubmitUpdateAdmin = () => {
+        setIsLoading(true);
+
+        api.updateAdmin({
+            qtv_ma: profile.adminProfile.qtv_ma,
+            qtv_hoten: nameAdmin,
+            qtv_namsinh: yearBornAdmin,
+            qtv_gioitinh: gendarAdmin,
+            qtv_sodienthoai: phoneAdmin,
+            qtv_email: emailAdmin,
+            qtv_diachi: addressAdmin,
+        }).then((res) => {
+            api.updateAccountAdmin({
+                tkqtv_tendangnhap: profile.account.tkqtv_tendangnhap,
+                tkqtv_anhdaidien: imagePreview,
+                tkqtv_nhanvien: res.data[0],
+            }).then((res) => {
+                api.getActivedAccountAdmin().then((res) => {
+                    setAccountList(res.data);
+                    setIsLoading(false);
+                    dispatch(handleToggleUpdateProfile(false));
+                });
+            });
+        });
     };
-
-    // const submitSaveProfileAdmin = () => {
-    //     console.log(powerSelect);
-    //     setIsLoading(true);
-
-    //     api.createAdmin({
-    //         qtv_ma: idProfile,
-    //         qtv_hoten: nameAdmin,
-    //         qtv_namsinh: yearBornAdmin,
-    //         qtv_gioitinh: gendarAdmin,
-    //         qtv_sodienthoai: phoneAdmin,
-    //         qtv_email: emailAdmin,
-    //         qtv_diachi: addressAdmin,
-    //         qtv_chucvu: powerSelect,
-    //     }).then((res) => {
-    //         api.createAccountAdmin({
-    //             tkqtv_tendangnhap: username,
-    //             tkqtv_matkhau: password,
-    //             tkqtv_anhdaidien: imagePreview,
-    //             tkqtv_trangthai: 1,
-    //             tkqtv_nhanvien: res.data,
-    //         }).then((res) => {
-    //             setIsLoading(false);
-    //         });
-    //     });
-    // };
 
     return (
         <Fragment>
@@ -286,7 +273,7 @@ export default function UpdateProfile(props) {
                                     }
                                 />
                             </li>
-                            <li className={cx('power-select')}>
+                            {/* <li className={cx('power-select')}>
                                 <Select
                                     defaultValue={
                                         profile.adminProfile.qtv_chucvu
@@ -296,7 +283,7 @@ export default function UpdateProfile(props) {
                                     options={powerSelectOptions}
                                     onChange={handleChangeSelectPower}
                                 />
-                            </li>
+                            </li> */}
                         </ul>
 
                         {/* <Button
@@ -380,13 +367,28 @@ export default function UpdateProfile(props) {
                                 THOÁT
                             </Button>
 
-                            <Button
-                                color="success"
-                                variant="contained"
-                                className={cx('save-button')}
-                            >
-                                LƯU
-                            </Button>
+                            {!isLoading && (
+                                <Button
+                                    color="success"
+                                    variant="contained"
+                                    className={cx('save-button')}
+                                    onClick={() => handleSubmitUpdateAdmin()}
+                                >
+                                    LƯU
+                                </Button>
+                            )}
+
+                            {isLoading && (
+                                <Button
+                                    disabled
+                                    color="success"
+                                    variant="contained"
+                                    className={cx('save-button')}
+                                    onClick={() => handleSubmitUpdateAdmin()}
+                                >
+                                    LƯU
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </Dialog>

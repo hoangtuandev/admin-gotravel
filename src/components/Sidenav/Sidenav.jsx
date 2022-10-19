@@ -38,16 +38,15 @@ const selectedStyle = {
 function Sidenav() {
     const dispatch = useDispatch();
     const labelOption = useSelector(selectLabelOption);
-    const usernameAdmin = cookies.get('useradmin');
 
     const [admin, setAdmin] = useState(null);
 
     useEffect(() => {
-        api.getAccountAdminByUsername({ username: usernameAdmin }).then(
-            (res) => {
-                setAdmin(res.data[0]);
-            }
-        );
+        api.getAccountAdminByUsername({
+            username: cookies.get('useradmin'),
+        }).then((res) => {
+            setAdmin(res.data[0]);
+        });
     }, []);
 
     const handleSelectOption = (e) => {
@@ -80,32 +79,37 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-                    {admin && admin.tkqtv_nhanvien.qtv_chucvu === 'Quản lý' && (
-                        <Link to="/quan-tri-vien" className={cx('link-router')}>
-                            <li
-                                onClick={(e) => handleSelectOption(e)}
-                                title="Quản trị viên"
-                                style={
-                                    labelOption === 'Quản trị viên'
-                                        ? selectedStyle
-                                        : {}
-                                }
+                    {admin &&
+                        (admin.tkqtv_nhanvien.qtv_chucvu === 'Quản lý' ||
+                            admin.tkqtv_nhanvien.qtv_chucvu === 'Nhân sự') && (
+                            <Link
+                                to="/quan-tri-vien"
+                                className={cx('link-router')}
                             >
-                                <span
-                                    className={cx('icon')}
+                                <li
+                                    onClick={(e) => handleSelectOption(e)}
                                     title="Quản trị viên"
+                                    style={
+                                        labelOption === 'Quản trị viên'
+                                            ? selectedStyle
+                                            : {}
+                                    }
                                 >
-                                    <FcPortraitMode />
-                                </span>
-                                <span
-                                    className={cx('label')}
-                                    title="Quản trị viên"
-                                >
-                                    Quản trị viên
-                                </span>
-                            </li>
-                        </Link>
-                    )}
+                                    <span
+                                        className={cx('icon')}
+                                        title="Quản trị viên"
+                                    >
+                                        <FcPortraitMode />
+                                    </span>
+                                    <span
+                                        className={cx('label')}
+                                        title="Quản trị viên"
+                                    >
+                                        Quản trị viên
+                                    </span>
+                                </li>
+                            </Link>
+                        )}
                     <Link to="/loai-hinh-tour" className={cx('link-router')}>
                         <li
                             title="Loại hình Tour"
