@@ -22,6 +22,9 @@ export const getAdminById = (data) =>
 export const updateAdmin = (data) =>
     axios.post(`${URL}/Admin/updateAdmin`, data);
 
+export const changePositionAdmin = (data) =>
+    axios.post(`${URL}/Admin/changePositionAdmin`, data);
+
 export const getAccountAdminByUsername = (data) =>
     axios.post(`${URL}/AdminAccount/getAccountAdminByUsername`, data);
 
@@ -45,6 +48,9 @@ export const filterAdminAccountByPower = (data) =>
 
 export const searchingAdminAccount = (data) =>
     axios.post(`${URL}/AdminAccount/searchingAdminAccount`, data);
+
+export const updatePositionAdmin = (data) =>
+    axios.post(`${URL}/AdminAccount/updatePositionAdmin`, data);
 
 // LOAI HINH TOUR
 export const getAllTypeTourism = () => axios.get(`${URL}/TypeTourism`);

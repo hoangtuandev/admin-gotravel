@@ -79,37 +79,7 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-                    {admin &&
-                        (admin.tkqtv_nhanvien.qtv_chucvu === 'Quản lý' ||
-                            admin.tkqtv_nhanvien.qtv_chucvu === 'Nhân sự') && (
-                            <Link
-                                to="/quan-tri-vien"
-                                className={cx('link-router')}
-                            >
-                                <li
-                                    onClick={(e) => handleSelectOption(e)}
-                                    title="Quản trị viên"
-                                    style={
-                                        labelOption === 'Quản trị viên'
-                                            ? selectedStyle
-                                            : {}
-                                    }
-                                >
-                                    <span
-                                        className={cx('icon')}
-                                        title="Quản trị viên"
-                                    >
-                                        <FcPortraitMode />
-                                    </span>
-                                    <span
-                                        className={cx('label')}
-                                        title="Quản trị viên"
-                                    >
-                                        Quản trị viên
-                                    </span>
-                                </li>
-                            </Link>
-                        )}
+
                     <Link to="/loai-hinh-tour" className={cx('link-router')}>
                         <li
                             title="Loại hình Tour"
@@ -250,6 +220,37 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
+                    {admin &&
+                        (admin.tkqtv_nhanvien.qtv_chucvu === 'Quản lý' ||
+                            admin.tkqtv_nhanvien.qtv_chucvu === 'Nhân sự') && (
+                            <Link
+                                to="/quan-tri-vien"
+                                className={cx('link-router')}
+                            >
+                                <li
+                                    onClick={(e) => handleSelectOption(e)}
+                                    title="Quản trị viên"
+                                    style={
+                                        labelOption === 'Quản trị viên'
+                                            ? selectedStyle
+                                            : {}
+                                    }
+                                >
+                                    <span
+                                        className={cx('icon')}
+                                        title="Quản trị viên"
+                                    >
+                                        <FcPortraitMode />
+                                    </span>
+                                    <span
+                                        className={cx('label')}
+                                        title="Quản trị viên"
+                                    >
+                                        Quản trị viên
+                                    </span>
+                                </li>
+                            </Link>
+                        )}
                 </ul>
             </div>
         </div>

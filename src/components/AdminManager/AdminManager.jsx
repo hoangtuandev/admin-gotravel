@@ -17,6 +17,7 @@ import {
     handleChangeTypeAccounts,
     handleToggleAddAdminManager,
     lockProfile,
+    positionAdmin,
     showAccountType,
     updateProfile,
 } from './AdminManagerSlice';
@@ -24,6 +25,7 @@ import ProfileAdmin from './ProfileAdmin';
 import UpdateProfile from './UpdateProfile';
 import LockProfile from './LockProfile';
 import ActiveProfile from './ActiveProfile';
+import PositionAdmin from './PositionAdmin';
 
 const cx = classNames.bind(styles);
 
@@ -39,6 +41,7 @@ function AdminManager() {
     const openUpdate = useSelector(updateProfile);
     const openLock = useSelector(lockProfile);
     const openActive = useSelector(activeProfile);
+    const openPosition = useSelector(positionAdmin);
     const typeAccounts = useSelector(showAccountType);
     const [accountList, setAccountList] = useState([]);
     const [lockedAccountList, setLockedAccountList] = useState([]);
@@ -255,6 +258,9 @@ function AdminManager() {
                     setAccountList={setAccountList}
                     setLockedAccountList={setLockedAccountList}
                 ></ActiveProfile>
+            )}
+            {openPosition && (
+                <PositionAdmin setAccountList={setAccountList}></PositionAdmin>
             )}
         </div>
     );

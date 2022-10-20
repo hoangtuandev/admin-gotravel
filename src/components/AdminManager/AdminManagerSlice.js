@@ -5,6 +5,7 @@ const initialState = {
     updateProfile: false,
     lockProfile: false,
     activeProfile: false,
+    positionAdmin: false,
     showAccountType: 'actived',
     adminSelected: {},
 };
@@ -29,6 +30,10 @@ export const AdminManagerSlice = createSlice({
             state.activeProfile = action.payload;
         },
 
+        handleTogglePositionAdmin: (state, action) => {
+            state.positionAdmin = action.payload;
+        },
+
         handleSelectProfileAdmin: (state, action) => {
             state.adminSelected = action.payload;
         },
@@ -46,6 +51,7 @@ export const {
     handleToggleActiveProfile,
     handleSelectProfileAdmin,
     handleChangeTypeAccounts,
+    handleTogglePositionAdmin,
 } = AdminManagerSlice.actions;
 
 export const addAdminManager = (state) => state.adminManager.addAdminManager;
@@ -55,6 +61,8 @@ export const updateProfile = (state) => state.adminManager.updateProfile;
 export const lockProfile = (state) => state.adminManager.lockProfile;
 
 export const activeProfile = (state) => state.adminManager.activeProfile;
+
+export const positionAdmin = (state) => state.adminManager.positionAdmin;
 
 export const adminSelected = (state) => state.adminManager.adminSelected;
 

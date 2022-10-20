@@ -16,6 +16,7 @@ import {
     handleSelectProfileAdmin,
     handleToggleActiveProfile,
     handleToggleLockProfile,
+    handleTogglePositionAdmin,
     handleToggleUpdateProfile,
     showAccountType,
 } from './AdminManagerSlice';
@@ -62,6 +63,11 @@ function ProfileAdmin(props) {
         dispatch(handleToggleUpdateProfile(true));
     };
 
+    const handleChangePositionAdmin = () => {
+        dispatch(handleSelectProfileAdmin({ account, adminProfile }));
+        dispatch(handleTogglePositionAdmin(true));
+    };
+
     return (
         <Fragment>
             {adminProfile && (
@@ -89,6 +95,9 @@ function ProfileAdmin(props) {
                                         'Nhân sự' && (
                                         <WifiProtectedSetupIcon
                                             className={cx('promotion-icon')}
+                                            onClick={() =>
+                                                handleChangePositionAdmin()
+                                            }
                                         />
                                     )}
                             </p>
@@ -97,10 +106,15 @@ function ProfileAdmin(props) {
                             <p className={cx('staff-level')}>
                                 <span>{account.tkqtv_nhanvien.qtv_chucvu}</span>
                                 {adminLogined &&
-                                    adminLogined.tkqtv_nhanvien.qtv_chucvu ===
-                                        'Nhân sự' && (
+                                    (adminLogined.tkqtv_nhanvien.qtv_chucvu ===
+                                        'Nhân sự' ||
+                                        adminLogined.tkqtv_nhanvien
+                                            .qtv_chucvu === 'Quản lý') && (
                                         <WifiProtectedSetupIcon
                                             className={cx('promotion-icon')}
+                                            onClick={() =>
+                                                handleChangePositionAdmin()
+                                            }
                                         />
                                     )}
                             </p>
@@ -108,6 +122,16 @@ function ProfileAdmin(props) {
                         {adminProfile.qtv_chucvu === 'Nhân sự' && (
                             <p className={cx('humanresources-level')}>
                                 <span>{account.tkqtv_nhanvien.qtv_chucvu}</span>
+                                {adminLogined &&
+                                    adminLogined.tkqtv_nhanvien.qtv_chucvu ===
+                                        'Nhân sự' && (
+                                        <WifiProtectedSetupIcon
+                                            className={cx('promotion-icon')}
+                                            onClick={() =>
+                                                handleChangePositionAdmin()
+                                            }
+                                        />
+                                    )}
                             </p>
                         )}
                     </td>

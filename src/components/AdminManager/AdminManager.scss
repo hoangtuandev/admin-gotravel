@@ -557,3 +557,82 @@ $mainFamily: "Mulish", sans-serif;
         }
     }
 }
+
+.popup-position {
+    .popup-position-title {
+        text-align: center;
+        padding: 10px 20px;
+        font-family: $mainFamily;
+        font-size: 19px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #0b9de0;
+    }
+
+    .popup-position-content {
+        padding: 20px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .infor-table {
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50px;
+            }
+
+            table {
+                tr {
+                    td {
+                        padding: 5px 15px;
+                        font-family: $mainFamily;
+                        font-size: 17px;
+                        font-weight: 600;
+                    }
+
+                    .label {
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: #0b9de0;
+                    }
+                }
+            }
+        }
+
+        .change-position {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 40px 0;
+
+            .select-field {
+                margin: 0 0;
+                font-family: $mainFamily;
+                width: 180px;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            .change-icon {
+                padding-top: 5px;
+                color: #ea1f08;
+                font-size: 27px;
+                margin: 0 15px;
+            }
+        }
+    }
+
+    .popup-actions {
+        button {
+            width: 90px;
+            padding: 4px 0px;
+            font-family: $mainFamily;
+            font-size: 13px;
+            font-weight: 800;
+        }
+    }
+}
