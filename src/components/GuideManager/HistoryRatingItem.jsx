@@ -74,7 +74,11 @@ export default function HistoryRatingItem(props) {
                     </li>
                     <li>
                         <p className={cx('label-infor')}>Thời gian:</p>
-                        <p className={cx('content-infor')}></p>
+                        <p className={cx('content-infor')}>
+                            {moment(rating.dghdv_thoigian).format(
+                                'HH:mm DD/MM/YYYY'
+                            )}
+                        </p>
                     </li>
                     <li>
                         <p className={cx('label-infor')}>Mã booking:</p>
@@ -88,7 +92,7 @@ export default function HistoryRatingItem(props) {
                             {moment(
                                 rating.dghdv_booking.bt_lichkhoihanh
                                     .lkh_ngaykhoihanh
-                            ).format('HH:mm DD/MM/YYYY')}
+                            ).format('DD/MM/YYYY')}
                         </p>
                     </li>
                     <li>
@@ -97,7 +101,7 @@ export default function HistoryRatingItem(props) {
                             {moment(
                                 rating.dghdv_booking.bt_lichkhoihanh
                                     .lkh_ngayketthuc
-                            ).format('HH:mm DD/MM/YYYY')}
+                            ).format('DD/MM/YYYY')}
                         </p>
                     </li>
                 </ul>

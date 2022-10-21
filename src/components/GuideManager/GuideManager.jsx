@@ -144,32 +144,28 @@ function GuideManager() {
             </div>
             {typeList === 'actived' && (
                 <div className={cx('filter-guide')}>
-                    <div className={cx('select-all')}>
-                        <span className={cx('label')}>Tất cả</span>
-                        <Switch
-                            size="large"
-                            color="error"
-                            checked={selectAll}
-                            onChange={handleToggleSelectAll}
-                            inputProps={{ 'aria-label': 'controlled' }}
-                        />
+                    <div className={cx('filter-select')}>
+                        <div className={cx('select-all')}>
+                            <span className={cx('label')}>Tất cả</span>
+                            <Switch
+                                size="large"
+                                color="error"
+                                checked={selectAll}
+                                onChange={handleToggleSelectAll}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                        </div>
+
+                        <div className={'select-sort'}>
+                            <Select
+                                placeholder="Sao trung bình"
+                                className={cx('select-field')}
+                                options={starSelectOptions}
+                                onChange={handleChangeSelectSortStar}
+                            />
+                        </div>
                     </div>
-                    {/* <div className={'select-sort'}>
-                        <Select
-                            placeholder="Lượt dẫn tour"
-                            className={cx('select-field')}
-                            options={timesSelectOptions}
-                            // onChange={handleChangeYearSelected}
-                        />
-                    </div> */}
-                    <div className={'select-sort'}>
-                        <Select
-                            placeholder="Sao trung bình"
-                            className={cx('select-field')}
-                            options={starSelectOptions}
-                            onChange={handleChangeSelectSortStar}
-                        />
-                    </div>
+
                     <div className={cx('search-tour')}>
                         <input
                             className={'textfield-search'}

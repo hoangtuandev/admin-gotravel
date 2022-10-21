@@ -5,7 +5,7 @@ $mainFamily: "Mulish", sans-serif;
     display: flex;
     justify-content: center;
     margin-left: 250px;
-    margin-top: 60px;
+    margin-top: 70px;
     margin-right: 50px;
     padding-bottom: 50px;
     display: flex;
@@ -31,7 +31,7 @@ $mainFamily: "Mulish", sans-serif;
 
             .icon-calendar {
                 position: absolute;
-                top: 65px;
+                top: 50px;
                 right: 10px;
                 color: #0784be;
                 font-size: 20px;
@@ -135,7 +135,7 @@ $mainFamily: "Mulish", sans-serif;
             position: relative;
 
             .textfield-search {
-                margin-top: 55px;
+                margin-top: 35px;
                 width: 350px;
                 height: 42px;
                 padding: 0px 15px;
@@ -149,7 +149,7 @@ $mainFamily: "Mulish", sans-serif;
 
             label {
                 position: absolute;
-                top: 55px;
+                top: 35px;
                 right: 0px;
                 background-color: #0b9de0;
                 color: #fff;

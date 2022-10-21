@@ -82,7 +82,7 @@ export default function InformationsProfile(props) {
                                     <FingerprintIcon
                                         className={cx('icon-profile')}
                                     />
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {profile.tkhdv_huongdanvien.hdv_ma}
                                     </p>
                                 </div>
@@ -93,7 +93,7 @@ export default function InformationsProfile(props) {
                                         className={cx('icon-profile')}
                                     />
 
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {
                                             profile.tkhdv_huongdanvien
                                                 .hdv_gioitinh
@@ -105,7 +105,7 @@ export default function InformationsProfile(props) {
                                 <div className="infor-item">
                                     <CakeIcon className={cx('icon-profile')} />
 
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {profile.tkhdv_huongdanvien.hdv_namsinh}
                                     </p>
                                 </div>
@@ -117,7 +117,7 @@ export default function InformationsProfile(props) {
                                     <LocalPhoneIcon
                                         className={cx('icon-profile')}
                                     />
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {
                                             profile.tkhdv_huongdanvien
                                                 .hdv_sodienthoai
@@ -129,7 +129,7 @@ export default function InformationsProfile(props) {
                                 <div className="infor-item">
                                     <EmailIcon className={cx('icon-profile')} />
 
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {profile.tkhdv_huongdanvien.hdv_mail}
                                     </p>
                                 </div>
@@ -140,7 +140,7 @@ export default function InformationsProfile(props) {
                                 <div className="infor-item infor-address">
                                     <HomeIcon className={cx('icon-profile')} />
 
-                                    <p className={cx('content')}>
+                                    <p className={cx('content-infor')}>
                                         {profile.tkhdv_huongdanvien.hdv_quequan}
                                     </p>
                                 </div>
