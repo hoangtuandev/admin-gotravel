@@ -1,0 +1,195 @@
+$mainColor: #0b9de0;
+$mainFamily: "Mulish", sans-serif;
+
+p {
+    margin: 0 0;
+}
+
+.share-posts {
+    padding-top: 80px;
+    padding-left: 210px;
+    padding-bottom: 50px;
+
+    display: flex;
+    flex-direction: column;
+
+    .tab {
+        display: flex;
+        // justify-content: center;
+
+        .navigation-menu {
+            width: 450px;
+            border-radius: 50px;
+            background-color: #0b9de0;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+            button {
+                border-radius: 50px;
+                .css-imwso6-MuiBottomNavigationAction-label {
+                    color: #e8e8e8;
+                    font-family: $mainFamily;
+                    font-size: 17px;
+                    font-weight: 700;
+                }
+
+                .css-imwso6-MuiBottomNavigationAction-label.Mui-selected {
+                    font-weight: 800;
+                    color: #fff;
+                    font-size: 19px;
+                }
+            }
+        }
+
+        .css-16lloyr-MuiBottomNavigation-root {
+            height: 45px;
+        }
+    }
+
+    .posts-list {
+        margin: 10px 0 0 0;
+        padding: 0 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+
+        li {
+            width: 400px;
+            height: 430px;
+            max-height: 430px;
+            margin: 20px 17px 20px 0;
+            position: relative;
+
+            .card {
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                padding-bottom: 0;
+
+                .card-action-area {
+                    .card-content {
+                        padding-bottom: 10px;
+                        .typography-title {
+                            color: #0b9de0;
+                            font-family: $mainFamily;
+                            font-size: 17px;
+                            font-weight: 700;
+                            height: 45px;
+                            max-height: 45px;
+
+                            display: -webkit-box;
+                            overflow: hidden;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                        }
+                        .typography-content {
+                            text-align: justify;
+                            width: 365px;
+                            max-width: 365px;
+
+                            display: -webkit-box;
+                            overflow: hidden;
+                            -webkit-line-clamp: 5;
+                            -webkit-box-orient: vertical;
+                            font-family: $mainFamily;
+                            font-weight: 600;
+                            font-size: 15px;
+                            margin-top: 5px;
+                        }
+
+                        .typography-control {
+                            margin-top: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            .expired-date {
+                                display: flex;
+                                align-items: center;
+                                color: #ee0000;
+
+                                .icon {
+                                    margin-right: 5px;
+                                    font-size: 20px;
+                                }
+
+                                span {
+                                    font-size: 14.5px;
+                                    font-family: $mainFamily;
+                                    font-weight: 800;
+                                }
+                            }
+
+                            .favorite-time {
+                                display: flex;
+                                align-items: center;
+
+                                span {
+                                    font-family: $mainFamily;
+                                    font-weight: 800;
+                                    font-size: 16px;
+                                    color: #ff0090;
+                                }
+                                .icon {
+                                    font-size: 24px;
+                                    color: #fd008f;
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
+
+                    .author {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+                        img {
+                            width: 37px;
+                            height: 37px;
+                            border-radius: 50px;
+                            margin-right: 10px;
+                        }
+
+                        p {
+                            font-family: $mainFamily;
+                            font-size: 15px;
+                            font-weight: 700;
+                            color: #656565;
+                        }
+                    }
+                }
+
+                .card-actions {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-left: 15px;
+                    padding-right: 15px;
+
+                    .datetime-post {
+                        display: flex;
+                        align-items: center;
+                        font-size: 15px;
+                        font-family: $mainFamily;
+                        font-weight: 700;
+                        color: orangered;
+
+                        .icon-accesstime {
+                            font-size: 18px;
+                            margin-right: 5px;
+                            color: orangered;
+                        }
+                    }
+
+                    button {
+                        width: 90px;
+                        padding: 2px 0px;
+                        font-family: $mainFamily;
+                        font-size: 14px;
+                        font-weight: 800;
+                        border-width: 2px;
+                        margin: 0 0px 0 10px;
+                    }
+                }
+            }
+        }
+    }
+}

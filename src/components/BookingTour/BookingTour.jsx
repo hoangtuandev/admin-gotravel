@@ -40,8 +40,6 @@ function BookingTour() {
     const paramsFilter = useSelector(paramsBookingFilter);
     const [page, setPage] = useState(1);
 
-    console.log(new Date());
-
     const handleChangePagination = (event, value) => {
         setPage(value);
     };
@@ -51,7 +49,6 @@ function BookingTour() {
     };
 
     useEffect(() => {
-        console.log('render');
         api.updateBookingTourWorking({ bt_trangthai: 3 }).then((res) => {});
         api.updateBookingTourFinish({ bt_trangthai: 4 }).then((res) => {});
     }, []);

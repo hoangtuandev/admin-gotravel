@@ -10,6 +10,7 @@ import BookingTourReducer from '../components/BookingTour/BookingTourSlice';
 import AdvertisementReducer from '../components/Advertisement/AdvertisementSlice';
 import AdminManagerReducer from '../components/AdminManager/AdminManagerSlice';
 import GuideManagerReducer from '../components/GuideManager/GuideManagerSlice';
+import SharePostsReducer from '../components/SharePosts/SharePostsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -24,5 +25,6 @@ export const store = configureStore({
         advertisement: AdvertisementReducer,
         adminManager: AdminManagerReducer,
         guideManager: GuideManagerReducer,
+        sharePosts: SharePostsReducer,
     },
 });

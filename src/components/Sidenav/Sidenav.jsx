@@ -79,7 +79,6 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-
                     <Link to="/loai-hinh-tour" className={cx('link-router')}>
                         <li
                             title="Loại hình Tour"
@@ -167,20 +166,25 @@ function Sidenav() {
                             </span>
                         </li>
                     </Link>
-                    <li
-                        onClick={(e) => handleSelectOption(e)}
-                        title="Bài chia sẻ"
-                        style={
-                            labelOption === 'Bài chia sẻ' ? selectedStyle : {}
-                        }
-                    >
-                        <span className={cx('icon')} title="Bài chia sẻ">
-                            <FcShare />
-                        </span>
-                        <span className={cx('label')} title="Bài chia sẻ">
-                            Bài chia sẻ
-                        </span>
-                    </li>
+                    <Link to="/chia-se" className={cx('link-router')}>
+                        <li
+                            onClick={(e) => handleSelectOption(e)}
+                            title="Bài chia sẻ"
+                            style={
+                                labelOption === 'Bài chia sẻ'
+                                    ? selectedStyle
+                                    : {}
+                            }
+                        >
+                            <span className={cx('icon')} title="Bài chia sẻ">
+                                <FcShare />
+                            </span>
+                            <span className={cx('label')} title="Bài chia sẻ">
+                                Bài chia sẻ
+                            </span>
+                        </li>
+                    </Link>
+
                     <Link to="/quang-ba" className={cx('link-router')}>
                         <li
                             onClick={(e) => handleSelectOption(e)}

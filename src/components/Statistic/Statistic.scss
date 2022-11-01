@@ -199,7 +199,7 @@ ul {
         background-color: #fff;
         border-radius: 15px;
         padding: 20px 30px;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
 
         .select-year {
@@ -578,6 +578,145 @@ ul {
                             border-radius: 50px;
                             padding: 5px 0;
                         }
+                    }
+
+                    .guide-name {
+                        font-weight: 700;
+                        color: #0084c2;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .average-star {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .icon-star {
+                            font-size: 19px;
+                            color: #f1c40f;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .calendar-times-statistic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 30px 30px 30px;
+        border-radius: 15px;
+        margin: 20px 0px;
+
+        .label-statistic {
+            font-family: $mainFamily;
+            font-weight: 800;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            margin: 0 0 15px 0;
+            padding: 8px 25px;
+            border-radius: 50px;
+            background-color: #0b9de0;
+            box-shadow: rgba(99, 99, 99, 0.12) 0px 2px 4px 0px, rgba(125, 125, 125, 0.32) 0px 2px 16px 0px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 2px solid #0b9de0;
+
+            td {
+                font-family: $mainFamily;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 0px 20px;
+                text-align: center;
+            }
+
+            .guide-name {
+                text-align: left;
+                width: 350px;
+                max-width: 400px;
+
+                img {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50px;
+                    margin-right: 10px;
+                }
+            }
+
+            thead {
+                tr {
+                    td {
+                        background-color: #0b9de0;
+                        color: #fff;
+                        font-weight: 700;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        font-size: 17px;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        padding-top: 13px;
+                        padding-bottom: 13px;
+
+                        img {
+                            width: 160px;
+                            height: 95px;
+                            border-radius: 4px;
+                        }
+
+                        p {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-one {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #e74c3c;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-two {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #0b9de0;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+
+                        .top-index-three {
+                            width: 35px;
+                            font-size: 16px;
+                            font-weight: 700;
+                            background-color: #28b463;
+                            color: #fff;
+                            border-radius: 50px;
+                            padding: 5px 0;
+                        }
+                    }
+
+                    .calendar-times {
+                        color: #e74c3c;
+                        font-weight: 800;
+                        font-size: 18px;
                     }
 
                     .guide-name {

@@ -157,6 +157,9 @@ export const searchingCalendarGuideByTourName = (data) =>
 export const deleteRegistedGuide = (data) =>
     axios.post(`${URL}/CalendarGuide/deleteRegistedGuide`, data);
 
+export const calendarGuideTimesStatistic = () =>
+    axios.get(`${URL}/CalendarGuide/calendarGuideTimesStatistic`);
+
 // BOOKING TOUR
 export const getAllBookingTour = () => axios.get(`${URL}/BookingTour`);
 
@@ -201,6 +204,9 @@ export const revenueBookingByTour = () =>
 
 export const revenueBookingByTourist = () =>
     axios.get(`${URL}/BookingTour/revenueBookingByTourist`);
+
+export const compareRevenueBookingTour = () =>
+    axios.get(`${URL}/BookingTour/compareRevenueBookingTour`);
 
 // ADVERTISEMENT
 
@@ -267,6 +273,9 @@ export const sortAccountGuideByAverageStar = (data) =>
 export const getRatingGuideByGuideAccount = (data) =>
     axios.post(`${URL}/RatingGuide/getRatingGuideByGuideAccount`, data);
 
+export const averageStarGuideStatistic = (data) =>
+    axios.get(`${URL}/RatingGuide/averageStarGuideStatistic`, data);
+
 export const updateStartGuide = (data) =>
     axios.post(`${URL}/QualityGuide`, data);
 
@@ -276,3 +285,23 @@ export const addQualityGuide = (data) =>
 // TOURIST
 export const countAmountTouristAccount = () =>
     axios.get(`${URL}/TouristAccount/countAmountTouristAccount`);
+
+export const getTouristAccountById = (data) =>
+    axios.post(`${URL}/TouristAccount/getTouristAccountById`, data);
+
+// SHARE POSTS
+
+export const getRejectSharePosts = () =>
+    axios.get(`${URL}/SharePosts/getRejectSharePosts`);
+
+export const getAcceptedSharePosts = () =>
+    axios.get(`${URL}/SharePosts/getAcceptedSharePosts`);
+
+export const getWaitingSharePosts = () =>
+    axios.get(`${URL}/SharePosts/getWaitingSharePosts`);
+
+export const acceptSharePost = (data) =>
+    axios.post(`${URL}/SharePosts/acceptSharePost`, data);
+
+export const rejectSharePost = (data) =>
+    axios.post(`${URL}/SharePosts/rejectSharePost`, data);
