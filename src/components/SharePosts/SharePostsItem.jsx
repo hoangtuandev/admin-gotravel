@@ -1,14 +1,13 @@
 import { React, useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import ScheduleIcon from '@mui/icons-material/Schedule';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import styles from './SharePosts.scss';
 import { baseURLServer, typeListPosts } from './SharePostsSlice';
 import * as api from '../../api';
@@ -30,6 +29,28 @@ function SharePostsItem(props) {
             }
         );
     }, [posts]);
+
+    function prettyDate(time) {
+        var date = new Date(time);
+        var diff = (new Date().getTime() - date.getTime()) / 1000,
+            day_diff = Math.floor(diff / 86400);
+
+        if (isNaN(day_diff) || day_diff < 0) return;
+
+        return (
+            (day_diff === 0 &&
+                ((diff < 60 && 'vừa xong') ||
+                    (diff < 120 && '1 phút trước') ||
+                    (diff < 3600 && Math.floor(diff / 60) + ' phút trước') ||
+                    (diff < 7200 && '1 giờ trước') ||
+                    (diff < 86400 &&
+                        Math.floor(diff / 3600) + ' giờ trước'))) ||
+            (day_diff === 1 && '1 ngày trước') ||
+            (day_diff < 7 && day_diff + ' ngày trước') ||
+            (day_diff < 31 && Math.ceil(day_diff / 7) + ' tuần trước') ||
+            (day_diff > 31 && Math.floor(day_diff / 31) + ' tháng trước')
+        );
+    }
 
     const handleAcceptSharePosts = () => {
         api.acceptSharePost({ idPosts: posts.bvcs_ma }).then((res) => {
@@ -81,23 +102,16 @@ function SharePostsItem(props) {
                         >
                             {posts.bvcs_noidung}
                         </div>
-
-                        {/* <div className={cx('typography-control')}>
-                            <div className={cx('expired-date')}></div>
-                            <div className={cx('favorite-time')}>
-                                <span>10</span>
-                                <FavoriteIcon className={cx('icon')} />
-                            </div>
-                        </div> */}
                     </CardContent>
                 </CardActionArea>
                 <CardActions className="card-actions">
                     <div className="datetime-post">
                         <AccessTimeIcon className="icon-accesstime" />
                         <span>
-                            {moment(posts.bvcs_thoigian).format(
+                            {/* {moment(posts.bvcs_thoigian).format(
                                 'HH:mm DD/MM/YYYY'
-                            )}
+                            )} */}
+                            {prettyDate(posts.bvcs_thoigian)}
                         </span>
                     </div>
                     {typeList === 1 && (
@@ -116,6 +130,18 @@ function SharePostsItem(props) {
                             >
                                 Duyệt
                             </Button>
+                        </div>
+                    )}
+                    {typeList === 2 && (
+                        <div className={cx('typography-control')}>
+                            <div className={cx('favorite-time')}>
+                                <span>10</span>
+                                <FavoriteIcon className={cx('icon')} />
+                            </div>
+                            <div className={cx('comment-time')}>
+                                <span>10</span>
+                                <QuestionAnswerIcon className={cx('icon')} />
+                            </div>
                         </div>
                     )}
                 </CardActions>

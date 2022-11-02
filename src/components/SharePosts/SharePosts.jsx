@@ -47,7 +47,7 @@ function SharePosts() {
                 >
                     <BottomNavigationAction
                         className="navigation-action"
-                        label="Từ chối"
+                        label="Không duyệt"
                     />
                     <BottomNavigationAction
                         className="navigation-action"

@@ -18,10 +18,10 @@ p {
         // justify-content: center;
 
         .navigation-menu {
-            width: 450px;
+            width: 500px;
             border-radius: 50px;
             background-color: #0b9de0;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
             button {
                 border-radius: 50px;
@@ -35,7 +35,7 @@ p {
                 .css-imwso6-MuiBottomNavigationAction-label.Mui-selected {
                     font-weight: 800;
                     color: #fff;
-                    font-size: 19px;
+                    font-size: 18px;
                 }
             }
         }
@@ -94,47 +94,6 @@ p {
                             font-size: 15px;
                             margin-top: 5px;
                         }
-
-                        .typography-control {
-                            margin-top: 10px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-
-                            .expired-date {
-                                display: flex;
-                                align-items: center;
-                                color: #ee0000;
-
-                                .icon {
-                                    margin-right: 5px;
-                                    font-size: 20px;
-                                }
-
-                                span {
-                                    font-size: 14.5px;
-                                    font-family: $mainFamily;
-                                    font-weight: 800;
-                                }
-                            }
-
-                            .favorite-time {
-                                display: flex;
-                                align-items: center;
-
-                                span {
-                                    font-family: $mainFamily;
-                                    font-weight: 800;
-                                    font-size: 16px;
-                                    color: #ff0090;
-                                }
-                                .icon {
-                                    font-size: 24px;
-                                    color: #fd008f;
-                                    margin-left: 5px;
-                                }
-                            }
-                        }
                     }
 
                     .author {
@@ -187,6 +146,47 @@ p {
                         font-weight: 800;
                         border-width: 2px;
                         margin: 0 0px 0 10px;
+                    }
+                }
+
+                .typography-control {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .comment-time {
+                        display: flex;
+                        align-items: center;
+
+                        span {
+                            font-family: $mainFamily;
+                            font-weight: 800;
+                            font-size: 16px;
+                            color: #0b9de0;
+                        }
+                        .icon {
+                            font-size: 24px;
+                            color: #0b9de0;
+                            margin-left: 2px;
+                        }
+                    }
+
+                    .favorite-time {
+                        display: flex;
+                        align-items: center;
+                        margin-right: 25px;
+
+                        span {
+                            font-family: $mainFamily;
+                            font-weight: 800;
+                            font-size: 16px;
+                            color: #ff0090;
+                        }
+                        .icon {
+                            font-size: 24px;
+                            color: #fd008f;
+                            margin-left: 2px;
+                        }
                     }
                 }
             }
