@@ -6,12 +6,18 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import styles from './SharePosts.scss';
 import SharePostsItem from './SharePostsItem';
 import * as api from '../../api';
-import { handleChangeTypeListPosts, typeListPosts } from './SharePostsSlice';
+import {
+    handleChangeTypeListPosts,
+    openView,
+    typeListPosts,
+} from './SharePostsSlice';
+import ViewPosts from './ViewPosts';
 
 const cx = classNames.bind(styles);
 
 function SharePosts() {
     const dispatch = useDispatch();
+    const openDialog = useSelector(openView);
     const [valueNavigation, setValueNavigation] = useState(1);
     const typeList = useSelector(typeListPosts);
 
@@ -69,6 +75,7 @@ function SharePosts() {
                         ></SharePostsItem>
                     ))}
             </ul>
+            {openDialog && <ViewPosts></ViewPosts>}
         </div>
     );
 }

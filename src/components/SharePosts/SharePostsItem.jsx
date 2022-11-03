@@ -9,7 +9,12 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import styles from './SharePosts.scss';
-import { baseURLServer, typeListPosts } from './SharePostsSlice';
+import {
+    baseURLServer,
+    handleSelectPosts,
+    handleToggleViewPosts,
+    typeListPosts,
+} from './SharePostsSlice';
 import * as api from '../../api';
 
 const cx = classNames.bind(styles);
@@ -68,10 +73,18 @@ function SharePostsItem(props) {
         });
     };
 
+    const handleViewSharePosts = () => {
+        dispatch(handleSelectPosts(posts));
+        dispatch(handleToggleViewPosts(true));
+    };
+
     return (
         <li>
             <Card className={cx('card')}>
-                <CardActionArea className={cx('card-action-area')}>
+                <CardActionArea
+                    className={cx('card-action-area')}
+                    onClick={() => handleViewSharePosts()}
+                >
                     <CardMedia
                         component="img"
                         height="230"
@@ -135,11 +148,11 @@ function SharePostsItem(props) {
                     {typeList === 2 && (
                         <div className={cx('typography-control')}>
                             <div className={cx('favorite-time')}>
-                                <span>10</span>
+                                <span>{posts.bvcs_luotthich.length}</span>
                                 <FavoriteIcon className={cx('icon')} />
                             </div>
                             <div className={cx('comment-time')}>
-                                <span>10</span>
+                                <span>{posts.bvcs_binhluan.length}</span>
                                 <QuestionAnswerIcon className={cx('icon')} />
                             </div>
                         </div>
