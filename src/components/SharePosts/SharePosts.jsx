@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import SearchIcon from '@mui/icons-material/Search';
 import styles from './SharePosts.scss';
 import SharePostsItem from './SharePostsItem';
 import * as api from '../../api';
@@ -23,6 +24,8 @@ function SharePosts() {
 
     const [listPosts, setListPosts] = useState([]);
 
+    const [searchingKey, setSearchingKey] = useState('');
+
     useEffect(() => {
         if (typeList === 0) {
             api.getRejectSharePosts().then((res) => {
@@ -38,6 +41,16 @@ function SharePosts() {
             });
         }
     }, [typeList]);
+
+    const handleChangeSearchingKey = (key) => {
+        setSearchingKey(key);
+        api.searchingSharePosts({
+            keySearch: key,
+            currentStatus: typeList,
+        }).then((res) => {
+            setListPosts(res.data);
+        });
+    };
 
     return (
         <div className={cx('share-posts')}>
@@ -64,7 +77,23 @@ function SharePosts() {
                         label="Đã duyệt"
                     />
                 </BottomNavigation>
+
+                <div className={cx('search-tour')}>
+                    <input
+                        className={'textfield-search'}
+                        type="text"
+                        placeholder="Tìm kiếm tiêu đề bài viết..."
+                        value={searchingKey}
+                        onChange={(e) =>
+                            handleChangeSearchingKey(e.target.value)
+                        }
+                    />
+                    <label>
+                        <SearchIcon className={cx('search-icon')} />
+                    </label>
+                </div>
             </div>
+
             <ul className="posts-list">
                 {listPosts.length !== 0 &&
                     listPosts.map((posts, index) => (

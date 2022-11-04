@@ -208,6 +208,9 @@ export const revenueBookingByTourist = () =>
 export const compareRevenueBookingTour = () =>
     axios.get(`${URL}/BookingTour/compareRevenueBookingTour`);
 
+export const totalTouristSatistic = () =>
+    axios.get(`${URL}/BookingTour/totalTouristSatistic`);
+
 // ADVERTISEMENT
 
 export const getAllAdvertiseqment = () => axios.get(`${URL}/Advertisement`);
@@ -305,3 +308,9 @@ export const acceptSharePost = (data) =>
 
 export const rejectSharePost = (data) =>
     axios.post(`${URL}/SharePosts/rejectSharePost`, data);
+
+export const searchingSharePosts = (data) =>
+    axios.post(`${URL}/SharePosts/searchingSharePosts`, data);
+
+export const historySharePostsByTourist = (data) =>
+    axios.post(`${URL}/SharePosts/historySharePostsByTourist`, data);

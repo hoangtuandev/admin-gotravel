@@ -18,6 +18,7 @@ function GeneralStatistic() {
     const [amountGuideAccount, setAmountGuideAccount] = useState(0);
     const [amountTouristAccount, setAmountTouristAccount] = useState(0);
     const [totalRevenue, setTotalRevenue] = useState(0);
+    const [totalTourist, setTotalTourist] = useState(0);
 
     useEffect(() => {
         api.countAmountTour().then((res) => {
@@ -37,6 +38,9 @@ function GeneralStatistic() {
 
         api.totalRevenueBookingTour().then((res) => {
             setTotalRevenue(res.data[0].totalPayment);
+        });
+        api.totalTouristSatistic().then((res) => {
+            setTotalTourist(res.data);
         });
     }, []);
 
@@ -109,10 +113,8 @@ function GeneralStatistic() {
                         <HailIcon className={cx('icon-figure')} />
 
                         <div className={cx('value-figure')}>
-                            <p className={cx('total')}>
-                                {amountTouristAccount}
-                            </p>
-                            <p className={cx('label')}>Khách du lịch</p>
+                            <p className={cx('total')}>{totalTourist}</p>
+                            <p className={cx('label')}>Tổng lượng khách</p>
                         </div>
                     </div>
                     <div className={cx('view-detail')}>

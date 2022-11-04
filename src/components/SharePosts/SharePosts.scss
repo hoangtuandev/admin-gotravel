@@ -6,7 +6,7 @@ p {
 }
 
 .share-posts {
-    padding-top: 80px;
+    padding-top: 90px;
     padding-left: 210px;
     padding-bottom: 50px;
 
@@ -15,7 +15,8 @@ p {
 
     .tab {
         display: flex;
-        // justify-content: center;
+        justify-content: space-between;
+        align-items: center;
 
         .navigation-menu {
             width: 500px;
@@ -43,10 +44,45 @@ p {
         .css-16lloyr-MuiBottomNavigation-root {
             height: 45px;
         }
+
+        .search-tour {
+            position: relative;
+            right: 25px;
+
+            .textfield-search {
+                width: 350px;
+                height: 42px;
+                padding: 0px 15px;
+                font-family: $mainFamily;
+                font-weight: 600;
+                font-size: 15px;
+                outline: none;
+                border-radius: 5px;
+                border: 2px solid #0b9de0;
+            }
+
+            label {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                background-color: #0b9de0;
+                color: #fff;
+                height: 42px;
+                width: 42px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .search-icon {
+                font-size: 30px;
+            }
+        }
     }
 
     .posts-list {
-        margin: 10px 0 0 0;
+        margin: 5px 0 0 0;
         padding: 0 0;
         list-style-type: none;
         display: flex;
@@ -61,7 +97,7 @@ p {
             position: relative;
 
             .card {
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
                 padding-bottom: 0;
 
                 .card-action-area {

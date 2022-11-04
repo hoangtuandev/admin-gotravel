@@ -7,7 +7,6 @@ import TouristStatistic from './TouristStatistic';
 import TourStatistic from './TourStatistic';
 import RevenueStatistic from './RevenueStatistic';
 import GuideStatistic from './GuideStatistic';
-import CalendarGuideStatistic from './CalendarGuideStatistic';
 import CompareRevenueStatistic from './CompareRevenueStatistic';
 
 Chart.register(...registerables);
@@ -21,8 +20,7 @@ function Statistic() {
             <RevenueStatistic></RevenueStatistic>
             <TourStatistic></TourStatistic>
             <TouristStatistic></TouristStatistic>
-            {/* <GuideStatistic></GuideStatistic>
-            <CalendarGuideStatistic></CalendarGuideStatistic> */}
+            <GuideStatistic></GuideStatistic>
         </div>
     );
 }
