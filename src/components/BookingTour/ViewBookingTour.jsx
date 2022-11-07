@@ -345,7 +345,7 @@ export default function ViewBookingTour() {
                                                         (booking.bt_tour.t_gia *
                                                             booking
                                                                 .bt_soluonghanhkhach
-                                                                .children *
+                                                                .baby *
                                                             40) /
                                                         100
                                                     ).toLocaleString('vi', {

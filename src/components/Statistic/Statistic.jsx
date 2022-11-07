@@ -15,12 +15,12 @@ const cx = classNames.bind(styles);
 function Statistic() {
     return (
         <div className={cx('statistic')}>
-            <GeneralStatistic></GeneralStatistic>
+            {/* <GeneralStatistic></GeneralStatistic>
             <CompareRevenueStatistic></CompareRevenueStatistic>
             <RevenueStatistic></RevenueStatistic>
             <TourStatistic></TourStatistic>
             <TouristStatistic></TouristStatistic>
-            <GuideStatistic></GuideStatistic>
+            <GuideStatistic></GuideStatistic> */}
         </div>
     );
 }
